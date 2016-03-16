@@ -107,8 +107,6 @@
 	
 	<bean id="download" class="asms.common.file.web.FileDown" />
 	
-	<bean id="jsonView" class="asms.common.tree.AsmsMappingJacksonJsonView" p:contentType="text/html"/>
-	
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
 		 <property name="viewClass">
 			 <value>org.springframework.web.servlet.view.tiles2.TilesView</value>
@@ -122,25 +120,6 @@
 		 <property name="definitions">
 			 <list>
 				 <value>/WEB-INF/tiles/asms/common/tiles-*.xml</value> 
-				 <value>/WEB-INF/tiles/asms/regt/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/clas/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/srvc/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/syst/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/test/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/reg/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/appr/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/trans/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/readloan/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/accs/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/srch/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/arrg/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/prsv/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/acqs/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/stat/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/year/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/orl/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/use/tiles-*.xml</value>
-				 <value>/WEB-INF/tiles/asms/readrent/tiles-*.xml</value>
 			 </list>
 		 </property>
 	 </bean>
