@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	 "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+	 
+<tiles-definitions>
+
+	<definition name="mainTemplate" template="/WEB-INF/views/layout.jsp">
+		<put-attribute name="htmlheader" value="/WEB-INF/views/htmlheader.jsp" />
+		<put-attribute name="top" value="/WEB-INF/views/top.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
+
+  	<definition name="/reg/acqs/RegAcqsFolder" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/kams/reg/acqs/RegAcqsFolder.jsp" />
+	</definition>
+	
+	<definition name="/reg/acqs/RegAcqsRecord" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/jsp/kams/reg/acqs/RegAcqsRecord.jsp" />
+	</definition>
+	
+	<definition name="mainContent" template="/WEB-INF/views/ContsLayout.jsp">
+		<put-attribute name="content" value="" />
+	</definition>
+
+	<!-- 아래 name을 "/sample/egovSampleList"라고 정합니다. "/sample/egovSampleLIst"는 
+		컨트롤러가 리턴하는 값입니다. 컨트롤러에서 리턴할 때 맨앞에 "/"가 포함되어 있다는 점을 잊지 마세요. -->
+		
+	<definition name="/reg/acqs/*" extends="mainContent">
+		<put-attribute name="content" value="/WEB-INF/jsp/kams/reg/acqs/{1}.jsp" />
+	</definition>
+	
+</tiles-definitions>
