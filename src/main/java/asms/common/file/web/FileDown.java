@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
+/**
+ * @PackageName asms.common.file.web
+ * @FileName FileDown.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 20.
+ */
+
 public class FileDown extends AbstractView {
 	public void DownloadFileView() {        
 		setContentType("applicaiton/download;charset=utf-8");    

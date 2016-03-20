@@ -73,10 +73,24 @@
         <url-pattern>/uat/uia/actionLogin.do</url-pattern>
     </filter-mapping>
      -->
-
+	
+	<!-- 2016.03.20 SDH 추가 -->
+	<filter>
+		<filter-name>CrossDomainFilter</filter-name>
+		<filter-class>asms.common.filter.CrossDomainFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CrossDomainFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- // 2016.03.20 SDH 추가 -->
+	
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:egovframework/spring/com/context-*.xml</param-value>
+        <param-value>classpath*:egovframework/spring/com/context-*.xml
+        ,classpath*:egovframework/spring/excel/context-excel*.xml
+        </param-value>
     </context-param>
 
     <listener>

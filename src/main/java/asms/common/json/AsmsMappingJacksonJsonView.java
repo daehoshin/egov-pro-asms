@@ -10,7 +10,6 @@ import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
  * @Author DAE.HO.SHIN
  * @Since 2016. 3. 13.
  */
-
 @SuppressWarnings("unchecked")
 public class AsmsMappingJacksonJsonView extends MappingJacksonJsonView{
 	
