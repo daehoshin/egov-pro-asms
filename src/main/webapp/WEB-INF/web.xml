@@ -112,7 +112,6 @@
     </servlet-mapping>
 
   	<!-- 1. 스프링 시큐리티 설정-->
-  	<!--
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -125,7 +124,7 @@
     <listener>
         <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
     </listener>
-    -->
+  
 
   	<!-- 2. EgovSSO 로그아웃 설정을 위한 필터 설정 -->
     <!--

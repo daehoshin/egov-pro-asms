@@ -15,21 +15,8 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 		<intercept-url pattern="/favicon.ico" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/bootstrap-theme/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		
-		<!-- 전자결재를 위한 모듈을 로그인 체크하지 않음 -->
-		<intercept-url pattern="/reg/intf/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/kamsInoutXml.do" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/blank.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/remote.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		
-		<intercept-url pattern="/common/clsssearch/ClssSubTree.do" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/common/tree/ClssSubTree.do" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/common/clsssearch/ClssAgeTree.do" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/common/tree/ClssAgeTree.do" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/common/clsssearch/ClssBusTree.do" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/common/tree/ClssBusTree.do" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/nurizipUrl.do" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		
 		<intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
+		<intercept-url pattern="/test.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/welcome.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/logout.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/code404.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
@@ -39,15 +26,12 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 		<intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<!-- 문서보안 솔루션 컨트롤파일 설치 -->
-		<intercept-url pattern="/control/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 		
-		<form-login login-page="/welcome.jsp" default-target-url="/login.do" authentication-failure-url="/welcome.jsp?result=false" 
+		<form-login login-page="/welcome.jsp" default-target-url="/test.jsp" authentication-failure-url="/welcome.jsp?result=false" 
 			always-use-default-target='true' />
 			
-<!-- 		<session-management invalid-session-url="/logout.jsp?msg=invalid" session-fixation-protection="migrateSession" /> -->
 		<session-management session-fixation-protection="none" />
 			
 		<logout logout-success-url="/logout.jsp?msg=logout" invalidate-session="true" />
@@ -55,12 +39,13 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 	</http>
 	
 	<jdbc-user-service id="jdbcUserService" data-source-ref="dataSource-oracle" users-by-username-query="
-	      select user_id, user_pwd, enabled 
-	      from tb_stuser 
-	      where upper(login_user_id) = upper(?)
-	      and use_flag ='0'" 
+	      SELECT A.MP_ID, B.USER_PWD, A.ENABLED 
+	      FROM TB_MPMAIN A JOIN TB_MPDETAIL B
+	      ON A.MP_ID = B.MP_ID 
+	      WHERE UPPER(B.LOGIN_USER_ID) = UPPER(?)
+	      AND USE_FLAG ='0'" 
 	   authorities-by-username-query="
-	      select user_id, authority from tb_stuser where user_id=?" 
+	      SELECT MP_ID, AUTHORITY FROM TB_MPMAIN WHERE MP_ID=?" 
 	 />
 			
 	<authentication-manager>
