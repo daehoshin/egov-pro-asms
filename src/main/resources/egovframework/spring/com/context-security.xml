@@ -9,7 +9,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 
-	<http auto-config="true" entry-point-ref="authenticationEntryPoint">
+<http auto-config="true" entry-point-ref="authenticationEntryPoint">
 		
 		<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/favicon.ico" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
@@ -53,5 +53,5 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 			<password-encoder hash="sha-256"/><!-- hash="sha-256"  -> 암호화 방식을 설정 -->
   		</authentication-provider>
 	</authentication-manager>
-		
+	
 </beans:beans>
