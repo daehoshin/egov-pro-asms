@@ -14,65 +14,58 @@
 		response.sendRedirect("/main.do");
 	}
 %>
+<!DOCTYPE html>
 <html>
+
 <head>
-<title>자산관리시스템</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="/css/login/login-kdj/login.css" />
-<!-- <script src="/js/common/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="/bootstrap-theme/html/js/placeholders.jquery.js"></script> -->
-<script type="text/javascript">
 
-	$(document).ready(function() {
-		$("#id").focus();
-		var loginResult = "<c:out value='${param.result}' />";
-		
-		if (loginResult == "false") {
-			alert("사용자 아이디가 없거나 비밀번호가 일치하지 않습니다.");
-		}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		if (opener) {
-			alert("세션이 종료되었습니다.");
-// 			opener.location.href = "<c:url value="/welcome.jsp"/>";
-			self.close();
-		}
-		
-		 $("#id").keyup(function(event){
-	        if (!(event.keyCode >=37 && event.keyCode<=40)) {
-	            var inputVal = $(this).val();
-	            $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
-	        }
-	    }); 
-
+    <title>INSPINIA | Login</title>
 	
-	});
-
-	function fncLoginCheck() {
-		var frm = document.loginForm;
-		//frm.action = '<c:url value="/common/loginCheck.do" />';
-		frm.action = "<c:url value='j_spring_security_check' />";
-		frm.submit();
-	}
-
-	function fncViewerFileDown() {
-		//var shtml = '<OBJECT ID="SellExe" CLASSID="CLSID:7B34D66E-FBED-44BF-9BCA-FBB5143FCC96" CODEBASE="/control/ezPDFReaderS20.cab#VERSION=2,0,2,46">'; 
-		//shtml += '</OBJECT>';
-		//document.write (shtml);
-		window.open("/control/ezPDFReaderS20.exe");
-	}	
+	<script src="/bootstrap-theme/js/jquery-2.1.1.js"></script>
+	<script src="/bootstrap-theme/js/bootstrap.min.js"></script>
 	
-	function onOnlyAlphaNumber(evt) {
-		var code = evt.which ? evt.which : event.keyCode;
-		alert(code);
-		if (!(code >= 37 && code <= 40)) {
-			return false;
-		}
-	}
-	
-</script>
+    <link href="/bootstrap-theme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-theme/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/bootstrap-theme/css/animate.css" rel="stylesheet">
+    <link href="/bootstrap-theme/css/style.css" rel="stylesheet">
+
 </head>
-<body>
-	<form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">IN+</h1>
+
+            </div>
+            <h3>Welcome to ASMS</h3>
+            <p>본 시스템은 자산관리 시스템으로써 여러분의 소중한 자산을 관리 해 드립니다.
+            </p>
+            <form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="j_username" name="j_username" placeholder="Username" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="j_password" name="j_password" placeholder="Password" required="required">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+S
+                <a class="btn btn-sm btn-white btn-block" href="register.html">Forgot password?</a>
+            </form>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        </div>
+    </div>
+
+</body>
+
+</html>
+	<%-- <form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
 		<div class="wrap">
 			<div class="login_box">
 				<div class="login_form">
@@ -98,4 +91,45 @@
 		</div>
 	</form>
 </body>
-</html>
+</html> --%>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#j_username").focus();
+		var loginResult = "<c:out value='${param.result}' />";
+		
+		if (loginResult == "false") {
+			alert("사용자 아이디가 없거나 비밀번호가 일치하지 않습니다.");
+		}
+
+		if (opener) {
+			alert("세션이 종료되었습니다.");
+			self.close();
+		}
+		
+		 $("#j_username").keyup(function(event){
+	        if (!(event.keyCode >=37 && event.keyCode<=40)) {
+	            var inputVal = $(this).val();
+	            $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
+	        }
+	    }); 
+
+	
+	});
+
+	function fncLoginCheck() {
+		var frm = document.loginForm;
+		frm.action = "<c:url value='j_spring_security_check' />";
+		frm.submit();
+	}
+
+	function onOnlyAlphaNumber(evt) {
+		var code = evt.which ? evt.which : event.keyCode;
+		alert(code);
+		if (!(code >= 37 && code <= 40)) {
+			return false;
+		}
+	}
+	
+</script>
