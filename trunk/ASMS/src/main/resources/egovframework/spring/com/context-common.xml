@@ -62,19 +62,29 @@
 
     <!-- MULTIPART RESOLVERS -->
     <!-- regular spring resolver -->
-    <bean id="spring.RegularCommonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+<!--    <bean id="spring.RegularCommonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />
     </bean>
-
+-->
     <!-- custom multi file resolver -->
-    <bean id="local.MultiCommonsMultipartResolver" class="egovframework.com.cmm.web.EgovMultipartResolver">
+<!--    <bean id="local.MultiCommonsMultipartResolver" class="egovframework.com.cmm.web.EgovMultipartResolver">
         <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />
     </bean>
-
+-->
     <!-- choose one from above and alias it to the name Spring expects -->
     <!-- alias name="local.MultiCommonsMultipartResolver" alias="multipartResolver" /-->
-    <alias name="spring.RegularCommonsMultipartResolver" alias="multipartResolver" />
+<!--<alias name="spring.RegularCommonsMultipartResolver" alias="multipartResolver" />-->
 
+	<context:component-scan base-package="egovframework,asms">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<bean id="authenticationEntryPoint" class="asms.common.filter.AjaxAwareAuthenticationEntryPoint">
+		<constructor-arg name="loginFormUrl" value="/logout.jsp?msg=invalid" />
+	</bean>
+	
 </beans>

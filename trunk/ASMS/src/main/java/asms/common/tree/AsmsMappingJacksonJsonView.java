@@ -4,6 +4,12 @@ import java.util.Map;
 
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
+/**
+ * @PackageName asms.common.tree
+ * @FileName AsmsMappingJacksonJsonView.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 20.
+ */
 public class AsmsMappingJacksonJsonView extends MappingJacksonJsonView {
 	
 	@Override
