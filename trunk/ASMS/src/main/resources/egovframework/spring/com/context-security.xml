@@ -12,24 +12,21 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 <http auto-config="true" entry-point-ref="authenticationEntryPoint">
 		
 		<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/favicon.ico" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
+		<!-- <intercept-url pattern="/favicon.ico" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/> -->
 		<intercept-url pattern="/bootstrap-theme/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		
 		<intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/test.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/welcome.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/logout.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
+		<!-- <intercept-url pattern="/logout.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/> -->
 		<intercept-url pattern="/code404.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/code500.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/sso.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/ssologin.do" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
+		<!-- <intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
+		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/> -->
 		
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 		
-		<form-login login-page="/welcome.jsp" default-target-url="/test.jsp" authentication-failure-url="/welcome.jsp?result=false" 
+		<form-login login-page="/welcome.jsp" default-target-url="/login.do" authentication-failure-url="/welcome.jsp?result=false" 
 			always-use-default-target='true' />
 			
 		<session-management session-fixation-protection="none" />
@@ -38,7 +35,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 		<anonymous />
 	</http>
 	
-	<jdbc-user-service id="jdbcUserService" data-source-ref="dataSource-oracle" users-by-username-query="
+	<jdbc-user-service id="jdbcUserService" data-source-ref="dataSource-mysql" users-by-username-query="
 	      SELECT A.MP_ID, B.USER_PWD, A.ENABLED 
 	      FROM TB_MPMAIN A JOIN TB_MPDETAIL B
 	      ON A.MP_ID = B.MP_ID 

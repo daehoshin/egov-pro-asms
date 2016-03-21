@@ -14,11 +14,11 @@
 	</definition>
 
   	<definition name="/reg/acqs/RegAcqsFolder" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/jsp/kams/reg/acqs/RegAcqsFolder.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/asms/reg/acqs/RegAcqsFolder.jsp" />
 	</definition>
 	
 	<definition name="/reg/acqs/RegAcqsRecord" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/jsp/kams/reg/acqs/RegAcqsRecord.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/asms/reg/acqs/RegAcqsRecord.jsp" />
 	</definition>
 	
 	<definition name="mainContent" template="/WEB-INF/views/ContsLayout.jsp">
@@ -29,7 +29,7 @@
 		컨트롤러가 리턴하는 값입니다. 컨트롤러에서 리턴할 때 맨앞에 "/"가 포함되어 있다는 점을 잊지 마세요. -->
 		
 	<definition name="/reg/acqs/*" extends="mainContent">
-		<put-attribute name="content" value="/WEB-INF/jsp/kams/reg/acqs/{1}.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/asms/reg/acqs/{1}.jsp" />
 	</definition>
 	
 </tiles-definitions>
