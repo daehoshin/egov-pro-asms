@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="login">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+
+	<select id="selectLoginUserInfo" resultClass="asms.common.login.service.LoginUserVO">
+		SELECT /* selectLoginUserInfo */
+			  A.MP_ID
+			, A.MP_NO
+			, A.USER_AUTH_CD
+			, A.MENU_GRP_ID
+			, A.USE_FLAG
+			, A.ENABLED
+			, A.AUTHORITY
+			, A.REG_ID
+			, A.REG_NM
+			, A.REG_DT
+			, A.SYS_ID
+			, A.SYS_NM
+			, A.SYS_DT
+			, B.MP_CD
+			, B.LOGIN_USER_ID
+			, B.USER_PWD
+			, B.JOIN_DT
+			, B.RETIRE_DT
+			, B.DEPT_NM
+			, B.POSITION
+			, B.EMP_CD
+			, B.JOIN_CD
+			, B.BIRTH_DT
+			, B.ADDR
+			, B.ADDR_DETAIL
+			, B.EMAIL
+			, B.TEL_NO
+		FROM  TB_MPMAIN A JOIN TB_MPDETAIL B
+		ON    A.MP_ID = B.MP_ID
+		WHERE A.MP_ID = #value#
+	</select>
+	
+</sqlMap>

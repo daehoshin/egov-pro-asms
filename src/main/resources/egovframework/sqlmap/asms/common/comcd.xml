@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="comcd">
+	<!-- <sql id="pagingHeaderSql">
+    SELECT A.*
+			FROM (
+				SELECT ROWNUM RNUM, S.*
+				FROM
+				(
+	</sql>
+  
+	<sql id="pagingFooterSql">
+					) S
+				) A
+			<![CDATA[ WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex# ]]>
+	</sql>
+  
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+		
+	<resultMap id="codeinfo-detail" class="asms.common.code.service.CommonCodeVO">
+		<result property="code" 			column="CODE"/>
+		<result property="name" 			column="NAME"/>
+	</resultMap>
+	
+	<select id='findComCdList' parameterClass="asms.common.code.service.CommonCodeVO" resultMap="codeinfo-detail">
+			SELECT COM_CD AS CODE, 
+					COM_CD_NM AS NAME
+			FROM TB_ZZCOMCD
+			<dynamic prepend="WHERE">
+				<isNotEmpty prepend="AND" property="type">
+					COM_TYPE_CD = #type:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="use">
+					USE_FLAG = #use:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="code">
+					COM_CD = #code:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="name">
+					COM_CD_NM = #name:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty property="exCode" prepend="AND">
+					<![CDATA[
+					 COM_CD
+					]]>
+					<iterate prepend="NOT IN" property="exCode" open="(" close=")" conjunction=",">
+					 #exCode[]#
+					</iterate>
+					</isNotEmpty>
+			</dynamic>
+			ORDER BY COM_CD_RANK, DECODE(COM_CD_RANK, NULL, TO_NUMBER(COM_CD), TO_NUMBER(COM_CD_RANK))
+	</select>
+	
+	<select id="menu_grant" parameterClass="asms.common.code.service.CommonCodeVO" resultMap="codeinfo-detail">
+			SELECT MENU_GRP_ID AS CODE, MENU_GRP_NM AS NAME FROM TB_STGRPGRANT
+			WHERE USE_FLAG = 0
+			<dynamic>
+			<isNotEmpty prepend="AND" property="code">
+				MENU_GRP_ID = #code:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="name">
+				MENU_GRP_NM = #name:VARCHAR#
+			</isNotEmpty>
+			</dynamic>
+			ORDER BY MENU_GRP_ID
+	</select>
+	
+	<select id="last_appr_excpt" parameterClass="asms.common.code.service.CommonCodeVO" resultMap="codeinfo-detail">
+			SELECT CNCL_NO AS CODE, CNCL_NM AS NAME FROM TB_APPR_CNCL WHERE CNCL_STATE_CD != 1
+			<dynamic>
+			<isNotEmpty prepend="AND" property="code">
+				CNCL_NO = #code:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="name">
+				CNCL_NM = #name:VARCHAR#
+			</isNotEmpty>
+			</dynamic>
+			ORDER BY CNCL_NO DESC
+	</select>
+	
+	<select id="last_appr" parameterClass="asms.common.code.service.CommonCodeVO" resultMap="codeinfo-detail">
+			SELECT CNCL_NO AS CODE, CNCL_NM AS NAME FROM TB_APPR_CNCL
+			<dynamic>
+			<isNotEmpty prepend="AND" property="code">
+				CNCL_NO = #code:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="name">
+				CNCL_NM = #name:VARCHAR#
+			</isNotEmpty>
+			</dynamic>
+			ORDER BY CNCL_NO DESC
+	</select> -->
+	
+	
+</sqlMap>

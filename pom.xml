@@ -267,6 +267,16 @@
         
     <!-- // 2016.03.13 SDH 제거 -->
         
+    <!-- 2016.03.21 SDH 추가 -->
+		<!-- log4j start-->
+		<dependency>
+			<groupId>net.sf</groupId>
+			<artifactId>log4jdbc3</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<!-- log4j end-->
+	<!-- // 2016.03.21 SDH 추가 -->
+		
     <!-- 2016.03.13 SDH 추가 -->
 	    
 	    <!-- beanutils start-->
