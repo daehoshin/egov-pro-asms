@@ -45,7 +45,7 @@
 
             </div>
             <h3>Welcome to ASMS</h3>
-            <p>본 시스템은 자산관리 시스템으로써 여러분의 소중한 자산을 관리 해 드립니다.
+            <p>본 시스템은 자산관리 시스템으로써 귀사의 소중한 자산을 관리 해 드립니다.
             </p>
             <form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
                 <div class="form-group">
@@ -55,7 +55,6 @@
                     <input type="password" class="form-control" id="j_password" name="j_password" placeholder="Password" required="required">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-S
                 <a class="btn btn-sm btn-white btn-block" href="register.html">Forgot password?</a>
             </form>
             <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
@@ -65,33 +64,6 @@ S
 </body>
 
 </html>
-	<%-- <form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
-		<div class="wrap">
-			<div class="login_box">
-				<div class="login_form">
-					<div class="box">
-						<div class="box_login">
-							<ul>
-								<li>
-									<img src="/images/login/login-kdj/id.png" title="아이디" alt="아이디">
-									<input name="j_username" class="input_150" id="id" style="ime-mode: inactive;" type="text" maxlength="50"/>
-								</li>
-								<li>
-									<img src="/images/login/login-kdj/pwd.png" title="패스워드" alt="패스워드">
-									<input name="j_password" class="input_150" id="" style="ime-mode: inactive;" type="password" maxlength="50"/>
-								</li>
-							</ul>
-						</div>
-						<div class="box_button">
-							<input type="image" src="/images/login/login-kdj/btn_login2.gif" width="96" height="58" border="0" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-</body>
-</html> --%>
 
 <script type="text/javascript">
 
