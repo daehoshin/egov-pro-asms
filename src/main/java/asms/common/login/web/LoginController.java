@@ -35,7 +35,8 @@ public class LoginController {
 		
 		LoginUserVO loginUserVO = LoginService.selectLoginUserInfo(mp_id);
 		
-		model.addAttribute("loginUserVO", loginUserVO);
+		model.addAttribute("loginUser", loginUserVO);
+		model.addAttribute("userCnt","1");
 		
 		return "forward:/main.do";
 	}
