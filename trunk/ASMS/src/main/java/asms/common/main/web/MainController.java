@@ -12,8 +12,10 @@ import asms.common.login.service.LoginUserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes({"menuList1","menuList2","menuList3","menu_div_cd","topmenuid","menuid"})
 public class MainController {
 	
 	@Resource(name="MainService")
