@@ -1,9 +1,12 @@
 package asms.common.login.web;
 
 import java.security.Principal;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import asms.common.Constants;
 import asms.common.login.service.LoginService;
 import asms.common.login.service.LoginUserVO;
 
@@ -12,9 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-
+@SessionAttributes(Constants.LOGIN_USER)
 public class LoginController {
 	
 	@Autowired private UserDetailsService userDetailsSvc;
@@ -23,7 +28,8 @@ public class LoginController {
 	private LoginService LoginService;
 	
 	@RequestMapping(value="/login.do")	
-	public String LoginUserInfo(Principal principal,	ModelMap model) throws Exception {
+	public String LoginUserInfo(@RequestParam Map<String, Object> prarmMap, HttpSession session, Principal principal,
+    		ModelMap model) throws Exception {
 		
 		String mp_id = principal.getName();
 		

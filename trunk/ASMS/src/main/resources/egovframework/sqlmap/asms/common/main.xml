@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="main">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+
+	<select id="selectMenuList_lv1" resultClass="asms.common.main.service.MenuVO">
+		SELECT
+        	  A.MENU_ID
+	        , MENU_NM
+	        , MENU_UPPER_ID
+	        , MENU_DIV_CD
+	        , MENU_SNO
+	        , USE_FLAG
+	        , MENU_LINK_SNO
+         	, (SELECT COUNT(*) FROM TB_MENU B, TB_MENUGRPAUTH C WHERE B.MENU_ID = C.MENU_ID AND C.MENU_GRP_ID = #menu_grp_id# AND A.MENU_ID = B.MENU_UPPER_ID) SUB_CNT
+		FROM	TB_MENU A JOIN TB_MENUGRPAUTH B
+		ON	  A.MENU_ID = B.MENU_ID
+		WHERE MENU_DIV_CD = '1'
+		AND   B.MENU_GRP_ID = ##menu_grp_id##
+		ORDER BY MENU_UPPER_ID, MENU_SNO
+	</select>
+	
+	<select id="selectMenuList_lv2" resultClass="asms.common.main.service.MenuVO">
+		SELECT
+        	  A.MENU_ID
+         	, MENU_NM
+         	, MENU_UPPER_ID
+         	, MENU_DIV_CD
+         	, MENU_SNO
+         	, USE_FLAG
+         	, MENU_LINK_SNO
+         	, MENU_CONN_URL
+            , ROW_IDX
+            , (SELECT COUNT(*) FROM TB_MENU B, TB_MENUGRPAUTH C WHERE B.MENU_ID = C.MENU_ID AND C.MENU_GRP_ID =#menu_grp_id# AND A.MENU_ID = B.MENU_UPPER_ID) SUB_CNT
+    	FROM (
+          	SELECT 
+          		A.* 
+              , (CASE @VUPPER_MENU_ID WHEN A.MENU_UPPER_ID THEN @ROWNUM:=@ROWNUM+1 ELSE @ROWNUM:=1 END) ROW_IDX
+              , (@VUPPER_MENU_ID:=A.MENU_UPPER_ID) VUPPER_MENU_ID
+          	FROM TB_MENU A, (SELECT @VUPPER_MENU_ID:='', @ROWNUM:=0 FROM DUAL) B
+          	ORDER BY A.MENU_UPPER_ID, A.MENU_SNO
+    	) A JOIN TB_MENUGRPAUTH B
+		ON		A.MENU_ID = B.MENU_ID
+		AND		MENU_DIV_CD = '2'
+		AND		B.MENU_GRP_ID = #menu_grp_id#
+		ORDER BY MENU_UPPER_ID, MENU_SNO
+	</select>
+	
+	<select id="selectMenuList_lv3" resultClass="asms.common.main.service.MenuVO">
+		SELECT      
+		      MENU_ID
+        	, MENU_NM
+        	, MENU_UPPER_ID
+        	, MENU_DIV_CD
+        	, MENU_SNO
+        	, USE_FLAG
+        	, MENU_LINK_SNO
+        	, MENU_CONN_URL
+            , MENU_UPPER_ID
+            , MENU_SNO
+            , ROW_IDX
+		FROM (
+		     SELECT  
+		             A.* 
+		           , (CASE @VUPPER_MENU_ID WHEN A.MENU_UPPER_ID THEN @ROWNUM:=@ROWNUM+1 ELSE @ROWNUM:=1 END) ROW_IDX
+		           , (@VUPPER_MENU_ID:=A.MENU_UPPER_ID) VUPPER_MENU_ID
+             FROM TB_MENU A, (SELECT @VUPPER_MENU_ID:='', @ROWNUM:=0 FROM DUAL) B
+   			 ORDER BY A.MENU_UPPER_ID, A.MENU_SNO                  
+		) A JOIN TB_MENUGRPAUTH B
+		ON		A.MENU_ID = B.MENU_ID
+		AND		MENU_DIV_CD = '3'
+		AND		B.MENU_GRP_ID = #menu_grp_id#
+		ORDER BY MENU_UPPER_ID, MENU_SNO
+	</select>
+	
+</sqlMap>
