@@ -13,6 +13,7 @@ public class MenuVO {
 	private String menu_conn_url;		// 메뉴접속URL
 	private String menu_grp_id;			// 메뉴그룹권한아이디
 	private String row_idx;				// 메뉴순번
+	private String menu_icon;			// 메뉴ICON
 	
 	public String getMenu_id() {
 		return menu_id;
@@ -79,6 +80,12 @@ public class MenuVO {
 	}
 	public void setRow_idx(String row_idx) {
 		this.row_idx = row_idx;
+	}
+	public String getMenu_icon() {
+		return menu_icon;
+	}
+	public void setMenu_icon(String menu_icon) {
+		this.menu_icon = menu_icon;
 	}
 	
 }

@@ -15,8 +15,7 @@ public class LoginServiceImpl extends AbstractServiceImpl implements LoginServic
 	private LoginDAO LoginDAO;
 	
 	public LoginUserVO selectLoginUserInfo(String userId) throws Exception {
-		LoginUserVO resultVO = LoginDAO.selectLoginUserInfo(userId);
-        return resultVO;
+		return LoginDAO.selectLoginUserInfo(userId);
 	}
 
 }

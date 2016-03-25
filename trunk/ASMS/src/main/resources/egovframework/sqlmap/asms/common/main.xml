@@ -13,7 +13,7 @@
 	        , MENU_DIV_CD
 	        , MENU_SNO
 	        , USE_FLAG
-	        , MENU_LINK_SNO
+	        , MENU_ICON
          	, (SELECT COUNT(*) FROM TB_MENU B, TB_MENUGRPAUTH C WHERE B.MENU_ID = C.MENU_ID AND C.MENU_GRP_ID = #menu_grp_id# AND A.MENU_ID = B.MENU_UPPER_ID) SUB_CNT
 		FROM	TB_MENU A JOIN TB_MENUGRPAUTH B
 		ON	  A.MENU_ID = B.MENU_ID
@@ -30,7 +30,7 @@
          	, MENU_DIV_CD
          	, MENU_SNO
          	, USE_FLAG
-         	, MENU_LINK_SNO
+         	, MENU_ICON
          	, MENU_CONN_URL
             , ROW_IDX
             , (SELECT COUNT(*) FROM TB_MENU B, TB_MENUGRPAUTH C WHERE B.MENU_ID = C.MENU_ID AND C.MENU_GRP_ID =#menu_grp_id# AND A.MENU_ID = B.MENU_UPPER_ID) SUB_CNT
@@ -56,7 +56,7 @@
         	, MENU_DIV_CD
         	, MENU_SNO
         	, USE_FLAG
-        	, MENU_LINK_SNO
+        	, MENU_ICON
         	, MENU_CONN_URL
             , MENU_UPPER_ID
             , MENU_SNO

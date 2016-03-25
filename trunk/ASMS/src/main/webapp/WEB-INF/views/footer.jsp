@@ -42,7 +42,9 @@
     <!-- Toastr -->
     <script src="/bootstrap-theme/js/plugins/toastr/toastr.min.js"></script>
 
-
+	<!-- Common -->
+	<script src="/js/asms/common.js"></script>
+	
     <script>
         $(document).ready(function() {
             setTimeout(function() {

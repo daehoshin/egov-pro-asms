@@ -12,9 +12,17 @@
 		<put-attribute name="section" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
-	
-	<definition name="/common/main" extends="mTemplate">
-		<put-attribute name="section" value="/WEB-INF/jsp/asms/common/main.jsp" />
+  	
+  	<definition name="/reg/place/regPlace" extends="mTemplate">
+		<put-attribute name="section" value="/WEB-INF/jsp/asms/reg/place/regPlace.jsp" />
 	</definition>
+	
+	<definition name="sTemplate" template="/WEB-INF/views/sLayout.jsp">
+		<put-attribute name="section" value="" />
+	</definition>
+	
+	<definition name="/reg/place/*" extends="sTemplate">
+		<put-attribute name="section" value="/WEB-INF/jsp/asms/reg/place/{1}.jsp" />
+	</definition> 
 	
 </tiles-definitions>
