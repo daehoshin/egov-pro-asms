@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes(Constants.LOGIN_USER)
+@SessionAttributes(Constants.LoginUserVO)
 public class LoginController {
 	
 	@Autowired private UserDetailsService userDetailsSvc;
@@ -28,15 +28,13 @@ public class LoginController {
 	private LoginService LoginService;
 	
 	@RequestMapping(value="/login.do")	
-	public String LoginUserInfo(@RequestParam Map<String, Object> prarmMap, HttpSession session, Principal principal,
-    		ModelMap model) throws Exception {
+	public String LoginUserInfo(HttpSession session, Principal principal, ModelMap model) throws Exception {
 		
 		String mp_id = principal.getName();
 		
 		LoginUserVO loginUserVO = LoginService.selectLoginUserInfo(mp_id);
 		
-		model.addAttribute("loginUser", loginUserVO);
-		model.addAttribute("userCnt","1");
+		model.addAttribute("loginUserVO", loginUserVO);
 		
 		return "forward:/main.do";
 	}

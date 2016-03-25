@@ -1,5 +1,5 @@
 package asms.common;
 
 public class Constants {
-	public static final String LOGIN_USER = "loginUser";
+	public static final String LoginUserVO = "loginUserVO";
 }

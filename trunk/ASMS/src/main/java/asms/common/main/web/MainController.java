@@ -20,9 +20,9 @@ public class MainController {
 	private MainService MainService;
 	
 	@RequestMapping("/main.do")
-	public String main(LoginUserVO loginUserVO, HttpSession session, HttpServletResponse response, ModelMap model) throws Exception {
+	public String main(LoginUserVO loginUserVO, HttpSession session, ModelMap model) throws Exception {
 		
-		loginUserVO = (LoginUserVO)session.getAttribute("loginUser");
+		loginUserVO = (LoginUserVO)session.getAttribute("loginUserVO");
 		
 		List menuList1 = MainService.selectMenuList_lv1(loginUserVO);
 		List menuList2 = MainService.selectMenuList_lv2(loginUserVO);
@@ -32,6 +32,6 @@ public class MainController {
 		model.addAttribute("menuList2", menuList2);
 		model.addAttribute("menuList3", menuList3);
 		
-		return "/common/mainConts";
+		return "/common/main";
 	}
 }
