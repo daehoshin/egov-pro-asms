@@ -1,5 +1,11 @@
 package asms.common.paging;
 
+/**
+ * @PackageName asms.common.paging
+ * @FileName PagingVO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 13.
+ */
 public class PagingVO {
 
     private String searchCondition = "";	// 검색조건

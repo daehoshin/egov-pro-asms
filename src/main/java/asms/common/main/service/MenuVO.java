@@ -1,5 +1,11 @@
 package asms.common.main.service;
 
+/**
+ * @PackageName asms.common.main.service
+ * @FileName MenuVO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 25.
+ */
 public class MenuVO {
 	
 	private String menu_id;				// 메뉴아이디 			

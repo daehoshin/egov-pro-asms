@@ -18,21 +18,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+/**
+ * @PackageName asms.common.login.web
+ * @FileName LoginController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 24.
+ */
 @Controller
 @SessionAttributes(Constants.LoginUserVO)
 public class LoginController {
 	
-	@Autowired private UserDetailsService userDetailsSvc;
+	@Autowired private UserDetailsService userDetailsService;
 	
 	@Resource(name="LoginService")
-	private LoginService LoginService;
+	private LoginService loginService;
 	
 	@RequestMapping(value="/login.do")	
 	public String LoginUserInfo(HttpSession session, Principal principal, ModelMap model) throws Exception {
 		
 		String mp_id = principal.getName();
 		
-		LoginUserVO loginUserVO = LoginService.selectLoginUserInfo(mp_id);
+		LoginUserVO loginUserVO = loginService.selectLoginUserInfo(mp_id);
 		
 		model.addAttribute("loginUserVO", loginUserVO);
 		

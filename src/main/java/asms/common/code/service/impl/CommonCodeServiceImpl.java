@@ -9,6 +9,12 @@ import asms.common.code.service.CommonCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @PackageName asms.common.code.service.impl
+ * @FileName CommonCodeServiceImpl.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 24.
+ */
 @Service
 public class CommonCodeServiceImpl implements CommonCodeService {
 

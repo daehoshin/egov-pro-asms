@@ -1,60 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<script type="text/javascript">
-$(document).read(function(){
-	
-	$("form[name=placeSendForm]").find('input, select').keypress(function(e) {
-	    if (e.keyCode == 13){
-	   		jsPlaceListSearch(1);
-	    } 
-	});
-	
-	jsPlaceListSearch(1);
-	
-});
-
-// 장소 검색
-function jsPlaceListSearch(pageNo)
-{
-	var frm = $("form[name=placeForm]");
-		
-	if (pageNo >= 1){
-		frm.find("input[name='pageIndex']").val(pageNo);
-	}
-		
-	var sendForm = $("form[name=placeSendForm]").serialize();
-
-	$.ajax({
-		type : "post",
-		url  : "/rgst/place/placeListSearch.do",
-		data : sendForm,
-		dataType : "html",
-		success:function(ajaxResult){
-		  $('#regPlaceList').html(ajaxResult);
-		  
-		  /*ajax 결과로 조회 건수 및 정렬컬럼과 티입을 메인페이지로 넘겨준다. */	 
-		  var listForm = $("form[name=placeListForm]");
-		  
-		  /* 현재 TR 표시 */
-		  if (currentId) {
-			  jsCurrentData(Target, currentId);
-		  }
-		  
-		  jsInitialize();
-		}, error: function(xhr,status,error){
-			 
-		}
-	});
-}
-
-</script>
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
         <h2>장소</h2>
         <ol class="breadcrumb">
-            <li>등록</li>
+            <li>검색</li>
             <li class="active">
                 <strong>장소</strong>
             </li>
@@ -88,23 +39,21 @@ function jsPlaceListSearch(pageNo)
 					</div>
 				</div>
 				<div class="ibox-content">
-		            <form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="get">
+		            <form class="form-horizontal" method="get">
 		                <div class="form-group">
 		                	<label class="col-sm-1 control-label" for="">관리번호</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_no" id=""></div>
+		                    <div class="col-sm-2"><input type="text" class="form-control" id=""></div>
 		                	<label class="col-sm-1 control-label" for="">장소명</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_nm" id=""></div>
+		                    <div class="col-sm-2"><input type="text" class="form-control" id=""></div>
 		                	<label class="col-sm-1 control-label" for="">주소</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id=""></div>
+		                    <div class="col-sm-2"><input type="text" class="form-control" id=""></div>
 		                	<label class="col-sm-1 control-label" for="">등록상태</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="reg_stauts" id=""></div>	                    	                    	                    
+		                    <div class="col-sm-2"><input type="text" class="form-control" id=""></div>	                    	                    	                    
 		                </div>
 		            </form>
 				</div>
 			</div>
    		</div>
    	</div>
-   	<div id="regPlaceList">
- 	<!-- regPlaceList -->
-   	</div>
+   	
 </div>

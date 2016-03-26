@@ -12,6 +12,12 @@ import asms.common.code.service.CommonCodeVO;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
+/**
+ * @PackageName asms.common.code.web
+ * @FileName commonCheckboxTag.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 24.
+ */
 public class commonCheckboxTag extends RequestContextAwareTag {
 	private static final long serialVersionUID = 4126918815338257441L;
 

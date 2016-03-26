@@ -7,7 +7,13 @@ import org.springframework.stereotype.Repository;
 import asms.common.login.service.LoginUserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
-@Repository("mainDAO")
+/**
+ * @PackageName asms.common.main.service.impl
+ * @FileName MainDAO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 25.
+ */
+@Repository("MainDAO")
 public class MainDAO extends EgovAbstractDAO{
 	
 	public List selectMenuList_lv1(LoginUserVO loginUserVO) throws Exception {
