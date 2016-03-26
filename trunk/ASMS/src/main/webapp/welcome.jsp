@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -32,40 +32,8 @@
 
     <link href="/bootstrap-theme/css/animate.css" rel="stylesheet">
     <link href="/bootstrap-theme/css/style.css" rel="stylesheet">
-
-</head>
-
-<body class="gray-bg">
-
-    <div class="middle-box text-center loginscreen animated fadeInDown">
-        <div>
-            <div>
-
-                <h1 class="logo-name">IN+</h1>
-
-            </div>
-            <h3>Welcome to ASMS</h3>
-            <p>본 시스템은 자산관리 시스템으로써 귀사의 소중한 자산을 관리 해 드립니다.
-            </p>
-            <form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="j_username" name="j_username" placeholder="Username" required="required">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="j_password" name="j_password" placeholder="Password" required="required">
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-                <a class="btn btn-sm btn-white btn-block" href="register.html">Forgot password?</a>
-            </form>
-            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
-        </div>
-    </div>
-
-</body>
-
-</html>
-
-<script type="text/javascript">
+	
+	<script type="text/javascript">
 
 	$(document).ready(function() {
 		$("#j_username").focus();
@@ -104,4 +72,35 @@
 		}
 	}
 	
-</script>
+	</script>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">IN+</h1>
+
+            </div>
+            <h3>Welcome to ASMS</h3>
+            <p>본 시스템은 자산관리 시스템으로써 귀사의 소중한 자산을 관리 해 드립니다.
+            </p>
+            <form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="j_username" name="j_username" placeholder="Username" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="j_password" name="j_password" placeholder="Password" required="required">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <a class="btn btn-sm btn-white btn-block" href="register.html">Forgot password?</a>
+            </form>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        </div>
+    </div>
+
+</body>
+
+</html>

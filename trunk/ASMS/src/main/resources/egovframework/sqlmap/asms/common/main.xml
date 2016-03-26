@@ -6,7 +6,7 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 
 	<select id="selectMenuList_lv1" parameterClass="asms.common.login.service.LoginUserVO" resultClass="asms.common.main.service.MenuVO">
-		SELECT	/* selectMenuList_lv1 */
+		SELECT	/* main.selectMenuList_lv1 */
         	  A.MENU_ID
 	        , MENU_NM
 	        , MENU_UPPER_ID
@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="selectMenuList_lv2" parameterClass="asms.common.login.service.LoginUserVO" resultClass="asms.common.main.service.MenuVO">
-		SELECT	/* selectMenuList_lv2 */
+		SELECT	/* main.selectMenuList_lv2 */
         	  A.MENU_ID
          	, MENU_NM
          	, MENU_UPPER_ID
@@ -49,7 +49,7 @@
 	</select>
 	
 	<select id="selectMenuList_lv3" parameterClass="asms.common.login.service.LoginUserVO" resultClass="asms.common.main.service.MenuVO">
-		SELECT	/* selectMenuList_lv3 */
+		SELECT	/* main.selectMenuList_lv3 */
 		      A.MENU_ID
         	, MENU_NM
         	, MENU_UPPER_ID

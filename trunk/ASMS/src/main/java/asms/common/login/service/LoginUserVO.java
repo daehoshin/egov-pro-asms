@@ -1,5 +1,11 @@
 package asms.common.login.service;
 
+/**
+ * @PackageName asms.common.login.service
+ * @FileName LoginUserVO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 24.
+ */
 public class LoginUserVO {
 	
 	private String mp_id;			// 인력ID

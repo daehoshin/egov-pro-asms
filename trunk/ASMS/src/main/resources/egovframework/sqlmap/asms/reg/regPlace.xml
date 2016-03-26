@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="regPlace">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+
+	<select id="placeListSearch" parameterClass="asms.reg.place.service.PlaceVO" resultClass="asms.reg.place.service.PlaceVO">
+		SELECT /* REG.PLACELISTSEARCH */ 
+		     A.PLC_ID
+		   , A.PLC_NO
+		   , A.REG_STATUS
+		   , A.REG_ID
+		   , A.REG_NM
+		   , A.REG_DT
+		   , A.SYS_ID
+		   , A.SYS_NM
+		   , A.SYS_DT
+		   , B.PLC_NM
+		   , B.ADDR
+		   , B.ADDR_DETAIL
+		FROM TB_PLCMAIN A JOIN TB_PLCDETAIL B
+		ON   A.PLC_ID = B.PLC_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="plc_no">
+		 		A.PLC_NO = #plc_no#
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="plc_nm">
+		 		B.PLC_NM = #plc_nm#
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="full_name">
+		 		B.ADDR||B.ADDR_DETAIL = #full_name#
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_status">
+		 		A.reg_status >= #reg_status#
+		 	</isNotEmpty>
+		 </dynamic>
+	</select>
+</sqlMap>

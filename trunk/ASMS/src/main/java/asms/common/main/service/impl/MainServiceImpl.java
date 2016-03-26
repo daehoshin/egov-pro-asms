@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
 import asms.common.login.service.LoginUserVO;
 import asms.common.main.service.MainService;
 
+/**
+ * @PackageName asms.common.main.service.impl
+ * @FileName MainServiceImpl.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 25.
+ */
 @Service("MainService")
 public class MainServiceImpl implements MainService {
 	

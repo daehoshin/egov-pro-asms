@@ -6,7 +6,7 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 
 	<select id="selectLoginUserInfo" resultClass="asms.common.login.service.LoginUserVO">
-		SELECT /* selectLoginUserInfo */
+		SELECT /* login.selectLoginUserInfo */
 			  A.MP_ID
 			, A.MP_NO
 			, A.USER_AUTH_CD

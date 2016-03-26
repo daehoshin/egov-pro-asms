@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 import asms.common.code.service.CommonCodeVO;
 
+/**
+ * @PackageName asms.common.code.service.impl
+ * @FileName CommonCodeDAO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 24.
+ */
 @Repository
 public class CommonCodeDAO extends EgovAbstractDAO {
 

@@ -14,6 +14,12 @@ import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 import asms.common.code.service.CommonCodeService;
 
+/**
+ * @PackageName asms.common.code.web
+ * @FileName CommonSelectTag.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 24.
+ */
 public class CommonSelectTag extends RequestContextAwareTag {
 	
 	private static final long serialVersionUID = 4126918815338257441L;

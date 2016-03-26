@@ -1,5 +1,11 @@
 package asms.common.code.service;
 
+/**
+ * @PackageName asms.common.code.service
+ * @FileName CommonCodeVO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 24.
+ */
 public class CommonCodeVO {
 	
 	private String type;           // 코드 타입

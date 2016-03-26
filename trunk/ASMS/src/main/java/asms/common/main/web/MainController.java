@@ -16,21 +16,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+/**
+ * @PackageName asms.common.main.web
+ * @FileName MainController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 25.
+ */
 @Controller
 @SessionAttributes({"menuList1","menuList2","menuList3"})
 public class MainController {
 	
 	@Resource(name="MainService")
-	private MainService MainService;
+	private MainService mainService;
 	
 	@RequestMapping("/main.do")
 	public String main(LoginUserVO loginUserVO, HttpSession session, ModelMap model) throws Exception {
 		
 		loginUserVO = (LoginUserVO)session.getAttribute("loginUserVO");
 		
-		List menuList1 = MainService.selectMenuList_lv1(loginUserVO);
-		List menuList2 = MainService.selectMenuList_lv2(loginUserVO);
-		List menuList3 = MainService.selectMenuList_lv3(loginUserVO);
+		List menuList1 = mainService.selectMenuList_lv1(loginUserVO);
+		List menuList2 = mainService.selectMenuList_lv2(loginUserVO);
+		List menuList3 = mainService.selectMenuList_lv3(loginUserVO);
 		
 		model.addAttribute("menuList1", menuList1);
 		model.addAttribute("menuList2", menuList2);
