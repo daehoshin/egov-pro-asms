@@ -69,7 +69,7 @@
     <!-- Peity -->
     <script src="/bootstrap-theme/js/plugins/peity/jquery.peity.min.js"></script>
     <script src="/bootstrap-theme/js/demo/peity-demo.js"></script>
-    	
+    
 	<!-- Common -->
 	<link href="/css/asms/common.css" rel="stylesheet">
 	<script src="/js/asms/common.js"></script>

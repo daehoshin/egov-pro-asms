@@ -8,6 +8,12 @@ import asms.common.login.service.LoginUserVO;
 import asms.reg.plc.service.PlaceVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
+/**
+ * @PackageName asms.reg.plc.service.impl
+ * @FileName PlaceDAO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 26.
+ */
 @Repository("PlaceDAO")
 public class PlaceDAO extends EgovAbstractDAO{
 	

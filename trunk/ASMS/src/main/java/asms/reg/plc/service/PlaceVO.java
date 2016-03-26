@@ -1,5 +1,11 @@
 package asms.reg.plc.service;
 
+/**
+ * @PackageName asms.reg.plc.service
+ * @FileName PlaceVO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 26.
+ */
 public class PlaceVO {
 	
 	private String plc_id;			// 장소ID
