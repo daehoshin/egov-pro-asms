@@ -88,14 +88,14 @@ function jsPlaceListSearch(pageNo)
 				<div class="ibox-content">
 		            <form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="get">
 		                <div class="form-group">
-		                	<label class="col-sm-1 control-label" for="">관리번호</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_no" id=""></div>
-		                	<label class="col-sm-1 control-label" for="">장소명</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_nm" id=""></div>
-		                	<label class="col-sm-1 control-label" for="">주소</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id=""></div>
-		                	<label class="col-sm-1 control-label" for="">등록상태</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="reg_stauts" id=""></div>
+		                	<label class="col-sm-1 control-label" for="plc_no">관리번호</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_no" id="plc_no"></div>
+		                	<label class="col-sm-1 control-label" for="plc_nm">장소명</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_nm" id="plc_nm"></div>
+		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id="full_addr"></div>
+		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="reg_stauts" id="reg_stauts"></div>
 		                </div>
 		            </form>
 				</div>
