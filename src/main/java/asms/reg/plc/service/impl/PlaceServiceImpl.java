@@ -10,6 +10,12 @@ import org.springframework.stereotype.Service;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
+/**
+ * @PackageName asms.reg.plc.service.impl
+ * @FileName PlaceServiceImpl.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 26.
+ */
 @Service("PlaceService")
 public class PlaceServiceImpl implements PlaceService{
 

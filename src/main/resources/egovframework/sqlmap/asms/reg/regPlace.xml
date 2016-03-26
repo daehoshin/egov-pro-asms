@@ -5,8 +5,8 @@
 	
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 
-	<select id="placeListSearch" parameterClass="asms.reg.place.service.PlaceVO" resultClass="asms.reg.place.service.PlaceVO">
-		SELECT /* REG.PLACELISTSEARCH */ 
+	<select id="placeListSearch" parameterClass="asms.reg.plc.service.PlaceVO" resultClass="asms.reg.plc.service.PlaceVO">
+		SELECT /* reg.placelistsearch */ 
 		     A.PLC_ID
 		   , A.PLC_NO
 		   , A.REG_STATUS
@@ -28,8 +28,8 @@
 		 	<isNotEmpty prepend="AND" property="plc_nm">
 		 		B.PLC_NM = #plc_nm#
 		 	</isNotEmpty>
-		 	<isNotEmpty prepend="AND" property="full_name">
-		 		B.ADDR||B.ADDR_DETAIL = #full_name#
+		 	<isNotEmpty prepend="AND" property="full_addr">
+		 		B.ADDR||B.ADDR_DETAIL = #full_addr#
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="reg_status">
 		 		A.reg_status >= #reg_status#

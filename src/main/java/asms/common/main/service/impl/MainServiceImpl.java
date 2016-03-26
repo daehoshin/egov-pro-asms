@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import asms.common.main.service.impl.MainDAO;
-
 import org.springframework.stereotype.Service;
 
 import asms.common.login.service.LoginUserVO;
@@ -20,7 +18,7 @@ import asms.common.main.service.MainService;
 @Service("MainService")
 public class MainServiceImpl implements MainService {
 	
-	@Resource(name="mainDAO")
+	@Resource(name="MainDAO")
 	private MainDAO mainDAO;
 	
 	public List selectMenuList_lv1(LoginUserVO loginUserVO) throws Exception {

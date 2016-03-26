@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
-$(document).read(function(){
+$(document).ready(function(){
 	
 	$("form[name=placeSendForm]").find('input, select').keypress(function(e) {
 	    if (e.keyCode == 13){
@@ -31,17 +31,15 @@ function jsPlaceListSearch(pageNo)
 		data : sendForm,
 		dataType : "html",
 		success:function(ajaxResult){
-		  $('#regPlaceList').html(ajaxResult);
+
+			$('#regPlaceList').html(ajaxResult);
+		 
+			// ajax 결과로 조회 건수 및 정렬컬럼과 티입을 메인페이지로 넘겨준다.	 
+			var listForm = $("form[name=placeListForm]");
+
+			// checkbox initialize
+			jsInitialize();
 		  
-		  /*ajax 결과로 조회 건수 및 정렬컬럼과 티입을 메인페이지로 넘겨준다. */	 
-		  var listForm = $("form[name=placeListForm]");
-		  
-		  /* 현재 TR 표시 */
-		  if (currentId) {
-			  jsCurrentData(Target, currentId);
-		  }
-		  
-		  jsInitialize();
 		}, error: function(xhr,status,error){
 			 
 		}
@@ -81,8 +79,8 @@ function jsPlaceListSearch(pageNo)
 						</div>
 						<div class="col-md-4">
 							<div class="pull-right">
-			                    <a href="javascript:;" onclick="" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
-			                    <a href="javascript:;" onclick="" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
+			                    <a href="javascript:;" onclick="jsSrchReset('placeSendForm','jsPlaceListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
+			                    <a href="javascript:;" onclick="jsPlaceListSearch(1)" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
 			               	</div>
 						</div>
 					</div>
@@ -97,7 +95,7 @@ function jsPlaceListSearch(pageNo)
 		                	<label class="col-sm-1 control-label" for="">주소</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id=""></div>
 		                	<label class="col-sm-1 control-label" for="">등록상태</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="reg_stauts" id=""></div>	                    	                    	                    
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="reg_stauts" id=""></div>
 		                </div>
 		            </form>
 				</div>
