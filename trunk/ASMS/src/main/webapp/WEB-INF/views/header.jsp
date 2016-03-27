@@ -73,6 +73,8 @@
 	<!-- Common -->
 	<link href="/css/asms/common.css" rel="stylesheet">
 	<script src="/js/asms/common.js"></script>
+	<script src="/js/asms/jquery.validate.js"></script>
+	<script src="/js/asms/jquery.tmpl.min.js"></script>
 	 
 </head>
 
