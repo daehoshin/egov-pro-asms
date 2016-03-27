@@ -22,17 +22,26 @@
 		            </tr>
 	            </thead>
 	            <tbody>
-	            	<c:forEach var="result" items="${RegPlaceList}" varStatus="status">
-			            <tr>
-			                <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
-			                <td>${status.count }</td>
-			                <td>${result.plc_no }</td>
-			                <td>${result.plc_nm }</td>
-			                <td>${result.full_addr }</td>
-			                <td>${result.reg_nm }</td>
-			                <td>${result.reg_status_cm }</td>
-			            </tr>
-		            </c:forEach>
+	            	<c:choose>
+	            		<c:when test="${empty RegPlaceList }">
+					            <tr>
+					            	<td colspan="7" class="text-center">조회된 목록이 없습니다.</td>
+					            </tr>	            		
+	            		</c:when>
+	            		<c:otherwise>
+	            			<c:forEach var="result" items="${RegPlaceList}" varStatus="status">
+					            <tr>
+					                <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
+					                <td>${status.count }</td>
+					                <td>${result.plc_no }</td>
+					                <td>${result.plc_nm }</td>
+					                <td>${result.full_addr }</td>
+					                <td>${result.reg_nm }</td>
+					                <td>${result.reg_status_cm }</td>
+					            </tr>
+				            </c:forEach>
+	            		</c:otherwise>
+	            	</c:choose>
 	            </tbody>
 	            <tfoot>
 		            <tr>

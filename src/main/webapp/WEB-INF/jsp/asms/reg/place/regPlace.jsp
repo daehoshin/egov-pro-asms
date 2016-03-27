@@ -12,6 +12,27 @@ $(document).ready(function(){
 	
 	jsPlaceListSearch(1);
 	
+	/* $("#addBtn").bind("click",function(){
+		alert("test");
+		$("#placeAddForm").attr("action","<c:url value='/rgst/place/placeAddAction.do'/>").submit();
+	});
+	
+	$('#placeAddForm').validate({
+	    rules: {
+	    	i_title         : { required: true },
+	    	i_open          : { required: true },
+	    	i_clssfrmname   : { required: true }
+	    },
+	    messages: {
+	    	i_title         : { required: "제목을 입력하세요." },
+	    	i_open          : { required: "공개구분을 선택하세요." },
+	    	i_clssfrmname   : { required: "형태분류를 선택하세요." }
+	    },
+	    submitHandler: function (frm) {
+	    	jsPlaceAddAction();
+	    }
+	}); */
+	
 });
 
 // 장소 검색
@@ -34,11 +55,26 @@ function jsPlaceListSearch(pageNo)
 
 			$('#regPlaceList').html(ajaxResult);
 		 
-			// ajax 결과로 조회 건수 및 정렬컬럼과 티입을 메인페이지로 넘겨준다.	 
-			var listForm = $("form[name=placeListForm]");
-
-			// checkbox initialize
+			// basic style initialize
 			jsInitialize();
+		  
+		}, error: function(xhr,status,error){
+			 
+		}
+	});
+}
+
+// 장소 등록
+function jsPlaceAddForm()
+{
+	$.ajax({
+		type : "post",
+		url  : "/rgst/place/placeAddForm.do",
+		dataType : "html",
+		success:function(ajaxResult){
+			
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
 		  
 		}, error: function(xhr,status,error){
 			 
@@ -63,7 +99,7 @@ function jsPlaceListSearch(pageNo)
    	<div class="row">
    		<div class="col-md-12 marginB5">
    			<div class="pull-right">
-		   		<a href="javascript:;" onclick="" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
+		   		<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
 		        <a href="javascript:;" onclick="" class="btn btn-outline btn-primary"><i class="fa fa-pencil"></i> 수정</a>
 		        <a href="javascript:;" onclick="" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
 	        </div>
@@ -86,7 +122,17 @@ function jsPlaceListSearch(pageNo)
 					</div>
 				</div>
 				<div class="ibox-content">
-		            <form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="get">
+		            <form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="post">
+		                <div class="form-group">
+		                	<label class="col-sm-1 control-label" for="plc_no">관리번호</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_no" id="plc_no"></div>
+		                	<label class="col-sm-1 control-label" for="plc_nm">장소명</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_nm" id="plc_nm"></div>
+		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id="full_addr"></div>
+		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="reg_stauts" id="reg_stauts"></div>
+		                </div>
 		                <div class="form-group">
 		                	<label class="col-sm-1 control-label" for="plc_no">관리번호</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_no" id="plc_no"></div>
