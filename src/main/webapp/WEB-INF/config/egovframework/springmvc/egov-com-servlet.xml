@@ -71,6 +71,10 @@
 	
 	<bean id="download" class="asms.common.file.web.FileDown" />
 	
+	<!-- Ajax Json View Start -->
+	<bean id="jsonView" class="asms.common.json.AsmsMappingJacksonJsonView" p:contentType="text/html"/>
+	<!-- Ajax Json View End -->
+	
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
 		 <property name="viewClass">
 			 <value>org.springframework.web.servlet.view.tiles2.TilesView</value>
@@ -95,9 +99,4 @@
 	   <property name="order" value="2" />
 	</bean>
 	
-	<!-- Ajax Json View Start -->
-	<bean id="jsonView" class="asms.common.json.AsmsMappingJacksonJsonView" p:contentType="text/html"/>
-	<!-- Ajax Json View End -->
-	<!-- MappingJacksonJsonView end -->
-
 </beans>
