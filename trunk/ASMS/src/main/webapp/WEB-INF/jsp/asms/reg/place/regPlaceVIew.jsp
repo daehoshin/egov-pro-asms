@@ -25,6 +25,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="regFinishBtn">등록완료</button>
             <button type="button" class="btn btn-primary" id="modBtn">수정</button>
+            <button type="button" class="btn btn-primary" id="delBtn">삭제</button>
             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
         </div>
     </div>
