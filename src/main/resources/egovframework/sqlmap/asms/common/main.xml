@@ -3,8 +3,6 @@
 
 <sqlMap namespace="main">
 
-	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-
 	<select id="selectMenuList_lv1" parameterClass="asms.common.login.service.LoginUserVO" resultClass="asms.common.main.service.MenuVO">
 		SELECT	/* main.selectMenuList_lv1 */
         	  A.MENU_ID

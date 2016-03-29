@@ -61,6 +61,42 @@ function jsPlaceAddForm()
 	});
 }
 
+// 장소 수정
+function jsPlaceModForm()
+{
+	$.ajax({
+		type : "post",
+		url  : "/rgst/place/placeModForm.do",
+		dataType : "html",
+		success:function(ajaxResult){
+			
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
+		  
+		}, error: function(xhr,status,error){
+			 
+		}
+	});
+}
+
+// 장소 상세
+function jsPlaceViewForm()
+{
+	$.ajax({
+		type : "post",
+		url  : "/rgst/place/placeViewForm.do",
+		dataType : "html",
+		success:function(ajaxResult){
+			
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
+		  
+		}, error: function(xhr,status,error){
+			 
+		}
+	});
+}
+
 </script>
 
 <div class="row wrapper border-bottom white-bg page-heading">

@@ -20,7 +20,7 @@ import asms.reg.plc.service.PlaceVO;
  * @Since 2016. 3. 26.
  */
 @Controller
-public class RegPlaceListController {
+public class PlaceListController {
 	
     @Resource(name = "PlaceService")
     protected PlaceService placeService;
@@ -36,6 +36,6 @@ public class RegPlaceListController {
 		
 		map.addAttribute("RegPlaceList", RegPlaceList);
 		
-		return "/reg/place/regPlaceList";
+		return "/reg/place/PlaceList";
 	}
 }

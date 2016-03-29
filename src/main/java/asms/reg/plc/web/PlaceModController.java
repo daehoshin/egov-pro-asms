@@ -12,7 +12,7 @@ import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
 @Controller
-public class RegPlaceModController {
+public class PlaceModController {
 	
     @Resource(name = "PlaceService")
     protected PlaceService placeService;
@@ -22,7 +22,7 @@ public class RegPlaceModController {
 		
     	/*map.addAttribute("RegPlaceInfo", RegPlaceInfo);*/
     	
-    	return "/reg/place/regPlaceMod";
+    	return "/reg/place/PlaceMod";
 	}
     
 	@RequestMapping("/rgst/place/placeModAction.do")

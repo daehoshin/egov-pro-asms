@@ -21,8 +21,24 @@ public class PlaceDAO extends EgovAbstractDAO{
 		return list("placeListSearch", vo);
     }
 
-	public String RegPlaceAddAction(PlaceVO vo) throws Exception {
-		return (String) insert("RegPlaceAddAction", vo);
+	public int placeAddAction(PlaceVO vo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			int mainResult = update("placeMainAdd", vo);  
+			int detailResult = update("placeDetailAdd", vo);  
+			
+			if(mainResult==1&&detailResult==1){
+				result = 1;
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 }
