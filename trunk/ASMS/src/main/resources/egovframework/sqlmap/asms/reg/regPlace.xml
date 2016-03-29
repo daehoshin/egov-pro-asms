@@ -6,7 +6,7 @@
 	<select id="placeListSearch" parameterClass="PlaceVO" resultClass="PlaceVO">
 		SELECT /* reg.placelistsearch */ 
 		     A.PLC_ID
-		   , A.PLC_NO
+		   , A.PLC_MNG_NO
 		   , A.REG_STATUS
 		   , A.REG_ID
 		   , A.REG_NM
@@ -17,11 +17,12 @@
 		   , B.PLC_NM
 		   , B.ADDR
 		   , B.ADDR_DETAIL
+		   , CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
 		FROM TB_PLCMAIN A JOIN TB_PLCDETAIL B
 		ON   A.PLC_ID = B.PLC_ID
 		<dynamic prepend="WHERE">
-			<isNotEmpty prepend="AND" property="plc_no">
-		 		A.PLC_NO = #plc_no#
+			<isNotEmpty prepend="AND" property="plc_mng_no">
+		 		A.PLC_MNG_NO = #plc_mng_no#
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="plc_nm">
 		 		B.PLC_NM = #plc_nm#
@@ -36,15 +37,11 @@
 	</select>
 	
 	<insert id="placeMainAdd" parameterClass="PlaceVO">
-		INSERT /* reg.RegPlaceAddAction */
+		INSERT /* reg.placeMainAdd */
 		INTO TB_PLCMAIN (
-						  MP_ID
-						, MP_NO
-						, USER_AUTH_CD
-						, MENU_GRP_ID
-						, USE_FLAG
-						, ENABLED
-						, AUTHORITY
+						  PLC_ID
+						, PLC_MNG_NO
+						, REG_STATUS
 						, REG_ID
 						, REG_NM
 						, REG_DT
@@ -53,60 +50,77 @@
 						, SYS_DT
 						)
 				VALUES (
-						  #mp_id#
-						, #mp_no#
-						, #user_auth_cd#
-						, #menu_grp_id#
-						, #use_flag#
-						, #enabled#
-						, #authority#
+						  #plc_id#
+						, #plc_mng_no#
+						, #reg_status#
 						, #reg_id#
 						, #reg_nm#
 						, #reg_dt#
 						, #sys_id#
 						, #sys_nm#
-						, #sys_dt#				
+						, #sys_dt#
 				)
 	</insert>
 	
 	<insert id="placeDetailAdd" parameterClass="PlaceVO">
-		INSERT /* reg.RegPlaceAddAction */
-		INTO TB_PLCMAIN (
-						, MP_ID
-						, MP_NM
-						, MP_CD
-						, LOGIN_USER_ID
-						, USER_PWD
-						, JOIN_DT
-						, RETIRE_DT
-						, DEPT_NM
-						, POSITION
-						, EMP_CD
-						, JOIN_CD
-						, BIRTH_DT
+		INSERT /* reg.placeDetailAdd */
+		INTO TB_PLCDETAIL (
+						  PLC_ID
+						, PLC_NM
 						, ADDR
 						, ADDR_DETAIL
-						, EMAIL
-						, TEL_NO
 						)
 				VALUES (
-						  #mp_id#        
-						, #mp_nm#        
-						, #mp_cd#        
-						, #login_user_id#
-						, #user_pwd#     
-						, #join_dt#      
-						, #retire_dt#    
-						, #dept_nm#      
-						, #position#     
-						, #emp_cd#       
-						, #join_cd#      
-						, #birth_dt#     
-						, #addr#         
-						, #addr_detail#  
-						, #email#        
-						, #tel_no#       
+						  #plc_id#
+						, #plc_nm#
+						, #addr#
+						, #addr_detail#
 				)
 	</insert>
+	
+	<select id="placeInfoSearch" parameterClass="PlaceVO" resultClass="PlaceVO">
+		SELECT /* reg.placeInfoSearch */
+			A.PLC_ID
+		   , A.PLC_MNG_NO
+		   , A.REG_STATUS
+		   , A.REG_ID
+		   , A.REG_NM
+		   , A.REG_DT
+		   , A.SYS_ID
+		   , A.SYS_NM
+		   , A.SYS_DT
+		   , B.PLC_NM
+		   , B.ADDR
+		   , B.ADDR_DETAIL
+		   , CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
+		FROM TB_PLCMAIN A JOIN TB_PLCDETAIL B
+		ON   A.PLC_ID = B.PLC_ID
+		WHERE A.PLC_ID = #plc_id#
+	</select>
+	
+	<update id="placeMainMod" parameterClass="PlaceVO">
+		UPDATE /* reg.placeMainMod */ TB_PLCMAIN
+		SET SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #plc_id#
+	</update>
+
+	<update id="placeDetailMod" parameterClass="PlaceVO">
+		UPDATE /* reg.placeDetailMod */ TB_PLCDETAIL
+		SET PLC_NM = #plc_nm#
+		  , ADDR = #addr#
+		  , ADDR_DETAIL = #addr_detail#
+		WHERE PLC_ID = #plc_id#
+	</update>
+	
+	<update id="placeRegFinishAction" parameterClass="PlaceVO">
+		UPDATE /* reg.placeRegFinishAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #plc_id#  
+	</update>
 	
 </sqlMap>

@@ -9,7 +9,7 @@ package asms.common.login.service;
 public class LoginUserVO {
 	
 	private String mp_id;			// 인력ID
-	private String mp_no;			// 인력관리NO
+	private String mp_mng_no;		// 인력관리NO
 	private String user_auth_cd;	// 사용자권한
 	private String menu_grp_id;		// 메뉴그룹ID
 	private String use_flag;		// 사용여부
@@ -43,11 +43,11 @@ public class LoginUserVO {
 	public void setMp_id(String mp_id) {
 		this.mp_id = mp_id;
 	}
-	public String getMp_no() {
-		return mp_no;
+	public String getMp_mng_no() {
+		return mp_mng_no;
 	}
-	public void setMp_no(String mp_no) {
-		this.mp_no = mp_no;
+	public void setMp_mng_no(String mp_mng_no) {
+		this.mp_mng_no = mp_mng_no;
 	}
 	public String getUser_auth_cd() {
 		return user_auth_cd;

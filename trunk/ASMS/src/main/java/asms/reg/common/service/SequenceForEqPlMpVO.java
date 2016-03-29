@@ -1,4 +1,4 @@
-package asms.reg.common;
+package asms.reg.common.service;
 
 public class SequenceForEqPlMpVO {
 	

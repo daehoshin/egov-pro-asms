@@ -9,7 +9,7 @@ package asms.reg.plc.service;
 public class PlaceVO {
 	
 	private String plc_id;			// 장소ID
-	private String plc_no;			// 장소관리NO
+	private String plc_mng_no;		// 장소관리NO
 	private String reg_status;		// 등록구분
 	private String reg_status_cm;	// 등록구분코드값
 	private String reg_id;			// 등록자ID
@@ -29,11 +29,11 @@ public class PlaceVO {
 	public void setPlc_id(String plc_id) {
 		this.plc_id = plc_id;
 	}
-	public String getPlc_no() {
-		return plc_no;
+	public String getPlc_mng_no() {
+		return plc_mng_no;
 	}
-	public void setPlc_no(String plc_no) {
-		this.plc_no = plc_no;
+	public void setPlc_mng_no(String plc_mng_no) {
+		this.plc_mng_no = plc_mng_no;
 	}
 	public String getReg_status() {
 		return reg_status;

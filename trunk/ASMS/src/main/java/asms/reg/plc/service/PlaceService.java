@@ -11,4 +11,7 @@ import java.util.List;
 public interface PlaceService {
 	List placeListSearch(PlaceVO vo) throws Exception;
 	int placeAddAction(PlaceVO vo) throws Exception;
+	PlaceVO placeInfoSearch(PlaceVO vo) throws Exception;
+	int placeModAction(PlaceVO vo) throws Exception;
+	int placeRegFinishAction(PlaceVO vo) throws Exception;
 }

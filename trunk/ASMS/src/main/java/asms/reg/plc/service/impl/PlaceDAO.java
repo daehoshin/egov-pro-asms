@@ -17,22 +17,17 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 @Repository("PlaceDAO")
 public class PlaceDAO extends EgovAbstractDAO{
 	
-	public List placeListSearch(PlaceVO vo) throws Exception {
+	List placeListSearch(PlaceVO vo) throws Exception {
 		return list("placeListSearch", vo);
     }
 
-	public int placeAddAction(PlaceVO vo) throws Exception {
+	int placeMainAdd(PlaceVO vo) throws Exception {
 		
 		int result = 0;
 		
 		try {
 			
-			int mainResult = update("placeMainAdd", vo);  
-			int detailResult = update("placeDetailAdd", vo);  
-			
-			if(mainResult==1&&detailResult==1){
-				result = 1;
-			}
+			result = update("placeMainAdd", vo);  
 			
 		} catch(Exception e){
 			e.printStackTrace();
@@ -41,4 +36,70 @@ public class PlaceDAO extends EgovAbstractDAO{
 		return result;
 	}
 	
+	int placeDetailAdd(PlaceVO vo) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			result = update("placeDetailAdd", vo);  
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+	
+	PlaceVO placeInfoSearch(PlaceVO vo) throws Exception {
+		return (PlaceVO) selectByPk("placeInfoSearch", vo);
+	}
+
+	int placeMainMod(PlaceVO vo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			result = update("placeMainMod", vo);  
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	int placeDetailMod(PlaceVO vo) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			result = update("placeDetailMod", vo);  
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+	
+	int placeRegFinishAction(PlaceVO vo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			result = update("placeRegFinishAction", vo);  
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
 }

@@ -43,7 +43,7 @@ function jsPlaceListSearch(pageNo)
 	});
 }
 
-// 장소 등록
+// 장소 등록화면
 function jsPlaceAddForm()
 {
 	$.ajax({
@@ -61,12 +61,13 @@ function jsPlaceAddForm()
 	});
 }
 
-// 장소 수정
-function jsPlaceModForm()
+// 장소 수정화면
+function jsPlaceModForm(plc_id)
 {
 	$.ajax({
 		type : "post",
 		url  : "/rgst/place/placeModForm.do",
+		data : {plc_id : plc_id},
 		dataType : "html",
 		success:function(ajaxResult){
 			
@@ -80,21 +81,22 @@ function jsPlaceModForm()
 }
 
 // 장소 상세
-function jsPlaceViewForm()
+function jsPlaceViewForm(plc_id)
 {
 	$.ajax({
 		type : "post",
 		url  : "/rgst/place/placeViewForm.do",
+		data : {plc_id : plc_id},
 		dataType : "html",
 		success:function(ajaxResult){
-			
+
 			$('#myModal').html(ajaxResult);
 			$('#myModal').modal('show');
 		  
 		}, error: function(xhr,status,error){
 			 
 		}
-	});
+	});	
 }
 
 </script>
@@ -131,7 +133,7 @@ function jsPlaceViewForm()
 						<div class="col-md-4">
 							<div class="pull-right">
 			                    <a href="javascript:;" onclick="jsSrchReset('placeSendForm','jsPlaceListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
-			                    <a href="javascript:;" onclick="jsPlaceListSearch(1)" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
+			                    <a href="javascript:;" onclick="jsPlaceListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
 			               	</div>
 						</div>
 					</div>
@@ -139,18 +141,8 @@ function jsPlaceViewForm()
 				<div class="ibox-content">
 		            <form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="post">
 		                <div class="form-group">
-		                	<label class="col-sm-1 control-label" for="plc_no">관리번호</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_no" id="plc_no"></div>
-		                	<label class="col-sm-1 control-label" for="plc_nm">장소명</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_nm" id="plc_nm"></div>
-		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id="full_addr"></div>
-		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="reg_stauts" id="reg_stauts"></div>
-		                </div>
-		                <div class="form-group">
-		                	<label class="col-sm-1 control-label" for="plc_no">관리번호</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_no" id="plc_no"></div>
+		                	<label class="col-sm-1 control-label" for="plc_mng_no">관리번호</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_mng_no" id="plc_mng_no"></div>
 		                	<label class="col-sm-1 control-label" for="plc_nm">장소명</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_nm" id="plc_nm"></div>
 		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>

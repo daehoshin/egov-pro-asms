@@ -30,7 +30,7 @@ public class PlaceListController {
     protected EgovPropertyService propertiesService;
     
 	@RequestMapping("/rgst/place/placeListSearch.do")
-	public String RegPlaceList(@ModelAttribute("PlaceVO")PlaceVO placeVO, Model map) throws Exception{
+	public String PlaceList(@ModelAttribute("PlaceVO")PlaceVO placeVO, Model map) throws Exception{
 		
 		List RegPlaceList = placeService.placeListSearch(placeVO);
 		
