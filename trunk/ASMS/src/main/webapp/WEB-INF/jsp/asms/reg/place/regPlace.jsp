@@ -12,37 +12,16 @@ $(document).ready(function(){
 	
 	jsPlaceListSearch(1);
 	
-	/* $("#addBtn").bind("click",function(){
-		alert("test");
-		$("#placeAddForm").attr("action","<c:url value='/rgst/place/placeAddAction.do'/>").submit();
-	});
-	
-	$('#placeAddForm').validate({
-	    rules: {
-	    	i_title         : { required: true },
-	    	i_open          : { required: true },
-	    	i_clssfrmname   : { required: true }
-	    },
-	    messages: {
-	    	i_title         : { required: "제목을 입력하세요." },
-	    	i_open          : { required: "공개구분을 선택하세요." },
-	    	i_clssfrmname   : { required: "형태분류를 선택하세요." }
-	    },
-	    submitHandler: function (frm) {
-	    	jsPlaceAddAction();
-	    }
-	}); */
-	
 });
 
 // 장소 검색
 function jsPlaceListSearch(pageNo)
 {
-	var frm = $("form[name=placeForm]");
+	/* var frm = $("form[name=placeForm]");
 		
 	if (pageNo >= 1){
 		frm.find("input[name='pageIndex']").val(pageNo);
-	}
+	} */
 		
 	var sendForm = $("form[name=placeSendForm]").serialize();
 

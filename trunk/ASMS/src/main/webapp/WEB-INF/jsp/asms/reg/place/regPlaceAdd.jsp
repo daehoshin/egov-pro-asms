@@ -1,6 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript">
+$(document).ready(function(){
 
+	$("#addBtn").bind("click",function(){
+		$("#placeAddForm").attr("action","<c:url value='/rgst/place/placeAddAction.do'/>").submit();
+	});
+	
+	$('#placeAddForm').validate({
+	    rules: {
+	    	plc_nm			: { required: true },
+	    	addr			: { required: true }
+	    },
+	    messages: {
+	    	plc_nm			: { required: "장소명을 입력하세요." },
+	    	addr			: { required: "주소를 선택하세요." }
+	    },
+	    submitHandler: function () {
+	    	jsPlaceAddAction();
+	    }
+	});
+	
+});
+
+//장소 등록
+function jsPlaceAddAction()
+{
+		
+	var addForm = $("form[name=placeAddForm]").serialize();
+
+	$.ajax({
+		type : "post",
+		url  : "/rgst/place/placeAddAction.do",
+		data : addForm,
+		dataType : "json",
+		success:function(ajaxResult){
+			
+			jsPlaceListSearch(1);
+			$('#myModal').modal('hide');
+			
+		}, error: function(xhr,status,error){
+			 
+		}
+	});
+}
+
+</script>
 <div class="modal-dialog">
 	<div class="modal-content">
         <div class="modal-header">
