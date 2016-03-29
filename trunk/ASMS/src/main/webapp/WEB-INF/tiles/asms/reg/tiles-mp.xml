@@ -13,8 +13,8 @@
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
   	
-  	<definition name="/reg/manpower/regManPower" extends="mTemplate">
-		<put-attribute name="section" value="/WEB-INF/jsp/asms/reg/manpower/regManPower.jsp" />
+  	<definition name="/reg/manpower/ManPower" extends="mTemplate">
+		<put-attribute name="section" value="/WEB-INF/jsp/asms/reg/manpower/ManPower.jsp" />
 	</definition>
 	
 	<definition name="sTemplate" template="/WEB-INF/views/sLayout.jsp">

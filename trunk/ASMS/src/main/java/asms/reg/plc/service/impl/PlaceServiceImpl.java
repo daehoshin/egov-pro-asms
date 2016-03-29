@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import asms.common.util.DateUtils;
 import asms.reg.common.SequenceForEqPlMpDAO;
+import asms.reg.common.SequenceForEqPlMpVO;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
@@ -32,13 +35,25 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 
 	@Override
-	public String RegPlaceAddAction(PlaceVO vo) throws Exception {
+	public int placeAddAction(PlaceVO vo) throws Exception {
 		
-		String result = "";
-		String currentTime = "";
+		int result = 0;
+		
+		SequenceForEqPlMpVO seqVO = new SequenceForEqPlMpVO();
+		
+		String currentDate = DateUtils.CurrentDate();
+		
+		seqVO.setSeq_dt(currentDate);
+		vo.setReg_dt(currentDate);
+		vo.setSys_dt(currentDate);
+		
 		try {
-			String pk = sequenceForEqPlMpDAO.EqPlMpSequenceInsertForSearch(currentTime);
-			placeDAO.RegPlaceAddAction(vo);
+			
+			int pk = sequenceForEqPlMpDAO.EqPlMpSequenceInsertForSearch(seqVO);
+			vo.setPlc_id(Integer.toString(pk));
+			
+			result = placeDAO.placeAddAction(vo);
+			
 		} catch(Exception e){
 			e.printStackTrace();
 		}

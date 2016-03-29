@@ -21,6 +21,7 @@ public class LoginUserVO {
 	private String sys_id;			// 최종작업자ID
 	private String sys_nm;			// 최종작업자명
 	private String sys_dt;			// 최종작업일시
+	private String mp_nm;			// 인력명
 	private String mp_cd;			// 인력CD
 	private String login_user_id;	// 로그인아이디
 	private String user_pwd;		// 비밀번호
@@ -113,6 +114,12 @@ public class LoginUserVO {
 	}
 	public void setSys_dt(String sys_dt) {
 		this.sys_dt = sys_dt;
+	}
+	public String getMp_nm() {
+		return mp_nm;
+	}
+	public void setMp_nm(String mp_nm) {
+		this.mp_nm = mp_nm;
 	}
 	public String getMp_cd() {
 		return mp_cd;

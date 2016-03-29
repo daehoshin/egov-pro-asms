@@ -3,8 +3,6 @@
 
 <sqlMap namespace="login">
 
-	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-
 	<select id="selectLoginUserInfo" resultClass="asms.common.login.service.LoginUserVO">
 		SELECT /* login.selectLoginUserInfo */
 			  A.MP_ID
@@ -20,6 +18,7 @@
 			, A.SYS_ID
 			, A.SYS_NM
 			, A.SYS_DT
+			, B.MP_NM
 			, B.MP_CD
 			, B.LOGIN_USER_ID
 			, B.USER_PWD

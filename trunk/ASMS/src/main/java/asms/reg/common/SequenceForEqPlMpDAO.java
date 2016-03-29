@@ -7,8 +7,8 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 @Repository("SequenceForEqPlMpDAO")
 public class SequenceForEqPlMpDAO extends EgovAbstractDAO {
 	
-	public String EqPlMpSequenceInsertForSearch(String currentTime) throws Exception {
-		return (String) insert("EqPlMpSequenceInsertForSearch", currentTime);
+	public int EqPlMpSequenceInsertForSearch(SequenceForEqPlMpVO vo) throws Exception {
+		return update("EqPlMpSequenceInsertForSearch", vo);
     }
 	
 }

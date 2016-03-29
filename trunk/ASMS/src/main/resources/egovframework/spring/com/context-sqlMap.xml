@@ -9,6 +9,7 @@
 		<property name="configLocation" value="classpath:/egovframework/sqlmap/config/${Globals.DbType}/sql-map-config.xml" />
 		<property name="mappingLocations">
 			<list>
+				<value>classpath:/egovframework/sqlmap/asms/common/typeAlias.xml </value>
 				<value>classpath:/egovframework/sqlmap/asms/common/comcd.xml </value>
 				<value>classpath:/egovframework/sqlmap/asms/**/*.xml </value>
 			</list>

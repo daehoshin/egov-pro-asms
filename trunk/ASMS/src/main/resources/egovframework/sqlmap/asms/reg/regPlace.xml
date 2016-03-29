@@ -3,9 +3,7 @@
 
 <sqlMap namespace="regPlace">
 	
-	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-
-	<select id="placeListSearch" parameterClass="asms.reg.plc.service.PlaceVO" resultClass="asms.reg.plc.service.PlaceVO">
+	<select id="placeListSearch" parameterClass="PlaceVO" resultClass="PlaceVO">
 		SELECT /* reg.placelistsearch */ 
 		     A.PLC_ID
 		   , A.PLC_NO
@@ -36,4 +34,79 @@
 		 	</isNotEmpty>
 		 </dynamic>
 	</select>
+	
+	<insert id="placeMainAdd" parameterClass="PlaceVO">
+		INSERT /* reg.RegPlaceAddAction */
+		INTO TB_PLCMAIN (
+						  MP_ID
+						, MP_NO
+						, USER_AUTH_CD
+						, MENU_GRP_ID
+						, USE_FLAG
+						, ENABLED
+						, AUTHORITY
+						, REG_ID
+						, REG_NM
+						, REG_DT
+						, SYS_ID
+						, SYS_NM
+						, SYS_DT
+						)
+				VALUES (
+						  #mp_id#
+						, #mp_no#
+						, #user_auth_cd#
+						, #menu_grp_id#
+						, #use_flag#
+						, #enabled#
+						, #authority#
+						, #reg_id#
+						, #reg_nm#
+						, #reg_dt#
+						, #sys_id#
+						, #sys_nm#
+						, #sys_dt#				
+				)
+	</insert>
+	
+	<insert id="placeDetailAdd" parameterClass="PlaceVO">
+		INSERT /* reg.RegPlaceAddAction */
+		INTO TB_PLCMAIN (
+						, MP_ID
+						, MP_NM
+						, MP_CD
+						, LOGIN_USER_ID
+						, USER_PWD
+						, JOIN_DT
+						, RETIRE_DT
+						, DEPT_NM
+						, POSITION
+						, EMP_CD
+						, JOIN_CD
+						, BIRTH_DT
+						, ADDR
+						, ADDR_DETAIL
+						, EMAIL
+						, TEL_NO
+						)
+				VALUES (
+						  #mp_id#        
+						, #mp_nm#        
+						, #mp_cd#        
+						, #login_user_id#
+						, #user_pwd#     
+						, #join_dt#      
+						, #retire_dt#    
+						, #dept_nm#      
+						, #position#     
+						, #emp_cd#       
+						, #join_cd#      
+						, #birth_dt#     
+						, #addr#         
+						, #addr_detail#  
+						, #email#        
+						, #tel_no#       
+				)
+	</insert>
+	
 </sqlMap>

@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Since 2016. 3. 25.
  */
 @Controller
-public class RegPlaceController {
+public class PlaceController {
 	
 	@RequestMapping("/reg/place/place.do")
 	public String RegPlace() throws Exception{
-		return "/reg/place/regPlace";
+		return "/reg/place/Place";
 	}
 	
 }

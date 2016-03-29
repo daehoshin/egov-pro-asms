@@ -88,7 +88,7 @@ function jsPlaceAddAction()
         </form>
         <div class="modal-footer">
             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="addBtn">Save changes</button>
+            <button type="button" class="btn btn-primary" id="addBtn">등록</button>
         </div>
     </div>
 </div>

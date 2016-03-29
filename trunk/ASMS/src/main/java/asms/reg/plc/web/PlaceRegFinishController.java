@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class RegPlaceFinishController {
+public class PlaceRegFinishController {
     
 	@RequestMapping("/rgst/place/placeRegFinish.do")
 	public String PlaceRegFinish(@RequestParam("plc_id")String plc_id, ModelMap map) throws Exception{
