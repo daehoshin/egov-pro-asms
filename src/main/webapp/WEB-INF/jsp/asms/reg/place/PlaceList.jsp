@@ -32,12 +32,11 @@
 	            			<c:forEach var="result" items="${RegPlaceList}" varStatus="status">
 					            <tr>
 					                <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
-					                <td>${status.count }</td>
-					                <td>${result.plc_no }</td>
-					                <td>${result.plc_nm }</td>
+					                <td>${result.plc_mng_no }</td>
+					                <td class="text-navy"><a href="javascript:;" onclick="jsPlaceViewForm('${result.plc_id}')">${result.plc_nm }</a></td>
 					                <td>${result.full_addr }</td>
 					                <td>${result.reg_nm }</td>
-					                <td>${result.reg_status_cm }</td>
+					                <td>${result.reg_status }</td>
 					            </tr>
 				            </c:forEach>
 	            		</c:otherwise>

@@ -4,13 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.time.DateFormatUtils;
-import org.springframework.stereotype.Repository;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
+import asms.common.Constants;
 import asms.common.util.DateUtils;
-import asms.reg.common.SequenceForEqPlMpDAO;
-import asms.reg.common.SequenceForEqPlMpVO;
+import asms.reg.common.PlaceConts;
+import asms.reg.common.service.impl.SequenceForEqPlMpDAO;
+import asms.reg.common.service.SequenceForEqPlMpVO;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
@@ -38,6 +39,8 @@ public class PlaceServiceImpl implements PlaceService{
 	public int placeAddAction(PlaceVO vo) throws Exception {
 		
 		int result = 0;
+		int mainResult = 0;
+		int detailResult = 0;
 		
 		SequenceForEqPlMpVO seqVO = new SequenceForEqPlMpVO();
 		
@@ -50,9 +53,74 @@ public class PlaceServiceImpl implements PlaceService{
 		try {
 			
 			int pk = sequenceForEqPlMpDAO.EqPlMpSequenceInsertForSearch(seqVO);
-			vo.setPlc_id(Integer.toString(pk));
+			StringBuffer sb = new StringBuffer();
+			sb.append(PlaceConts.Place_MngNo_Code);
+			sb.append("-");
+			sb.append(StringUtils.leftPad(Integer.toString(pk), 7, "0"));
 			
-			result = placeDAO.placeAddAction(vo);
+			vo.setPlc_id(Integer.toString(pk));
+			vo.setPlc_mng_no(sb.toString());
+			vo.setReg_status(Constants.RegStatus_Temporarily);
+			
+			mainResult = placeDAO.placeMainAdd(vo);
+			detailResult = placeDAO.placeDetailAdd(vo);
+			
+			if(mainResult==1&&detailResult==1){
+				result = 1;
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public PlaceVO placeInfoSearch(PlaceVO vo) throws Exception{
+		return placeDAO.placeInfoSearch(vo);
+	}
+	
+	@Override
+	public int placeModAction(PlaceVO vo) throws Exception {
+		
+		int result = 0;
+		int mainResult = 0;
+		int detailResult = 0;
+		
+		String currentDate = DateUtils.CurrentDate();
+		
+		vo.setSys_dt(currentDate);
+		
+		try {
+			
+			mainResult = placeDAO.placeMainMod(vo);
+			detailResult = placeDAO.placeDetailMod(vo);
+			
+			if(mainResult==1&&detailResult==1){
+				result = 1;
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int placeRegFinishAction(PlaceVO vo) throws Exception {
+		
+		int result = 0;
+		
+		String currentDate = DateUtils.CurrentDate();
+		
+		vo.setSys_dt(currentDate);
+		vo.setReg_status(Constants.RegStatus_Finish);
+		
+		try {
+			
+			result = placeDAO.placeRegFinishAction(vo);
 			
 		} catch(Exception e){
 			e.printStackTrace();

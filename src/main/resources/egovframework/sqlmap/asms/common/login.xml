@@ -6,7 +6,7 @@
 	<select id="selectLoginUserInfo" resultClass="asms.common.login.service.LoginUserVO">
 		SELECT /* login.selectLoginUserInfo */
 			  A.MP_ID
-			, A.MP_NO
+			, A.MP_MNG_NO
 			, A.USER_AUTH_CD
 			, A.MENU_GRP_ID
 			, A.USE_FLAG

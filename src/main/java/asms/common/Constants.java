@@ -8,4 +8,8 @@ package asms.common;
  */
 public class Constants {
 	public static final String LoginUserVO = "loginUserVO";
+	public static final String RegStatus_Temporarily = "01";
+	public static final String RegStatus_Finish = "02";
+	public static final String RegStatus_Del = "03";
+	
 }

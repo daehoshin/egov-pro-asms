@@ -1,18 +1,45 @@
 package asms.reg.plc.web;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import asms.common.login.service.LoginUserVO;
+import asms.reg.plc.service.PlaceService;
+import asms.reg.plc.service.PlaceVO;
 
 @Controller
 public class PlaceRegFinishController {
     
-	@RequestMapping("/rgst/place/placeRegFinish.do")
-	public String PlaceRegFinish(@RequestParam("plc_id")String plc_id, ModelMap map) throws Exception{
+	@Resource(name = "PlaceService")
+    protected PlaceService placeService;
+	
+	@RequestMapping("/rgst/place/placeRegFinishAction.do")
+	public String PlaceRegFinish(@ModelAttribute("PlaceVO")PlaceVO placeVO, HttpSession session, ModelMap map) throws Exception{
 		
-    	
-    	return "jsonView";
+		String resultMsg = "";
+		
+		LoginUserVO loginUserVO = (LoginUserVO)session.getAttribute("loginUserVO");
+		
+		placeVO.setSys_id(loginUserVO.getMp_id());
+		placeVO.setSys_nm(loginUserVO.getMp_nm());
+		
+		int result = placeService.placeRegFinishAction(placeVO);
+		
+		if(result==1){
+			resultMsg = "success";
+		} else {
+			resultMsg = "fail";
+		}
+		
+		map.addAttribute("resultMsg", resultMsg);
+		
+		return "jsonView";
 	}
 	
 }

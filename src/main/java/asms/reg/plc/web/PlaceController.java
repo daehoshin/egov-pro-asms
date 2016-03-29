@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PlaceController {
 	
 	@RequestMapping("/reg/place/place.do")
-	public String RegPlace() throws Exception{
+	public String Place() throws Exception{
 		return "/reg/place/Place";
 	}
 	

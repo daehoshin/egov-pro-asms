@@ -19,13 +19,13 @@ public class PlaceAddController {
     protected PlaceService placeService;
 	
 	@RequestMapping("/rgst/place/placeAddForm.do")
-	public String RegPlaceAddForm() throws Exception {
+	public String PlaceAddForm() throws Exception {
 		
 		return "/reg/place/PlaceAdd";
 	}
 
 	@RequestMapping("/rgst/place/placeAddAction.do")
-	public String RegPlaceAddAction(@ModelAttribute("PlaceVO")PlaceVO placeVO, HttpSession session, ModelMap map) throws Exception {
+	public String PlaceAddAction(@ModelAttribute("PlaceVO")PlaceVO placeVO, HttpSession session, ModelMap map) throws Exception {
 		
 		String resultMsg = "";
 
@@ -38,7 +38,7 @@ public class PlaceAddController {
 		
 		int result = placeService.placeAddAction(placeVO);
 		
-		if("0".equals(result)){
+		if(result==1){
 			resultMsg = "success";
 		} else {
 			resultMsg = "fail";

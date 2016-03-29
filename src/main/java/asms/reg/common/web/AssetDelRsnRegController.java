@@ -1,4 +1,4 @@
-package asms.reg.plc.web;
+package asms.reg.common.web;
 
 import javax.annotation.Resource;
 
@@ -11,22 +11,25 @@ import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
 @Controller
-public class PlaceViewController {
-    
+public class AssetDelRsnRegController {
+	
 	@Resource(name = "PlaceService")
     protected PlaceService placeService;
 	
-	@RequestMapping("/rgst/place/placeViewForm.do")
-	public String PlaceViewForm(@RequestParam("plc_id")String plc_id, ModelMap map) throws Exception{
+	@RequestMapping("/reg/common/AssetDelRsnForm.do")
+	String AssetDelRsnReg(@RequestParam("plc_id")String plc_id, @RequestParam("executeUrl")String executeUrl, @RequestParam("callbackName")String callbackName, ModelMap map) throws Exception {
 		
 		PlaceVO placeVO = new PlaceVO();
+		
 		placeVO.setPlc_id(plc_id);
 		
 		placeVO = placeService.placeInfoSearch(placeVO);
-			
-		map.addAttribute("placeVO", placeVO);
 		
-		return "/reg/place/PlaceView";
-    	
+		map.addAttribute("plc_id",plc_id);
+		map.addAttribute("executeUrl",executeUrl);
+		map.addAttribute("callbackName",callbackName);
+		map.addAttribute("asset_nm",plc_id);
+		
+		return "/reg/common/AssetDelRsnReg";
 	}
 }

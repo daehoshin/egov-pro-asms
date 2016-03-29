@@ -4,5 +4,5 @@
 <sqlMap namespace="comcd">
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="PlaceVO" type="asms.reg.plc.service.PlaceVO"/>
-	<typeAlias  alias="SequenceForEqPlMpVO" type="asms.reg.common.SequenceForEqPlMpVO"/>
+	<typeAlias  alias="SequenceForEqPlMpVO" type="asms.reg.common.service.SequenceForEqPlMpVO"/>
 </sqlMap>
