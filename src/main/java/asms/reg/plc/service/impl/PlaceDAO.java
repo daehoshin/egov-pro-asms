@@ -20,5 +20,9 @@ public class PlaceDAO extends EgovAbstractDAO{
 	public List placeListSearch(PlaceVO vo) throws Exception {
 		return list("placeListSearch", vo);
     }
+
+	public String RegPlaceAddAction(PlaceVO vo) throws Exception {
+		return (String) insert("RegPlaceAddAction", vo);
+	}
 	
 }
