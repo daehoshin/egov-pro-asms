@@ -7,6 +7,12 @@ import asms.common.asset.service.AssetBaseInfoVO;
 import asms.common.asset.service.AssetSequenceVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
+/**
+ * @PackageName asms.common.asset.service.impl
+ * @FileName AssetSequenceDAO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 30.
+ */
 @Repository("AssetSequenceDAO")
 public class AssetSequenceDAO extends EgovAbstractDAO {
 	

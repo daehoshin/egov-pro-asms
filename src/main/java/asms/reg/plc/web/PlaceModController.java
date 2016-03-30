@@ -13,6 +13,12 @@ import asms.common.login.service.LoginUserVO;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
+/**
+ * @PackageName asms.reg.plc.web
+ * @FileName PlaceModController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 30.
+ */
 @Controller
 public class PlaceModController {
 	

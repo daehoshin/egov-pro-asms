@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import asms.common.asset.service.AssetBaseInfoVO;
 
+/**
+ * @PackageName asms.reg.plc.web
+ * @FileName PlaceDelController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 30.
+ */
 @Controller
 public class PlaceDelController {
 	@RequestMapping("/rgst/place/placeDelAction.do")

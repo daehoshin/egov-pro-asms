@@ -1,5 +1,11 @@
 package asms.common.asset.service;
 
+/**
+ * @PackageName asms.common.asset.service
+ * @FileName AssetBaseInfoVO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 30.
+ */
 public class AssetBaseInfoVO {
 	
 	private String asset_pk;
