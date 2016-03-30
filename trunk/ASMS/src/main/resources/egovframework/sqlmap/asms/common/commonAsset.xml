@@ -35,19 +35,19 @@
 		WHERE EQ_ID = #asset_pk#
 	</select>
 
-	<update id="AssetPlaceDelAction" parameterClass="assetBaseInfoVO" resultClass="Integer">
+	<update id="AssetPlaceDelAction" parameterClass="assetBaseInfoVO">
 		UPDATE /* common.AssetPlaceDelAction */ TB_PLCMAIN
 		SET REG_STATUS = #reg_status#
 		WHERE PLC_ID = #asset_pk#
 	</update>
 
-	<update id="AssetManPowerDelAction" parameterClass="assetBaseInfoVO" resultClass="Integer">
+	<update id="AssetManPowerDelAction" parameterClass="assetBaseInfoVO">
 		UPDATE /* common.AssetManPowerDelAction */ TB_MPMAIN
 		SET REG_STATUS = #reg_status#
 		WHERE MP_ID = #asset_pk#
 	</update>
 
-	<update id="AssetEquipmentDelAction" parameterClass="assetBaseInfoVO" resultClass="Integer">
+	<update id="AssetEquipmentDelAction" parameterClass="assetBaseInfoVO">
 		UPDATE /* common.AssetEquipmentDelAction */ TB_EQUIPMENTMAIN
 		SET REG_STATUS = #reg_status#
 		WHERE EQ_ID = #asset_pk#
