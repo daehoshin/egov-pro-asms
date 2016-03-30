@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
+/**
+ * @PackageName asms.reg.plc.web
+ * @FileName PlaceViewController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 30.
+ */
 @Controller
 public class PlaceViewController {
     

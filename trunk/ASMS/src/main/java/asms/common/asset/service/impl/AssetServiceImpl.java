@@ -7,6 +7,12 @@ import org.springframework.stereotype.Service;
 import asms.common.asset.service.AssetBaseInfoVO;
 import asms.common.asset.service.AssetService;
 
+/**
+ * @PackageName asms.common.asset.service.impl
+ * @FileName AssetServiceImpl.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 30.
+ */
 @Service("AssetService")
 public class AssetServiceImpl implements AssetService{
 	

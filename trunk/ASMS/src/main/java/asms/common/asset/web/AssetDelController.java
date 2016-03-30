@@ -15,6 +15,12 @@ import asms.common.asset.service.AssetService;
 import asms.common.login.service.LoginUserVO;
 import asms.reg.plc.service.PlaceVO;
 
+/**
+ * @PackageName asms.common.asset.web
+ * @FileName AssetDelController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 3. 30.
+ */
 @Controller
 public class AssetDelController {
 	
