@@ -3,7 +3,7 @@
 
 <sqlMap namespace="regPlace">
 	
-	<select id="placeListSearch" parameterClass="PlaceVO" resultClass="PlaceVO">
+	<select id="placeListSearch" parameterClass="placeVO" resultClass="placeVO">
 		SELECT /* reg.placelistsearch */ 
 		     A.PLC_ID
 		   , A.PLC_MNG_NO
@@ -36,7 +36,7 @@
 		 </dynamic>
 	</select>
 	
-	<insert id="placeMainAdd" parameterClass="PlaceVO">
+	<insert id="placeMainAdd" parameterClass="placeVO">
 		INSERT /* reg.placeMainAdd */
 		INTO TB_PLCMAIN (
 						  PLC_ID
@@ -62,7 +62,7 @@
 				)
 	</insert>
 	
-	<insert id="placeDetailAdd" parameterClass="PlaceVO">
+	<insert id="placeDetailAdd" parameterClass="placeVO">
 		INSERT /* reg.placeDetailAdd */
 		INTO TB_PLCDETAIL (
 						  PLC_ID
@@ -78,7 +78,7 @@
 				)
 	</insert>
 	
-	<select id="placeInfoSearch" parameterClass="PlaceVO" resultClass="PlaceVO">
+	<select id="placeInfoSearch" parameterClass="placeVO" resultClass="placeVO">
 		SELECT /* reg.placeInfoSearch */
 			A.PLC_ID
 		   , A.PLC_MNG_NO
@@ -98,7 +98,7 @@
 		WHERE A.PLC_ID = #plc_id#
 	</select>
 	
-	<update id="placeMainMod" parameterClass="PlaceVO">
+	<update id="placeMainMod" parameterClass="placeVO">
 		UPDATE /* reg.placeMainMod */ TB_PLCMAIN
 		SET SYS_ID = #sys_id#
 		  , SYS_NM = #sys_nm#
@@ -106,7 +106,7 @@
 		WHERE PLC_ID = #plc_id#
 	</update>
 
-	<update id="placeDetailMod" parameterClass="PlaceVO">
+	<update id="placeDetailMod" parameterClass="placeVO">
 		UPDATE /* reg.placeDetailMod */ TB_PLCDETAIL
 		SET PLC_NM = #plc_nm#
 		  , ADDR = #addr#
@@ -114,7 +114,7 @@
 		WHERE PLC_ID = #plc_id#
 	</update>
 	
-	<update id="placeRegFinishAction" parameterClass="PlaceVO">
+	<update id="placeRegFinishAction" parameterClass="placeVO">
 		UPDATE /* reg.placeRegFinishAction */ TB_PLCMAIN
 		SET REG_STATUS = #reg_status#
 		  , SYS_ID = #sys_id#

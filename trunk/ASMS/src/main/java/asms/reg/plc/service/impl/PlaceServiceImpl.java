@@ -8,10 +8,9 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import asms.common.Constants;
+import asms.common.asset.service.AssetSequenceVO;
+import asms.common.asset.service.impl.AssetSequenceDAO;
 import asms.common.util.DateUtils;
-import asms.reg.common.PlaceConts;
-import asms.reg.common.service.impl.SequenceForEqPlMpDAO;
-import asms.reg.common.service.SequenceForEqPlMpVO;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
@@ -27,8 +26,8 @@ public class PlaceServiceImpl implements PlaceService{
 	@Resource(name="PlaceDAO")
 	private PlaceDAO placeDAO;
 	
-	@Resource(name="SequenceForEqPlMpDAO")
-	private SequenceForEqPlMpDAO sequenceForEqPlMpDAO;
+	@Resource(name="AssetSequenceDAO")
+	private AssetSequenceDAO assetSequenceDAO;
 	
 	@Override
 	public List placeListSearch(PlaceVO vo) throws Exception {
@@ -42,19 +41,19 @@ public class PlaceServiceImpl implements PlaceService{
 		int mainResult = 0;
 		int detailResult = 0;
 		
-		SequenceForEqPlMpVO seqVO = new SequenceForEqPlMpVO();
+		AssetSequenceVO assetSequenceVO = new AssetSequenceVO();
 		
 		String currentDate = DateUtils.CurrentDate();
 		
-		seqVO.setSeq_dt(currentDate);
+		assetSequenceVO.setSeq_dt(currentDate);
 		vo.setReg_dt(currentDate);
 		vo.setSys_dt(currentDate);
 		
 		try {
 			
-			int pk = sequenceForEqPlMpDAO.EqPlMpSequenceInsertForSearch(seqVO);
+			int pk = assetSequenceDAO.AssetSequenceInsertForSearch(assetSequenceVO);
 			StringBuffer sb = new StringBuffer();
-			sb.append(PlaceConts.Place_MngNo_Code);
+			sb.append(Constants.Place_MngNo_Code);
 			sb.append("-");
 			sb.append(StringUtils.leftPad(Integer.toString(pk), 7, "0"));
 			

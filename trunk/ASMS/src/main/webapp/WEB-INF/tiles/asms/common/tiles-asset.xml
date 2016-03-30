@@ -13,8 +13,8 @@
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
 	
-	<definition name="/common/delRsnReg" extends="mTemplate">
-		<put-attribute name="section" value="/WEB-INF/jsp/asms/common/delRsnReg.jsp" />
+	<definition name="/common/main" extends="mTemplate">
+		<put-attribute name="section" value="/WEB-INF/jsp/asms/common/main.jsp" />
 	</definition>
 	
 </tiles-definitions>

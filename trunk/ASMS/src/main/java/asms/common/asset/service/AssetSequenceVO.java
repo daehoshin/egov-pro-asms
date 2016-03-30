@@ -1,6 +1,6 @@
-package asms.reg.common.service;
+package asms.common.asset.service;
 
-public class SequenceForEqPlMpVO {
+public class AssetSequenceVO {
 	
 	private int seq_id;		// 시퀀스 아이디
 	private String seq_dt;		// 시퀀스 날짜
