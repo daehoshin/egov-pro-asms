@@ -17,5 +17,10 @@ public class AssetServiceImpl implements AssetService{
 	public AssetBaseInfoVO AssetBaseInfoSearch(AssetBaseInfoVO assetBaseInfoVO) throws Exception {
 		return assetSequenceDAO.AssetBaseInfoSearch(assetBaseInfoVO);
 	}
+
+	@Override
+	public int AssetDelAction(AssetBaseInfoVO assetBaseInfoVO) throws Exception {
+		return assetSequenceDAO.AssetDelAction(assetBaseInfoVO);
+	}
 	
 }

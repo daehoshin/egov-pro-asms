@@ -3,7 +3,7 @@
 
 <sqlMap namespace="commonAsset">
 	<insert id="AssetSequenceInsertForSearch" parameterClass="assetSequenceVO">
-		INSERT /* common.EqPlMpSequenceInsertForSearch */
+		INSERT /* common.AssetSequenceInsertForSearch */
 	    INTO SEQ_EQPLMP(SEQ_DT)
 	    VALUES(#seq_dt#) 
 	   <selectKey keyProperty="seq_id" resultClass="Integer">
@@ -11,28 +11,46 @@
 	   </selectKey>
 	</insert>
 	
-	<select id="PlaceBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
-		SELECT /* common.PlaceBaseInfoSearch */ 
+	<select id="AssetPlaceBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
+		SELECT /* common.AssetPlaceBaseInfoSearch */ 
 		     PLC_ID AS ASSET_PK
 		   , PLC_NM AS ASSET_NM
 		FROM TB_PLCDETAIL
 		WHERE PLC_ID = #asset_pk#
 	</select>
 
-	<select id="ManPowerBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
-		SELECT /* common.ManPowerBaseInfoSearch */ 
+	<select id="AssetManPowerBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
+		SELECT /* common.AssetManPowerBaseInfoSearch */ 
 		     MP_ID AS ASSET_PK
 		   , MP_NM AS ASSET_NM
 		FROM TB_MPDETAIL
 		WHERE MP_ID = #asset_pk#
 	</select>
 
-	<select id="EquipmentBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
-		SELECT /* common.EquipmentBaseInfoSearch */ 
+	<select id="AssetEquipmentBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
+		SELECT /* common.AssetEquipmentBaseInfoSearch */ 
 		     EQ_ID AS ASSET_PK
 		   , EQ_NM AS ASSET_NM
 		FROM TB_EQUIPMENTDETAIL
 		WHERE EQ_ID = #asset_pk#
 	</select>
+
+	<update id="AssetPlaceDelAction" parameterClass="assetBaseInfoVO" resultClass="Integer">
+		UPDATE /* common.AssetPlaceDelAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		WHERE PLC_ID = #asset_pk#
+	</update>
+
+	<update id="AssetManPowerDelAction" parameterClass="assetBaseInfoVO" resultClass="Integer">
+		UPDATE /* common.AssetManPowerDelAction */ TB_MPMAIN
+		SET REG_STATUS = #reg_status#
+		WHERE MP_ID = #asset_pk#
+	</update>
+
+	<update id="AssetEquipmentDelAction" parameterClass="assetBaseInfoVO" resultClass="Integer">
+		UPDATE /* common.AssetEquipmentDelAction */ TB_EQUIPMENTMAIN
+		SET REG_STATUS = #reg_status#
+		WHERE EQ_ID = #asset_pk#
+	</update>
 	
 </sqlMap>

@@ -17,8 +17,8 @@
 		<put-attribute name="section" value="" />
 	</definition>
 	
-	<definition name="/common/delRsnReg" extends="sTemplate">
-		<put-attribute name="section" value="/WEB-INF/jsp/asms/common/delRsnReg.jsp" />
+	<definition name="/common/assetDelRsn" extends="sTemplate">
+		<put-attribute name="section" value="/WEB-INF/jsp/asms/common/assetDelRsn.jsp" />
 	</definition> 
 	
 </tiles-definitions>

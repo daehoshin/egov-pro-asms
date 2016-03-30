@@ -46,49 +46,58 @@ function jsPlaceAddAction()
 }
 
 </script>
-<div class="modal-dialog">
+<div class="modal-dialog modal-sm">
 	<div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">장소 등록</h4>
+            <h4 class="modal-title">${modalTitleNm } 삭제 사유</h4>
         </div>
-        <form id="placeAddForm" name="placeAddForm" class="form-horizontal" method="post">
+        <form id="assetDelForm" name="assetDelForm" class="form-horizontal" method="post">
+	    <input type="hidden" name="asset_pk" value="${asset_pk }">    
+	    <input type="hidden" name="asset_type" value="${asset_type }">    
 	        <div class="modal-body">
 	        	<div class="row">
-	        		<div class="form-group">
-		        		<div class="col-xs-2">
-		        			<label class="control-label" for="plc_mng_no">장소명</label>
-		        		</div>
-		        		<div class="col-xs-10">
-		        			<input type="text" class="form-control" name="plc_nm" id="plc_nm">
-		        		</div>
-	        		</div>
-	        	</div>
-	        	<div class="row">
-	        		<div class="form-group">
-		        		<div class="col-xs-2">
-		        			<label class="control-label" for="plc_mng_no">주소</label>
-		        		</div>
-		        		<div class="col-xs-10">
-		        			<input type="text" class="form-control" name="addr" id="addr">
-		        		</div>
-	        		</div>
-	        	</div>
-	        	<div class="row">
-	        		<div class="form-group">
-		        		<div class="col-xs-2">
-		        			<label class="control-label" for="plc_mng_no">상세주소</label>
-		        		</div>
-		        		<div class="col-xs-10">
-		        			<input type="text" class="form-control" name="addr_detail" id="addr_detail">
-		        		</div>
-	        		</div>
+	        		<textarea class="form-control" rows="5" name="asset_del_rsn" maxlength="1000"></textarea>
 	        	</div>
 	        </div>
         </form>
         <div class="modal-footer">
-            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="addBtn">등록</button>
+            <button type="button" class="btn btn-danger" onclick="jsDelRsnSave()">삭제</button>
+            <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+function jsDelRsnSave() {
+	$("#assetDelForm").attr("action","${executeUrl}").submit()
+}
+
+function jsDelSaveAction() {
+	$.ajax({
+		type : "post",
+		url  : "${executeUrl}",
+		data : $("form[name='assetDelForm']").serialize(),
+		dataType : "json",
+		success:function(ajaxResult){
+			
+			$('#myModalSub').modal('hide');
+			
+		}
+	});
+}
+
+$('#deleteRecordForm').validate({
+    rules: {
+    	asset_del_rsn : { required: true }
+    },
+    messages: {
+    	asset_del_rsn : { required: "삭제사유를 입력하세요." }
+    },
+    submitHandler: function (frm) {
+    	jsDelSaveAction();
+    }
+});
+
+</script>

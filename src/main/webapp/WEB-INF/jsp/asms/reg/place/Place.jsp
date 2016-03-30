@@ -117,7 +117,6 @@ function jsPlaceViewForm(plc_id)
    		<div class="col-md-12 marginB5">
    			<div class="pull-right">
 		   		<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
-		        <a href="javascript:;" onclick="" class="btn btn-outline btn-primary"><i class="fa fa-pencil"></i> 수정</a>
 		        <a href="javascript:;" onclick="" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
 	        </div>
    		</div>
