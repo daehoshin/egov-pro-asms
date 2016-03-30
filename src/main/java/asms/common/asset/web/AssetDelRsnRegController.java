@@ -16,7 +16,7 @@ public class AssetDelRsnRegController {
 	@Resource(name = "AssetService")
     protected AssetService assetService;
 	
-	@RequestMapping("/common/asset/AssetDelRsnForm.do")
+	@RequestMapping("/common/asset/assetDelRsnForm.do")
 	String AssetDelRsnForm(@RequestParam("asset_pk")String asset_pk, @RequestParam("executeUrl")String executeUrl, @RequestParam("callbackName")String callbackName, ModelMap map) throws Exception {
 		
 		AssetBaseInfoVO assetBaseInfoVO = new AssetBaseInfoVO();
