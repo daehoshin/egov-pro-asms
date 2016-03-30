@@ -22,7 +22,7 @@
 	</definition>
 	
 	<definition name="/reg/manpower/*" extends="sTemplate">
-		<put-attribute name="section" value="/WEB-INF/jsp/ktda/reg/manpower/{1}.jsp" />
+		<put-attribute name="section" value="/WEB-INF/jsp/asms/reg/manpower/{1}.jsp" />
 	</definition> 
 	
 </tiles-definitions>
