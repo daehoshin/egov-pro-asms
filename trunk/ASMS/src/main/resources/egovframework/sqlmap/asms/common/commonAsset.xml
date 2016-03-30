@@ -10,4 +10,29 @@
 	        SELECT LAST_INSERT_ID()
 	   </selectKey>
 	</insert>
+	
+	<select id="PlaceBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
+		SELECT /* common.PlaceBaseInfoSearch */ 
+		     PLC_ID AS ASSET_PK
+		   , PLC_NM AS ASSET_NM
+		FROM TB_PLCDETAIL
+		WHERE PLC_ID = #asset_pk#
+	</select>
+
+	<select id="ManPowerBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
+		SELECT /* common.ManPowerBaseInfoSearch */ 
+		     MP_ID AS ASSET_PK
+		   , MP_NM AS ASSET_NM
+		FROM TB_MPDETAIL
+		WHERE MP_ID = #asset_pk#
+	</select>
+
+	<select id="EquipmentBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
+		SELECT /* common.EquipmentBaseInfoSearch */ 
+		     EQ_ID AS ASSET_PK
+		   , EQ_NM AS ASSET_NM
+		FROM TB_EQUIPMENTDETAIL
+		WHERE EQ_ID = #asset_pk#
+	</select>
+	
 </sqlMap>
