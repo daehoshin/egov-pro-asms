@@ -11,5 +11,7 @@ public class Constants {
 	public static final String RegStatus_Temporarily = "01";
 	public static final String RegStatus_Finish = "02";
 	public static final String RegStatus_Del = "03";
-	
+	public static final String Place_MngNo_Code = "01";
+	public static final String Equipment_MngNo_Code = "02";
+	public static final String ManPower_MngNo_Code = "03";
 }

@@ -22,14 +22,12 @@ $(document).ready(function(){
 });
 
 // 등록완료
-function jsPlaceRegFinishAction(){
+function jsPlaceRegFinishAction(plc_id){
 	if (confirm("기록물건을 등록완료 처리하시겠습니까?")) {
-		var viewForm = $("form[name=placeViewForm]").serialize();
-
 		$.ajax({
 			type : "post",
 			url  : "/rgst/place/placeRegFinishAction.do",
-			data : viewForm,
+			data : {plc_id : plc_id},
 			dataType : "json",
 			success:function(ajaxResult){
 				
@@ -70,7 +68,7 @@ function jsPlaceDelAction(plc_id) {
             <h4 class="modal-title">장소 상세</h4>
         </div>
         <form id="placeViewForm" name="placeViewForm" class="form-horizontal" method="post">
-        <input type="hidden" name="plc_id" value="${placeVO.plc_id }">
+        <input type="hidden" name="asset_pk" value="${placeVO.plc_id }">
 	        <div class="modal-body">
 	        	<div class="form-group"><label class="col-lg-2 control-label">장소명</label>
                 	<div class="col-lg-10"><p class="form-control-static">${placeVO.plc_nm }</p></div>
@@ -86,7 +84,7 @@ function jsPlaceDelAction(plc_id) {
 	        </div>
         </form>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="regFinishBtn">등록완료</button>
+            <button type="button" class="btn btn-primary" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>
             <button type="button" class="btn btn-primary" onclick="jsPlaceModForm('${placeVO.plc_id }')">수정</button>
             <button type="button" class="btn btn-primary" onclick="jsPlaceDelAction('${placeVO.plc_id }')">삭제</button>
             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>

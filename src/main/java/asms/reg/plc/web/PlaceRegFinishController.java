@@ -20,12 +20,14 @@ public class PlaceRegFinishController {
     protected PlaceService placeService;
 	
 	@RequestMapping("/rgst/place/placeRegFinishAction.do")
-	public String PlaceRegFinish(@ModelAttribute("PlaceVO")PlaceVO placeVO, HttpSession session, ModelMap map) throws Exception{
+	public String PlaceRegFinish(@RequestParam("plc_id")String plc_id, HttpSession session, ModelMap map) throws Exception{
 		
 		String resultMsg = "";
 		
 		LoginUserVO loginUserVO = (LoginUserVO)session.getAttribute("loginUserVO");
+		PlaceVO placeVO = new PlaceVO();
 		
+		placeVO.setPlc_id(plc_id);
 		placeVO.setSys_id(loginUserVO.getMp_id());
 		placeVO.setSys_nm(loginUserVO.getMp_nm());
 		
