@@ -375,3 +375,6 @@
 .height100 {
 	height: 100px !important;
 }
+.importantText {
+	color: #FF0000;
+}

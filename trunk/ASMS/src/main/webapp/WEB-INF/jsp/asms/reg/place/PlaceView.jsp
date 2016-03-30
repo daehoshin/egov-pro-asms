@@ -42,15 +42,15 @@ function jsPlaceRegFinishAction(plc_id){
 }
 
 // 삭제
-function jsPlaceDelAction(plc_id) {
+function jsPlaceDel(plc_id) {
 	if (confirm("기록물건을 삭제하시겠습니까?")) {
 		$.ajax({
 			type : "post",
 			url  : "/common/asset/assetDelRsnForm.do",
-			data : {plc_id : plc_id, callbackName : 'jsPlaceDelComplete', executeUrl : '/rgst/place/placeDelAction.do'},
+			data : {asset_pk : plc_id, asset_type : "02", callbackName : 'jsPlaceDelComplete', executeUrl : '/common/asset/assetDelAction.do'},
 			dataType : "html",
 			success:function(ajaxResult){
-				alert(ajaxResult);
+				
 				$('#myModalSub').html(ajaxResult);
 				$('#myModalSub').modal('show');
 				
@@ -58,6 +58,15 @@ function jsPlaceDelAction(plc_id) {
 			}
 		});
 	}	
+}
+
+// 삭제완료
+function jsPlaceDelComplete() {
+	
+	alert("삭제되었습니다.");
+	jsPlaceListSearch(1);
+	$('#myModal').modal('hide');
+	
 }
 
 </script>
@@ -84,10 +93,14 @@ function jsPlaceDelAction(plc_id) {
 	        </div>
         </form>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>
-            <button type="button" class="btn btn-primary" onclick="jsPlaceModForm('${placeVO.plc_id }')">수정</button>
-            <button type="button" class="btn btn-primary" onclick="jsPlaceDelAction('${placeVO.plc_id }')">삭제</button>
-            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+        	<div class="pull-left">
+        		<button type="button" class="btn btn-warning" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>
+            	<button type="button" class="btn btn-danger" onclick="jsPlaceDel('${placeVO.plc_id }')">삭제</button>
+        	</div>
+        	<div class="pull-right">
+        		<button type="button" class="btn btn-primary" onclick="jsPlaceModForm('${placeVO.plc_id }')">수정</button>
+            	<button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
+        	</div>
         </div>
     </div>
 </div>
