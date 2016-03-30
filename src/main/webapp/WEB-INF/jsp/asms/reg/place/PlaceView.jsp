@@ -46,13 +46,13 @@ function jsPlaceDelAction(plc_id) {
 	if (confirm("기록물건을 삭제하시겠습니까?")) {
 		$.ajax({
 			type : "post",
-			url  : "/reg/common/placeDelRsnForm.do",
+			url  : "/common/asset/assetDelRsnForm.do",
 			data : {plc_id : plc_id, callbackName : 'jsPlaceDelComplete', executeUrl : '/rgst/place/placeDelAction.do'},
 			dataType : "html",
 			success:function(ajaxResult){
-				
-				$('#mdCommonDialog').html(ajaxResult);
-				$('#mdCommonDialog').modal('show');
+				alert(ajaxResult);
+				$('#myModalSub').html(ajaxResult);
+				$('#myModalSub').modal('show');
 				
 				jsInitialize();
 			}
