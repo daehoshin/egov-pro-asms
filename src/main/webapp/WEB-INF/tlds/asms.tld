@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="EUC-KR" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+  <tlib-version>1.2</tlib-version>
+  <jsp-version>2.5</jsp-version>
+  <short-name>ASMSHtmlTag</short-name>
+  <uri>http://www.asms.co.kr</uri>
+
+  <tag>
+    <name>cdSelect</name>
+    <tag-class>asms.common.code.web.CommonSelectTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+    	-- 공통코드 목록 출력용 select 컨트롤 --
+    	codeType    : 코드 타입
+    	operation   : select를 위해 사용할 오퍼레이션 명
+    	use         : true일 경우 사용여부가 1인 코드만 출력, 생략시 사용여부에 상관없이 전체 출력
+    	defaultCode : 최초에 선택되는 기본 코드 값
+    	name        : 컨트롤 이름
+    	size        : 리스트 형태일 경우 한번에 보여줄 행의 수
+    	disabled    : true일 경우 비활성화
+    	onChange    : 선택 항목 변경 시 실행 될 핸들러
+    	css         : 적용할 css명
+    	optionHead  : 기본 option 태그
+    	excludingCode : 공통코드에서 제외하고 싶은 코드값을 입력함
+    	onKeyPress  : 기본 onKeyPress 태그
+    </description>
+		<attribute>
+			<name>codeType</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>			
+		</attribute>
+		<attribute>
+			<name>use</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>    
+		<attribute>
+			<name>defaultCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>		
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>operation</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>		
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>
+		<attribute>
+			<name>onChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>
+		<attribute>
+			<name>css</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>
+		<attribute>
+			<name>optionHead</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>
+		<attribute>
+			<name>excludingCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onKeyPress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+  </tag>
+  
+  
+  <tag>
+    <name>cdRadio</name>
+    <tag-class>asms.common.code.web.commonRadioTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+    	-- 공통코드 목록 출력용 Radio 컨트롤 -- 
+    	codeType    : 코드 타입
+    	use         : true일 경우 사용여부가 1인 코드만 출력, 생략시 사용여부에 상관없이 전체 출력
+    	defaultCode : 최초에 선택되는 기본 코드 값
+    	name        : 컨트롤 이름
+    	addNameValue: name을 동적으로 생성하기 위한 값
+    	disabled    : true일 경우 비활성화
+    	excludingCode : 공통코드에서 제외하고 싶은 코드값을 입력함
+    </description>
+		<attribute>
+			<name>codeType</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>			
+		</attribute>
+		<attribute>
+			<name>use</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>    
+		<attribute>
+			<name>defaultCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>		
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>addNameValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>onClick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>excludingCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+  </tag>
+  
+  
+  <tag>
+    <name>cdCheckbox</name>
+    <tag-class>asms.common.code.web.commonCheckboxTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+    	-- 공통코드 목록 출력용 Checkbox 컨트롤 -- 
+    	codeType    : 코드 타입
+    	use         : true일 경우 사용여부가 1인 코드만 출력, 생략시 사용여부에 상관없이 전체 출력
+    	defaultCode : 최초에 선택되는 기본 코드 값
+    	name        : 컨트롤 이름
+    	addNameValue: name을 동적으로 생성하기 위한 값
+    	disabled    : true일 경우 비활성화
+    	excludingCode : 공통코드에서 제외하고 싶은 코드값을 입력함
+    </description>
+		<attribute>
+			<name>codeType</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>			
+		</attribute>
+		<attribute>
+			<name>use</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>    
+		<attribute>
+			<name>defaultCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>		
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>addNameValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>onChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>excludingCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+  </tag>
+  
+  <tag>
+    <name>nmCheckbox</name>
+    <tag-class>asms.common.code.web.CommonCodeNameTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+    	-- 공통코드 명칭 출력 -- 
+    	codeType    : 코드 타입
+    	code        : name으로 변환할 code id(1개 이상인 경우 ','로 구분)
+    </description>
+		<attribute>
+			<name>codeType</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>			
+		</attribute>
+		<attribute>
+			<name>code</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>					
+		</attribute>    
+  </tag>
+  
+</taglib>

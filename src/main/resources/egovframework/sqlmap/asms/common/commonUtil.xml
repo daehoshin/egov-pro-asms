@@ -2,6 +2,32 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="commonUtil">
+	<select id="findComCdList" parameterClass="commonCodeVO" resultClass="commonCodeVO">
+			SELECT CODE_CD AS CODE 
+				 , CODE_NM AS NAME
+			FROM TB_CODE
+			<dynamic prepend="WHERE">
+				<isNotEmpty prepend="AND" property="type">
+					CODE_TYPE_CD = #type:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="use">
+					USE_FLAG = #use:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="code">
+					CODE_CD = #code:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="name">
+					CODE_NM = #name:VARCHAR#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="exCode">
+					CODE_CD NOT IN
+					<iterate property="exCode" open="(" close=")" conjunction=",">
+					 #exCode[]#
+					</iterate>
+				</isNotEmpty>
+			</dynamic>
+			ORDER BY CODE_SNO
+	</select>
 	<!-- <sql id="pagingHeaderSql">
     SELECT A.*
 			FROM (
@@ -22,35 +48,6 @@
 		<result property="code" 			column="CODE"/>
 		<result property="name" 			column="NAME"/>
 	</resultMap>
-	
-	<select id='findComCdList' parameterClass="asms.common.code.service.CommonCodeVO" resultMap="codeinfo-detail">
-			SELECT COM_CD AS CODE, 
-					COM_CD_NM AS NAME
-			FROM TB_ZZCOMCD
-			<dynamic prepend="WHERE">
-				<isNotEmpty prepend="AND" property="type">
-					COM_TYPE_CD = #type:VARCHAR#
-				</isNotEmpty>
-				<isNotEmpty prepend="AND" property="use">
-					USE_FLAG = #use:VARCHAR#
-				</isNotEmpty>
-				<isNotEmpty prepend="AND" property="code">
-					COM_CD = #code:VARCHAR#
-				</isNotEmpty>
-				<isNotEmpty prepend="AND" property="name">
-					COM_CD_NM = #name:VARCHAR#
-				</isNotEmpty>
-				<isNotEmpty property="exCode" prepend="AND">
-					<![CDATA[
-					 COM_CD
-					]]>
-					<iterate prepend="NOT IN" property="exCode" open="(" close=")" conjunction=",">
-					 #exCode[]#
-					</iterate>
-					</isNotEmpty>
-			</dynamic>
-			ORDER BY COM_CD_RANK, DECODE(COM_CD_RANK, NULL, TO_NUMBER(COM_CD), TO_NUMBER(COM_CD_RANK))
-	</select>
 	
 	<select id="menu_grant" parameterClass="asms.common.code.service.CommonCodeVO" resultMap="codeinfo-detail">
 			SELECT MENU_GRP_ID AS CODE, MENU_GRP_NM AS NAME FROM TB_STGRPGRANT
