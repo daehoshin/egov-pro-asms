@@ -22,6 +22,7 @@ public class PlaceVO {
 	private String addr;			// 주소
 	private String addr_detail;		// 상세주소
 	private String full_addr;		// 주소+상세주소
+	private String del_rsn;		// 삭제사유
 	
 	public String getPlc_id() {
 		return plc_id;
@@ -106,6 +107,12 @@ public class PlaceVO {
 	}
 	public void setReg_status_cm(String reg_status_cm) {
 		this.reg_status_cm = reg_status_cm;
+	}
+	public String getDel_rsn() {
+		return del_rsn;
+	}
+	public void setDel_rsn(String del_rsn) {
+		this.del_rsn = del_rsn;
 	}
 	
 }
