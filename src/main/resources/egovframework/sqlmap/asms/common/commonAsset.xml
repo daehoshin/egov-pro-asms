@@ -2,6 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="commonAsset">
+	
 	<insert id="AssetSequenceInsertForSearch" parameterClass="assetSequenceVO">
 		INSERT /* common.AssetSequenceInsertForSearch */
 	    INTO SEQ_EQPLMP(SEQ_DT)
@@ -10,43 +11,5 @@
 	        SELECT LAST_INSERT_ID()
 	   </selectKey>
 	</insert>
-	
-	<select id="AssetPlaceBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
-		SELECT /* common.AssetPlaceBaseInfoSearch */ 
-		     PLC_ID AS ASSET_PK
-		   , PLC_NM AS ASSET_NM
-		FROM TB_PLCDETAIL
-		WHERE PLC_ID = #asset_pk#
-	</select>
-
-	<select id="AssetManPowerBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
-		SELECT /* common.AssetManPowerBaseInfoSearch */ 
-		     MP_ID AS ASSET_PK
-		   , MP_NM AS ASSET_NM
-		FROM TB_MPDETAIL
-		WHERE MP_ID = #asset_pk#
-	</select>
-
-	<select id="AssetEquipmentBaseInfoSearch" parameterClass="assetBaseInfoVO" resultClass="assetBaseInfoVO">
-		SELECT /* common.AssetEquipmentBaseInfoSearch */ 
-		     EQ_ID AS ASSET_PK
-		   , EQ_NM AS ASSET_NM
-		FROM TB_EQUIPMENTDETAIL
-		WHERE EQ_ID = #asset_pk#
-	</select>
-
-	<update id="AssetPlaceDelAction" parameterClass="assetBaseInfoVO">
-		UPDATE /* common.AssetPlaceDelAction */ TB_PLCMAIN
-		SET REG_STATUS = #asset_reg_status#
-		  , DEL_RSN    = #asset_del_rsn#
-		WHERE PLC_ID = #asset_pk#
-	</update>
-
-	<update id="AssetEquipmentDelAction" parameterClass="assetBaseInfoVO">
-		UPDATE /* common.AssetEquipmentDelAction */ TB_EQUIPMENTMAIN
-		SET REG_STATUS = #asset_reg_status#
-		  , DEL_RSN    = #asset_del_rsn#		
-		WHERE EQ_ID = #asset_pk#
-	</update>
 	
 </sqlMap>
