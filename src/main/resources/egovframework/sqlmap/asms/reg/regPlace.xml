@@ -18,6 +18,7 @@
 		   , B.ADDR
 		   , B.ADDR_DETAIL
 		   , CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
+		   , A.DEL_RSN
 		FROM TB_PLCMAIN A JOIN TB_PLCDETAIL B
 		ON   A.PLC_ID = B.PLC_ID
 		WHERE A.REG_STATUS IN ('01','02')
@@ -94,6 +95,7 @@
 		   , B.ADDR
 		   , B.ADDR_DETAIL
 		   , CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
+		   , A.DEL_RSN
 		FROM TB_PLCMAIN A JOIN TB_PLCDETAIL B
 		ON   A.PLC_ID = B.PLC_ID
 		WHERE A.PLC_ID = #plc_id#
@@ -122,6 +124,21 @@
 		  , SYS_NM = #sys_nm#
 		  , SYS_DT = #sys_dt#
 		WHERE PLC_ID = #plc_id#  
+	</update>
+	
+	<select id="placeBaseInfoSearch" parameterClass="placeVO" resultClass="placeVO">
+		SELECT /* reg.placeBaseInfoSearch */ 
+		     PLC_ID
+		   , PLC_NM
+		FROM TB_PLCDETAIL
+		WHERE PLC_ID = #plc_id#
+	</select>
+	
+	<update id="PlaceDelAction" parameterClass="placeVO">
+		UPDATE /* reg.PlaceDelAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID = #plc_id#
 	</update>
 	
 </sqlMap>
