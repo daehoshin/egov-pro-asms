@@ -46,8 +46,8 @@ function jsPlaceDel(plc_id) {
 	if (confirm("기록물건을 삭제하시겠습니까?")) {
 		$.ajax({
 			type : "post",
-			url  : "/common/asset/assetDelRsnForm.do",
-			data : {asset_pk : plc_id, asset_type : "02", callbackName : 'jsPlaceDelComplete', executeUrl : '/common/asset/assetDelRsn.do'},
+			url  : "/rgst/place/placeDelRsnForm.do",
+			data : {plc_id : plc_id, callbackName : 'jsPlaceDelComplete', executeUrl : '/rgst/place/placeDelAction.do'},
 			dataType : "html",
 			success:function(ajaxResult){
 				
