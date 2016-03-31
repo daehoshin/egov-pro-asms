@@ -8,7 +8,6 @@ import javax.servlet.jsp.JspException;
 
 import asms.common.code.service.CommonCodeVO;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
@@ -46,7 +45,9 @@ public class commonRadioTag extends RequestContextAwareTag {
 		}
 		try {
 			StringBuffer html = new StringBuffer();
+			html.append("<div class='row'>");
 			makeRadioTag(html);
+			html.append("</div>");
 			this.pageContext.getOut().println(html.toString());
 
 		} catch (IOException ex) {
@@ -68,7 +69,7 @@ public class commonRadioTag extends RequestContextAwareTag {
 
 		CommonCodeVO comCdVO = new CommonCodeVO();
 		comCdVO.setType(getCodeType());
-		comCdVO.setUse(isUse() ? "1" : "");
+		comCdVO.setUse(isUse() ? "02" : "");
 		
 		String[] exCode ;
 		if (!getExcludingCode().equals("")) {
@@ -82,7 +83,7 @@ public class commonRadioTag extends RequestContextAwareTag {
 	private void makeRadioTag(StringBuffer html, CommonCodeVO comCdVO)
 			throws JspException {
 
-		html.append("<label class ='radio-inline'><input type='radio' name='" + this.getName() + this.getAddNameValue() + "' value='"
+		html.append("<div class='col-xs-2'><div class='i-checks'><label><input type='radio' name='" + this.getName() + this.getAddNameValue() + "' value='"
 				+ comCdVO.getCode() + "'");
 
 		if (getDefaultCode().equals(comCdVO.getCode())) {
@@ -101,7 +102,7 @@ public class commonRadioTag extends RequestContextAwareTag {
 			html.append(" onClick=\"" + getOnClick() + "\"");
 		}
 
-		html.append("> " + comCdVO.getName() + "</label>");
+		html.append("> <i></i> " + comCdVO.getName() + "</label></div></div>");
 	}
 
 	public CommonCodeService getCommonCodeService() {

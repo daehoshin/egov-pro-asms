@@ -11,7 +11,10 @@
 			<list>
 				<value>classpath:/egovframework/sqlmap/asms/common/commonTypeAlias.xml </value>
 				<value>classpath:/egovframework/sqlmap/asms/common/commonUtil.xml </value>
-				<value>classpath:/egovframework/sqlmap/asms/**/*.xml </value>
+				<value>classpath:/egovframework/sqlmap/asms/common/commonLogin.xml </value>
+				<value>classpath:/egovframework/sqlmap/asms/common/commonMain.xml </value>
+				<value>classpath:/egovframework/sqlmap/asms/common/commonAsset.xml </value>
+				<value>classpath:/egovframework/sqlmap/asms/reg/*.xml </value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />

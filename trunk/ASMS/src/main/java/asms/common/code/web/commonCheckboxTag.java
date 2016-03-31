@@ -64,7 +64,7 @@ public class commonCheckboxTag extends RequestContextAwareTag {
 
 		CommonCodeVO comCd = new CommonCodeVO();
 		comCd.setType(getCodeType());
-		comCd.setUse(isUse() ? "1" : "");
+		comCd.setUse(isUse() ? "02" : "");
 		
 		String[] exCode ;
 		

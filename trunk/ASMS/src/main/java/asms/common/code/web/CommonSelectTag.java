@@ -33,7 +33,6 @@ public class CommonSelectTag extends RequestContextAwareTag {
     private String defaultCode ="";			// 기본 코드 값 
     private String name = "";				// 컨트롤 이름 
     private String id = "";					// 컨트롤 ID 
-    private String size = "1";				// 크기 
     private String onChange = "";			// onChange 핸들러 
     private String css = "";				// css 이름
     private String optionHead = "";			// 기본 optionHead 
@@ -51,10 +50,11 @@ public class CommonSelectTag extends RequestContextAwareTag {
 		
 		try {
             StringBuffer html = new StringBuffer();
-            
+            html.append("<div class='input-group'>");
             makeSelectTagHead(html);
             makeSelectTagBody(html);
             makeSelectTagTail(html);
+            html.append("</div>");
             this.pageContext.getOut().println(html.toString());
         }catch(IOException ex) {
             throw new JspException(ex);
@@ -63,7 +63,7 @@ public class CommonSelectTag extends RequestContextAwareTag {
 	}
 	
 	private void makeSelectTagHead(StringBuffer html) {
-        html.append("<select name='" + this.getName() + "'");
+        html.append("<select data-placeholder='전체' class='chosen-select' style='width:350px' tabindex='-1' name='" + this.getName() + "'");
         
         if (StringUtils.isNotEmpty(id)) {
         	html.append(" id='" + this.getId() + "'");
@@ -71,16 +71,6 @@ public class CommonSelectTag extends RequestContextAwareTag {
         
         if (!this.getCss().equals("")){
         	html.append(" class='" + this.getCss() + "'");
-        }
-        
-        if (!getSize().equals("")) {
-            try {
-                Integer.parseInt(getSize());
-            } catch(NumberFormatException ex) {
-                setSize("1");
-            }
-            
-            html.append(" size=" + Integer.parseInt(getSize()) + "");
         }
         
         if (isDisabled()) {
@@ -117,7 +107,7 @@ public class CommonSelectTag extends RequestContextAwareTag {
         if (getOtherCd() == null || getOtherCd().trim().equals("")) {            
             
         	comCdVO.setType(getCodeType());
-            comCdVO.setUse(isUse() ? "1" : "");
+            comCdVO.setUse(isUse() ? "02" : "");
             
             String[] exCode ;
     		
@@ -199,14 +189,6 @@ public class CommonSelectTag extends RequestContextAwareTag {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
 	}
 
 	public boolean isDisabled() {
