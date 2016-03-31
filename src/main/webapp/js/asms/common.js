@@ -21,7 +21,7 @@ $(document).ready(function(){
 	    ]
 
 	});
-
+	
 });
 
 // 메뉴 불러오기
@@ -61,3 +61,4 @@ function jsInitialize(){
     	radioClass: 'iradio_square-green',
 	});
 }
+

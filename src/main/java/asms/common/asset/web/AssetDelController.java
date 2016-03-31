@@ -13,6 +13,7 @@ import asms.common.Constants;
 import asms.common.asset.service.AssetBaseInfoVO;
 import asms.common.asset.service.AssetService;
 import asms.common.login.service.LoginUserVO;
+import asms.common.util.DateUtils;
 import asms.reg.plc.service.PlaceVO;
 
 /**
@@ -28,7 +29,7 @@ public class AssetDelController {
     protected AssetService assetService;
 	
 	@RequestMapping("/common/asset/assetDelRsnForm.do")
-	String AssetDelRsnForm(@RequestParam("asset_pk")String asset_pk, @RequestParam("asset_type")String asset_type, @RequestParam("executeUrl")String executeUrl, @RequestParam("callbackName")String callbackName, ModelMap map) throws Exception {
+	public String AssetDelRsnForm(@RequestParam("asset_pk")String asset_pk, @RequestParam("asset_type")String asset_type, @RequestParam("executeUrl")String executeUrl, @RequestParam("callbackName")String callbackName, ModelMap map) throws Exception {
 		
 		AssetBaseInfoVO assetBaseInfoVO = new AssetBaseInfoVO();
 		
@@ -57,15 +58,18 @@ public class AssetDelController {
 		return "/common/assetDelRsn";
 	}
 	
-	@RequestMapping("/common/asset/assetDelAction.do")
-	public String PlaceDel(@ModelAttribute("AssetBaseInfoVO") AssetBaseInfoVO assetBaseInfoVO, HttpSession session, ModelMap map) throws Exception{
+	@RequestMapping("/common/asset/assetDelRsn.do")
+	public String AssetAddAction(@ModelAttribute("AssetBaseInfoVO")AssetBaseInfoVO assetBaseInfoVO, HttpSession session, ModelMap map) throws Exception {
 		
 		String resultMsg = "";
 		
 		LoginUserVO loginUserVO = (LoginUserVO)session.getAttribute("loginUserVO");
+		String currentDate = DateUtils.CurrentDate();
 		
+		assetBaseInfoVO.setAsset_reg_status(Constants.RegStatus_Del);
 		assetBaseInfoVO.setReg_id(loginUserVO.getMp_id());
 		assetBaseInfoVO.setReg_nm(loginUserVO.getMp_nm());
+		assetBaseInfoVO.setReg_dt(currentDate);
 		
 		int result = assetService.AssetDelAction(assetBaseInfoVO);
 		

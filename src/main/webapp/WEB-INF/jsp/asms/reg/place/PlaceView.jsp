@@ -47,14 +47,13 @@ function jsPlaceDel(plc_id) {
 		$.ajax({
 			type : "post",
 			url  : "/common/asset/assetDelRsnForm.do",
-			data : {asset_pk : plc_id, asset_type : "02", callbackName : 'jsPlaceDelComplete', executeUrl : '/common/asset/assetDelAction.do'},
+			data : {asset_pk : plc_id, asset_type : "02", callbackName : 'jsPlaceDelComplete', executeUrl : '/common/asset/assetDelRsn.do'},
 			dataType : "html",
 			success:function(ajaxResult){
 				
 				$('#myModalSub').html(ajaxResult);
 				$('#myModalSub').modal('show');
 				
-				jsInitialize();
 			}
 		});
 	}	
