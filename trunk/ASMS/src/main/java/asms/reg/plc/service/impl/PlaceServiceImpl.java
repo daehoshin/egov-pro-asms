@@ -108,6 +108,22 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 
 	@Override
+	public int PlaceDelAction(PlaceVO vo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			result = placeDAO.PlaceDelAction(vo);
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
 	public int placeRegFinishAction(PlaceVO vo) throws Exception {
 		
 		int result = 0;
@@ -126,6 +142,11 @@ public class PlaceServiceImpl implements PlaceService{
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public PlaceVO placeBaseInfoSearch(PlaceVO vo) throws Exception{
+		return placeDAO.placeBaseInfoSearch(vo);
 	}
 
 }

@@ -55,7 +55,7 @@ public class PlaceDAO extends EgovAbstractDAO{
 	PlaceVO placeInfoSearch(PlaceVO vo) throws Exception {
 		return (PlaceVO) selectByPk("placeInfoSearch", vo);
 	}
-
+	
 	int placeMainMod(PlaceVO vo) throws Exception {
 		
 		int result = 0;
@@ -102,4 +102,13 @@ public class PlaceDAO extends EgovAbstractDAO{
 		return result;
 		
 	}
+	
+	PlaceVO placeBaseInfoSearch(PlaceVO vo) throws Exception {
+		return (PlaceVO) selectByPk("placeBaseInfoSearch", vo);
+	}
+
+	int PlaceDelAction(PlaceVO vo) throws Exception {
+		return update("PlaceDelAction", vo);
+	}
+
 }
