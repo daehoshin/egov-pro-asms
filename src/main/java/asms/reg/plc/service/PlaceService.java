@@ -14,4 +14,6 @@ public interface PlaceService {
 	PlaceVO placeInfoSearch(PlaceVO vo) throws Exception;
 	int placeModAction(PlaceVO vo) throws Exception;
 	int placeRegFinishAction(PlaceVO vo) throws Exception;
+	PlaceVO placeBaseInfoSearch(PlaceVO vo) throws Exception;
+	int PlaceDelAction(PlaceVO vo) throws Exception;
 }
