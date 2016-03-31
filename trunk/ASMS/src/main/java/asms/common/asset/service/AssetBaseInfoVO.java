@@ -12,7 +12,7 @@ public class AssetBaseInfoVO {
 	private String asset_nm;
 	private String asset_type;
 	private String asset_del_rsn;
-	private String reg_status;
+	private String asset_reg_status;
 	private String reg_id;
 	private String reg_nm;
 	private String reg_dt;
@@ -41,11 +41,11 @@ public class AssetBaseInfoVO {
 	public void setAsset_del_rsn(String asset_del_rsn) {
 		this.asset_del_rsn = asset_del_rsn;
 	}
-	public String getReg_status() {
-		return reg_status;
+	public String getAsset_reg_status() {
+		return asset_reg_status;
 	}
-	public void setReg_status(String reg_status) {
-		this.reg_status = reg_status;
+	public void setAsset_reg_status(String asset_reg_status) {
+		this.asset_reg_status = asset_reg_status;
 	}
 	public String getReg_id() {
 		return reg_id;

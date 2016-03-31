@@ -40,8 +40,6 @@ public class AssetSequenceDAO extends EgovAbstractDAO {
 		
 		if(Constants.Place_MngNo_Code.equals(assetBaseInfoVO.getAsset_type())){
 			result = update("AssetPlaceDelAction", assetBaseInfoVO);
-		} else if(Constants.ManPower_MngNo_Code.equals(assetBaseInfoVO.getAsset_type())){
-			result = update("AssetManPowerDelAction", assetBaseInfoVO);
 		} else if(Constants.Equipment_MngNo_Code.equals(assetBaseInfoVO.getAsset_type())){
 			result = update("AssetEquipmentDelAction", assetBaseInfoVO);
 		}

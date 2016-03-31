@@ -37,19 +37,15 @@
 
 	<update id="AssetPlaceDelAction" parameterClass="assetBaseInfoVO">
 		UPDATE /* common.AssetPlaceDelAction */ TB_PLCMAIN
-		SET REG_STATUS = #reg_status#
+		SET REG_STATUS = #asset_reg_status#
+		  , DEL_RSN    = #asset_del_rsn#
 		WHERE PLC_ID = #asset_pk#
-	</update>
-
-	<update id="AssetManPowerDelAction" parameterClass="assetBaseInfoVO">
-		UPDATE /* common.AssetManPowerDelAction */ TB_MPMAIN
-		SET REG_STATUS = #reg_status#
-		WHERE MP_ID = #asset_pk#
 	</update>
 
 	<update id="AssetEquipmentDelAction" parameterClass="assetBaseInfoVO">
 		UPDATE /* common.AssetEquipmentDelAction */ TB_EQUIPMENTMAIN
-		SET REG_STATUS = #reg_status#
+		SET REG_STATUS = #asset_reg_status#
+		  , DEL_RSN    = #asset_del_rsn#		
 		WHERE EQ_ID = #asset_pk#
 	</update>
 	
