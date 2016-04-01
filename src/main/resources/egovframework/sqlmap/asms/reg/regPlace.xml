@@ -4,10 +4,12 @@
 <sqlMap namespace="regPlace">
 	
 	<select id="placeListSearch" parameterClass="placeVO" resultClass="placeVO">
+	<include refid="pagingHeaderSql"/>	
 		SELECT /* reg.placelistsearch */ 
 		     A.PLC_ID
 		   , A.PLC_MNG_NO
 		   , A.REG_STATUS
+		   , (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'PLC01' AND C.CODE_CD = A.REG_STATUS) AS REG_STATUS_CM
 		   , A.REG_ID
 		   , A.REG_NM
 		   , A.REG_DT
@@ -23,13 +25,40 @@
 		ON   A.PLC_ID = B.PLC_ID
 		<dynamic prepend="WHERE">
 			<isNotEmpty prepend="AND" property="plc_mng_no">
-		 		A.PLC_MNG_NO = #plc_mng_no#
+		 		A.PLC_MNG_NO LIKE '%'||#plc_mng_no#||'%'
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="plc_nm">
-		 		B.PLC_NM = #plc_nm#
+		 		B.PLC_NM LIKE '%'||#plc_nm#||'%'
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="full_addr">
-		 		CONCAT(B.ADDR,B.ADDR_DETAIL) = #full_addr#
+		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%'||#full_addr#||'%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_status">
+		 		A.reg_status = #reg_status#
+		 	</isNotEmpty>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+
+	<select id="placeListTotCntSearch" parameterClass="placeVO" resultClass="Integer">
+		SELECT /* placeListTotCntSearch */ 
+		COUNT(*) totCnt
+		FROM TB_PLCMAIN A JOIN TB_PLCDETAIL B
+		ON   A.PLC_ID = B.PLC_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="plc_mng_no">
+		 		A.PLC_MNG_NO LIKE '%'||#plc_mng_no#||'%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="plc_nm">
+		 		B.PLC_NM LIKE '%'||#plc_nm#||'%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="full_addr">
+		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%'||#full_addr#||'%'
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="reg_status">
 		 		A.reg_status = #reg_status#
