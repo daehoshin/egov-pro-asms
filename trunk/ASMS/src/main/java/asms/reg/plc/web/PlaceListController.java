@@ -49,7 +49,7 @@ public class PlaceListController {
 		
 		placeVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		placeVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		placeVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());	
+		placeVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
 		List RegPlaceList = placeService.placeListSearch(placeVO);
 		int totCnt = placeService.placeListTotCntSearch(placeVO);

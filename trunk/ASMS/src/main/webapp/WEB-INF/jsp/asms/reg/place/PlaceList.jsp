@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="asms" uri="/WEB-INF/tlds/asms.tld" %>
 
-<form id="placeListForm" name="placeListForm" class="form-horizontal" method="post">
+<form id="placeListForm" name="placeListForm" method="post">
 <input type="hidden" name="listCnt" value="${paginationInfo.totalRecordCount }">
 <input type="hidden" name="orderColumn" value="<c:out value="${placeVO.orderColumn}"/>">
 <input type="hidden" name="orderType" value="<c:out value="${placeVO.orderType}"/>">
@@ -74,4 +74,4 @@
 	     </div>
 	 </div>
 </div>
-</form> 
+</form>
