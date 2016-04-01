@@ -17,12 +17,7 @@ $(document).ready(function(){
 // 장소 검색
 function jsPlaceListSearch(pageNo)
 {
-	/* var frm = $("form[name=placeForm]");
-		
-	if (pageNo >= 1){
-		frm.find("input[name='pageIndex']").val(pageNo);
-	} */
-		
+
 	var sendForm = $("form[name=placeSendForm]").serialize();
 
 	$.ajax({
@@ -31,9 +26,13 @@ function jsPlaceListSearch(pageNo)
 		data : sendForm,
 		dataType : "html",
 		success:function(ajaxResult){
-
+			
+			// 조회된 리스트 넣어줌
 			$('#regPlaceList').html(ajaxResult);
-		 
+			
+			// 전체 건수 넣어줌
+			$("form[name=placeSendForm]").find("span[id=totalCnt]").html($("#placeListForm").find("[name=listCnt]").val());
+			
 			// basic style initialize
 			jsInitialize();
 		  
@@ -113,32 +112,47 @@ function jsPlaceViewForm(plc_id)
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
-   	<div class="row">
-   		<div class="col-md-12 marginB5">
-   			<div class="pull-right">
-		   		<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
-		        <a href="javascript:;" onclick="" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
-	        </div>
-   		</div>
-    </div>    
-    <div class="row">
-   		<div class="col-md-12">
-   			<div class="ibox float-e-margins">
-				<div class="ibox-title">
-					<div class="row">
-						<div class="col-md-8">
-							<span>장소 검색</span>	
-						</div>
-						<div class="col-md-4">
-							<div class="pull-right">
-			                    <a href="javascript:;" onclick="jsSrchReset('placeSendForm','jsPlaceListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
-			                    <a href="javascript:;" onclick="jsPlaceListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
-			               	</div>
+   	<form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="post">
+	   	<div class="row">
+	   		<div class="col-md-12 marginB5">
+	   			<div class="pull-right">
+			   		<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
+			        <a href="javascript:;" onclick="" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
+		        </div>
+	   		</div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-md-10">
+	    		<div class="pull-left">
+	    			<i class="fa fa-list"></i> 전체 : <span id="totalCnt"></span>
+	    		</div>
+	    	</div>
+	    	<div class="col-md-2">
+    			<select name="pageUnit" class="form-control" onchange="jsPlaceListSearch()">
+					<option>20</option>
+					<option>30</option>
+					<option>50</option>
+					<option>100</option>
+				</select>
+	    	</div>
+	    </div>    
+	    <div class="row">
+	   		<div class="col-md-12">
+	   			<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<div class="row">
+							<div class="col-md-8">
+								<span>장소 검색</span>	
+							</div>
+							<div class="col-md-4">
+								<div class="pull-right">
+				                    <a href="javascript:;" onclick="jsSrchReset('placeSendForm','jsPlaceListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
+				                    <a href="javascript:;" onclick="jsPlaceListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
+				               	</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="ibox-content">
-		            <form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="post">
+					<div class="ibox-content">
 		                <div class="form-group">
 		                	<label class="col-sm-1 control-label" for="plc_mng_no">관리번호</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_mng_no" id="plc_mng_no"></div>
@@ -149,11 +163,11 @@ function jsPlaceViewForm(plc_id)
 		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
 		                    <div class="col-sm-2"><asms:cdSelect name="reg_status" codeType="PLC01" use="true" optionHead="- 전체 -"/></div>
 		                </div>
-		            </form>
+					</div>
 				</div>
-			</div>
-   		</div>
-   	</div>
+	   		</div>
+	   	</div>
+   	</form>
    	<div id="regPlaceList">
  	<!-- regPlaceList -->
    	</div>

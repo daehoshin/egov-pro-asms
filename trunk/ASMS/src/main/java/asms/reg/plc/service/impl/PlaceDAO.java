@@ -21,6 +21,10 @@ public class PlaceDAO extends EgovAbstractDAO{
 		return list("placeListSearch", vo);
     }
 
+	int placeListTotCntSearch(PlaceVO vo) throws Exception {
+		return (Integer) selectByPk("placeListTotCntSearch", vo);
+	}
+
 	int placeMainAdd(PlaceVO vo) throws Exception {
 		
 		int result = 0;

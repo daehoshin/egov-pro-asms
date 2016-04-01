@@ -28,20 +28,21 @@
 			</dynamic>
 			ORDER BY CODE_SNO
 	</select>
-	<!-- <sql id="pagingHeaderSql">
-    SELECT A.*
-			FROM (
-				SELECT ROWNUM RNUM, S.*
-				FROM
-				(
+	<sql id="pagingHeaderSql">
+	SELECT Z.* FROM 
+					(
+					SELECT @RNUM := @RNUM + 1 AS ROWNUM, S.*
+					FROM
+  						(
 	</sql>
   
 	<sql id="pagingFooterSql">
-					) S
-				) A
-			<![CDATA[ WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex# ]]>
+						) S, ( SELECT @RNUM := 0 ) A
+					) Z
+			<![CDATA[ WHERE Z.ROWNUM <= #recordCountPerPage# and Z.ROWNUM > #firstIndex# ]]>
 	</sql>
   
+    <!-- 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 		
 	<resultMap id="codeinfo-detail" class="asms.common.code.service.CommonCodeVO">

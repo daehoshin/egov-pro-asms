@@ -1,12 +1,14 @@
 package asms.reg.plc.service;
 
+import asms.common.paging.PagingVO;
+
 /**
  * @PackageName asms.reg.plc.service
  * @FileName PlaceVO.java
  * @Author DAE.HO.SHIN
  * @Since 2016. 3. 26.
  */
-public class PlaceVO {
+public class PlaceVO extends PagingVO{
 	
 	private String plc_id;			// 장소ID
 	private String plc_mng_no;		// 장소관리NO

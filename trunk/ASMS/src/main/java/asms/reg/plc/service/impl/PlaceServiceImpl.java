@@ -35,6 +35,11 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 
 	@Override
+	public int placeListTotCntSearch(PlaceVO vo) throws Exception {
+		return placeDAO.placeListTotCntSearch(vo);
+	}
+
+	@Override
 	public int placeAddAction(PlaceVO vo) throws Exception {
 		
 		int result = 0;
