@@ -39,7 +39,7 @@
 	<sql id="pagingFooterSql">
 						) S, ( SELECT @RNUM := 0 ) A
 					) Z
-			<![CDATA[ WHERE Z.ROWNUM <= #recordCountPerPage# and Z.ROWNUM > #firstIndex# ]]>
+			<![CDATA[ WHERE Z.ROWNUM <= #lastIndex# and Z.ROWNUM > #firstIndex# ]]>
 	</sql>
   
     <!-- 

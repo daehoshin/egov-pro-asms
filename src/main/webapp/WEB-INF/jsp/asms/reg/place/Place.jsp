@@ -35,13 +35,12 @@ function jsPlaceListSearch(pageNo)
 			// 조회된 리스트 넣어줌
 			$('#regPlaceList').html(ajaxResult);
 			
-			var lf = $("form[name=placeListForm]");
-			
 			// 전체 건수 넣어줌
+			var lf = $("form[name=placeListForm]");			
 			sf.find("span[id=totalCnt]").html(lf.find("[name=listCnt]").val());
 			sf.find("input[name='orderColumn']").val(lf.find("input[name='orderColumn']").val());
 			sf.find("input[name='orderType']").val(lf.find("input[name='orderType']").val());
-			  
+			
 			// basic style initialize
 			jsInitialize();
 		  
@@ -141,7 +140,7 @@ function jsPlaceViewForm(plc_id)
 	    	</div>
 	    	<div class="col-md-2">
     			<select name="pageUnit" class="form-control" onchange="jsPlaceListSearch()">
-					<option>5</option>
+					<option>10</option>
 					<option>30</option>
 					<option>50</option>
 					<option>100</option>
