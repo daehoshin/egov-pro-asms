@@ -56,6 +56,7 @@ public class PlaceListController {
 		
 		paginationInfo.setTotalRecordCount(totCnt);
 		
+		map.addAttribute("placeVO", placeVO);
 		map.addAttribute("RegPlaceList", RegPlaceList);
 		map.addAttribute("paginationInfo", paginationInfo);
 		

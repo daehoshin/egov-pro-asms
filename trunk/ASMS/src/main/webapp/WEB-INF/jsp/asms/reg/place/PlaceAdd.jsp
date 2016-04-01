@@ -57,7 +57,7 @@ function jsPlaceAddAction()
 	        	<div class="row">
 	        		<div class="form-group">
 		        		<div class="col-xs-2">
-		        			<label class="control-label" for="plc_mng_no">장소명<span class="importantText"> *</span></label>
+		        			<label class="control-label" for="plc_mng_no">장소명<span class="redText"> *</span></label>
 		        		</div>
 		        		<div class="col-xs-10">
 		        			<input type="text" class="form-control" name="plc_nm" id="plc_nm">
@@ -67,7 +67,7 @@ function jsPlaceAddAction()
 	        	<div class="row">
 	        		<div class="form-group">
 		        		<div class="col-xs-2">
-		        			<label class="control-label" for="plc_mng_no">주소<span class="importantText"> *</span></label>
+		        			<label class="control-label" for="plc_mng_no">주소<span class="redText"> *</span></label>
 		        		</div>
 		        		<div class="col-xs-10">
 		        			<input type="text" class="form-control" name="addr" id="addr">

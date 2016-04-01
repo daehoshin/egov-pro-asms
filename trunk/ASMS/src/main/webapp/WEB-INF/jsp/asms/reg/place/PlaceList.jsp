@@ -6,13 +6,15 @@
 
 <form id="placeListForm" name="placeListForm" class="form-horizontal" method="post">
 <input type="hidden" name="listCnt" value="${paginationInfo.totalRecordCount }">
+<input type="hidden" name="orderColumn" value="<c:out value="${placeVO.orderColumn}"/>">
+<input type="hidden" name="orderType" value="<c:out value="${placeVO.orderType}"/>">
 <div class="row">
 	 <div class="col-lg-12">
 		<!-- 페이지 Start -->
-		<ul class="pagination pagination-sm">
+		<div class="btn-group">
 			<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="jsPlaceListSearch" />
 			<form:hidden path="pageIndex" />
-		</ul>
+		</div>
 		<!-- 페이지 End -->
 	</div>
 </div>
