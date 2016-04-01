@@ -212,7 +212,7 @@
   </tag>
   
   <tag>
-    <name>nmCheckbox</name>
+    <name>cdCodeName</name>
     <tag-class>asms.common.code.web.CommonCodeNameTag</tag-class>
     <body-content>empty</body-content>
     <description>

@@ -37,7 +37,7 @@
 						                <td class="text-navy"><a href="javascript:;" onclick="jsPlaceViewForm('${result.plc_id}')">${result.plc_nm }</a></td>
 						                <td>${result.full_addr }</td>
 						                <td>${result.reg_nm }</td>
-						                <td>${result.reg_status }</td>
+						                <td><asms:cdCodeName codeType="PLC01" code="${result.reg_status }"/></td>
 						            </tr>
 					            </c:forEach>
 		            		</c:otherwise>

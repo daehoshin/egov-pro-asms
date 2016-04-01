@@ -147,7 +147,7 @@ function jsPlaceViewForm(plc_id)
 		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id="full_addr"></div>
 		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
-		                    <div class="col-sm-2"><asms:cdSelect name="reg_stauts" codeType="PLC01" use="true" optionHead="- 전체 -"/></div>
+		                    <div class="col-sm-2"><asms:cdSelect name="reg_status" codeType="PLC01" use="true" optionHead="- 전체 -"/></div>
 		                </div>
 		            </form>
 				</div>
