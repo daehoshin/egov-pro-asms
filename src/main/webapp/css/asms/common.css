@@ -375,6 +375,12 @@
 .height100 {
 	height: 100px !important;
 }
-.importantText {
-	color: #FF0000;
+.redText {
+	color: red;
+}
+.blueText {
+	color: blue;
+}
+.boldText {
+	font-weight: bold;
 }

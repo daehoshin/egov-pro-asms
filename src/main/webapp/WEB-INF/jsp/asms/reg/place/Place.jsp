@@ -17,8 +17,13 @@ $(document).ready(function(){
 // 장소 검색
 function jsPlaceListSearch(pageNo)
 {
+	var sf = $("form[name=placeSendForm]");
+	
+	if (pageNo >= 1){
+		sf.find("input[name='pageIndex']").val(pageNo);
+	}
 
-	var sendForm = $("form[name=placeSendForm]").serialize();
+	var sendForm = sf.serialize();
 
 	$.ajax({
 		type : "post",
@@ -30,9 +35,13 @@ function jsPlaceListSearch(pageNo)
 			// 조회된 리스트 넣어줌
 			$('#regPlaceList').html(ajaxResult);
 			
-			// 전체 건수 넣어줌
-			$("form[name=placeSendForm]").find("span[id=totalCnt]").html($("#placeListForm").find("[name=listCnt]").val());
+			var lf = $("form[name=placeListForm]");
 			
+			// 전체 건수 넣어줌
+			sf.find("span[id=totalCnt]").html(lf.find("[name=listCnt]").val());
+			sf.find("input[name='orderColumn']").val(lf.find("input[name='orderColumn']").val());
+			sf.find("input[name='orderType']").val(lf.find("input[name='orderType']").val());
+			  
 			// basic style initialize
 			jsInitialize();
 		  
@@ -113,6 +122,9 @@ function jsPlaceViewForm(plc_id)
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
    	<form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="post">
+   	<input type="hidden" name="pageIndex" value="1">
+	<input type="hidden" name="orderColumn" value="">
+	<input type="hidden" name="orderType" value="">
 	   	<div class="row">
 	   		<div class="col-md-12 marginB5">
 	   			<div class="pull-right">
@@ -124,12 +136,12 @@ function jsPlaceViewForm(plc_id)
 	    <div class="row">
 	    	<div class="col-md-10">
 	    		<div class="pull-left">
-	    			<i class="fa fa-list"></i> 전체 : <span id="totalCnt"></span>
+	    			<i class="fa fa-list"></i> 전체 : <span id="totalCnt" class="blueText"></span>
 	    		</div>
 	    	</div>
 	    	<div class="col-md-2">
     			<select name="pageUnit" class="form-control" onchange="jsPlaceListSearch()">
-					<option>20</option>
+					<option>5</option>
 					<option>30</option>
 					<option>50</option>
 					<option>100</option>
