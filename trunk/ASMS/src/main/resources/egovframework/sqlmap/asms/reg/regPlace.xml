@@ -21,8 +21,7 @@
 		   , A.DEL_RSN
 		FROM TB_PLCMAIN A JOIN TB_PLCDETAIL B
 		ON   A.PLC_ID = B.PLC_ID
-		WHERE A.REG_STATUS IN ('01','02')
-		<dynamic>
+		<dynamic prepend="WHERE">
 			<isNotEmpty prepend="AND" property="plc_mng_no">
 		 		A.PLC_MNG_NO = #plc_mng_no#
 		 	</isNotEmpty>
@@ -30,10 +29,10 @@
 		 		B.PLC_NM = #plc_nm#
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="full_addr">
-		 		B.ADDR||B.ADDR_DETAIL = #full_addr#
+		 		CONCAT(B.ADDR,B.ADDR_DETAIL) = #full_addr#
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="reg_status">
-		 		A.reg_status >= #reg_status#
+		 		A.reg_status = #reg_status#
 		 	</isNotEmpty>
 		 </dynamic>
 	</select>
