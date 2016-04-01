@@ -147,7 +147,7 @@ function jsPlaceViewForm(plc_id)
 		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id="full_addr"></div>
 		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
-		                    <div class="col-sm-2"><asms:cdSelect name="reg_stauts" codeType="PLC01" use="true"/></div>
+		                    <div class="col-sm-2"><asms:cdSelect name="reg_stauts" codeType="PLC01" use="true" optionHead="- 전체 -"/></div>
 		                </div>
 		            </form>
 				</div>
@@ -158,17 +158,3 @@ function jsPlaceViewForm(plc_id)
  	<!-- regPlaceList -->
    	</div>
 </div>
-
-<script type="text/javascript">
-var config = {
-        '.chosen-select'           : {},
-        '.chosen-select-deselect'  : {allow_single_deselect:true},
-        '.chosen-select-no-single' : {disable_search_threshold:10},
-        '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-        '.chosen-select-width'     : {width:"95%"}
-        }
-
-    for (var selector in config) {
-        $(selector).chosen(config[selector]);
-    }
-</script>

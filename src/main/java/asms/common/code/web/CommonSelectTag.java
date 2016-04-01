@@ -50,11 +50,9 @@ public class CommonSelectTag extends RequestContextAwareTag {
 		
 		try {
             StringBuffer html = new StringBuffer();
-            html.append("<div class='input-group'>");
             makeSelectTagHead(html);
             makeSelectTagBody(html);
             makeSelectTagTail(html);
-            html.append("</div>");
             this.pageContext.getOut().println(html.toString());
         }catch(IOException ex) {
             throw new JspException(ex);
@@ -63,7 +61,7 @@ public class CommonSelectTag extends RequestContextAwareTag {
 	}
 	
 	private void makeSelectTagHead(StringBuffer html) {
-        html.append("<select data-placeholder='전체' class='chosen-select' style='width:350px' tabindex='-1' name='" + this.getName() + "'");
+        html.append("<select data-placeholder='전체' class='form-control chosen-select' tabindex='-1' name='" + this.getName() + "'");
         
         if (StringUtils.isNotEmpty(id)) {
         	html.append(" id='" + this.getId() + "'");
