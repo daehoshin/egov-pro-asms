@@ -17,12 +17,12 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 		
 		<intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/welcome.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<!-- <intercept-url pattern="/logout.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/> -->
+		<intercept-url pattern="/logout.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/code404.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		<intercept-url pattern="/code500.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<!-- <intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
-		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/> -->
+		<intercept-url pattern="/js/asms/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
+		<intercept-url pattern="/images/asms/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
+		<intercept-url pattern="/css/asms/**" access="IS_AUTHENTICATED_ANONYMOUSLY" filters="none"/>
 		
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 		

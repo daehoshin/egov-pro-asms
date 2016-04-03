@@ -153,7 +153,7 @@ function jsPlaceSelectDel(){
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2>장소</h2>
+        <h2><i class="fa fa-building-o"></i> 장소</h2>
         <ol class="breadcrumb">
             <li>등록</li>
             <li class="active">

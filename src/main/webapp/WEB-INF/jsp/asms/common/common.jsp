@@ -37,6 +37,14 @@ $(document).ready(function() {
 	});
 	
 });
+
+function jsLogOut() {
+	if (confirm("로그아웃 하시겠습니까?")) {
+		document.topForm.action = "<c:url value='/j_spring_security_logout' />";
+		document.topForm.submit();
+	}
+}
+
 </script>
 <div id="ProgressBar" class="sk-spinner sk-spinner-wave" style="display:none;">
     <div class="sk-rect1"></div>

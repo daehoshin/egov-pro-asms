@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    	<form name="topForm" method="post">
+		<input type="hidden" name="params">
+		</form>
         <!-- Top Start -->    
         <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
@@ -114,7 +117,7 @@
 
 
                 <li>
-                    <a href="login.html">
+                    <a href="javascript:;" onclick="jsLogOut()">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
