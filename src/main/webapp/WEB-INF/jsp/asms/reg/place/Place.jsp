@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="asms" uri="/WEB-INF/tlds/asms.tld" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -127,8 +128,12 @@ function jsPlaceViewForm(plc_id)
 	   	<div class="row">
 	   		<div class="col-md-12 marginB5">
 	   			<div class="pull-right">
-			   		<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
-			        <a href="javascript:;" onclick="" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
+	   				<c:choose>
+        				<c:when test="${loginUserVO.user_auth_cd eq 1 }">
+        					<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
+			        		<a href="javascript:;" onclick="" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
+        				</c:when>
+        			</c:choose>
 		        </div>
 	   		</div>
 	    </div>
@@ -140,9 +145,9 @@ function jsPlaceViewForm(plc_id)
 	    	</div>
 	    	<div class="col-md-2">
     			<select name="pageUnit" class="form-control" onchange="jsPlaceListSearch()">
-					<option>10</option>
-					<option>30</option>
-					<option>50</option>
+					<option>20</option>
+					<option>40</option>
+					<option>80</option>
 					<option>100</option>
 				</select>
 	    	</div>
@@ -172,7 +177,16 @@ function jsPlaceViewForm(plc_id)
 		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id="full_addr"></div>
 		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
-		                    <div class="col-sm-2"><asms:cdSelect name="reg_status" codeType="PLC01" use="true" optionHead="- 전체 -"/></div>
+		                	<div class="col-sm-2">
+			                	<c:choose>
+			                		<c:when test="${loginUserVO.user_auth_cd eq 1 and loginUserVO.join_cd eq 02}">
+			                			<asms:cdSelect name="reg_status" codeType="PLC01" use="true" optionHead="- 전체 -"/>
+			                		</c:when>
+			                		<c:otherwise>
+			                			<asms:cdSelect name="reg_status" codeType="PLC01" excludingCode="03" use="true" optionHead="- 전체 -"/>
+			                		</c:otherwise>
+			                	</c:choose>
+		                	</div>
 		                </div>
 					</div>
 				</div>

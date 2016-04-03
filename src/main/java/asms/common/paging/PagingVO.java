@@ -8,33 +8,16 @@ package asms.common.paging;
  */
 public class PagingVO {
 
-    private String searchCondition = "";	// 검색조건
-    private String searchKeyword = "";		// 검색Keyword
     private int pageIndex = 1;				// 현재페이지
     private int pageUnit = 10;				// 페이지갯수
     private int pageSize = 10;				// 페이지사이즈
-    private int firstIndex = 1;				// firstIndex
+    private int firstIndex = 1;			// firstIndex
     private int lastIndex = 1;				// lastIndex
     private int recordCountPerPage = 10;	// recordCountPerPage
     private String orderColumn = "";		// 정렬할 컬럼
     private String orderType = "";			// 정렬할 컬럼 차수(내림차수 or 오름차수)
-    private String sessionUserId;			// 사용자ID
-    private String sessionUserDiv;			// 사용자구분
-    private String sessionOrgCd;			// 부서코드
-    private String sessionViewLevel;		// 조회권한
+    private String user_auth_cd;			// 사용자권한
     
-	public String getSearchCondition() {
-		return searchCondition;
-	}
-	public void setSearchCondition(String searchCondition) {
-		this.searchCondition = searchCondition;
-	}
-	public String getSearchKeyword() {
-		return searchKeyword;
-	}
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
-	}
 	public int getPageIndex() {
 		return pageIndex;
 	}
@@ -83,29 +66,11 @@ public class PagingVO {
 	public void setOrderType(String orderType) {
 		this.orderType = orderType;
 	}
-	public String getSessionUserId() {
-		return sessionUserId;
+	public String getUser_auth_cd() {
+		return user_auth_cd;
 	}
-	public void setSessionUserId(String sessionUserId) {
-		this.sessionUserId = sessionUserId;
+	public void setUser_auth_cd(String user_auth_cd) {
+		this.user_auth_cd = user_auth_cd;
 	}
-	public String getSessionUserDiv() {
-		return sessionUserDiv;
-	}
-	public void setSessionUserDiv(String sessionUserDiv) {
-		this.sessionUserDiv = sessionUserDiv;
-	}
-	public String getSessionOrgCd() {
-		return sessionOrgCd;
-	}
-	public void setSessionOrgCd(String sessionOrgCd) {
-		this.sessionOrgCd = sessionOrgCd;
-	}
-	public String getSessionViewLevel() {
-		return sessionViewLevel;
-	}
-	public void setSessionViewLevel(String sessionViewLevel) {
-		this.sessionViewLevel = sessionViewLevel;
-	}
-    
+	
 }

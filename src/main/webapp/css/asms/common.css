@@ -384,3 +384,12 @@
 .boldText {
 	font-weight: bold;
 }
+.textCenter {
+	text-align: center;
+}
+.textLeft {
+	text-align: left;
+}
+.textRigth {
+	text-align: right;
+}

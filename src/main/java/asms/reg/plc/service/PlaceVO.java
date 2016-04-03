@@ -24,7 +24,7 @@ public class PlaceVO extends PagingVO{
 	private String addr;			// 주소
 	private String addr_detail;		// 상세주소
 	private String full_addr;		// 주소+상세주소
-	private String del_rsn;		// 삭제사유
+	private String del_rsn;			// 삭제사유
 	
 	public String getPlc_id() {
 		return plc_id;

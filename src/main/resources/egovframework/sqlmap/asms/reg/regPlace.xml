@@ -33,9 +33,19 @@
 		 	<isNotEmpty prepend="AND" property="full_addr">
 		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%'||#full_addr#||'%'
 		 	</isNotEmpty>
-		 	<isNotEmpty prepend="AND" property="reg_status">
-		 		A.reg_status = #reg_status#
-		 	</isNotEmpty>
+		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isEqual>
+		 	<isNotEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isEmpty property="reg_status">
+		 			A.reg_status IN ('01','02')
+		 		</isEmpty>
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isNotEqual>
 		 </dynamic>
 		 <dynamic prepend="ORDER BY">
 			<isNotEmpty property="orderColumn">
@@ -60,9 +70,19 @@
 		 	<isNotEmpty prepend="AND" property="full_addr">
 		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%'||#full_addr#||'%'
 		 	</isNotEmpty>
-		 	<isNotEmpty prepend="AND" property="reg_status">
-		 		A.reg_status = #reg_status#
-		 	</isNotEmpty>
+		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isEqual>
+		 	<isNotEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isEmpty property="reg_status">
+		 			A.reg_status IN ('01','02')
+		 		</isEmpty>
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isNotEqual>
 		 </dynamic>
 	</select>
 	

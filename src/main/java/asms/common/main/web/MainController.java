@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import asms.common.Constants;
 import asms.common.main.service.MainService;
 import asms.common.main.service.MenuVO;
 import asms.common.login.service.LoginUserVO;
@@ -32,7 +33,7 @@ public class MainController {
 	@RequestMapping("/main.do")
 	public String main(LoginUserVO loginUserVO, HttpSession session, ModelMap model) throws Exception {
 		
-		loginUserVO = (LoginUserVO)session.getAttribute("loginUserVO");
+		loginUserVO = (LoginUserVO)session.getAttribute(Constants.LoginUserVO);
 		
 		List menuList1 = mainService.selectMenuList_lv1(loginUserVO);
 		List menuList2 = mainService.selectMenuList_lv2(loginUserVO);

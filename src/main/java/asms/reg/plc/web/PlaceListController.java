@@ -3,6 +3,7 @@ package asms.reg.plc.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+import asms.common.Constants;
+import asms.common.login.service.LoginUserVO;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
@@ -31,9 +34,13 @@ public class PlaceListController {
     protected EgovPropertyService propertiesService;
     
 	@RequestMapping("/rgst/place/placeListSearch.do")
-	public String PlaceList(@ModelAttribute("PlaceVO")PlaceVO placeVO, Model map) throws Exception{
+	public String PlaceList(@ModelAttribute("PlaceVO")PlaceVO placeVO, HttpSession session, Model map) throws Exception{
 		
-		//기본 orderBy 절을 정의함
+		// 사용자 권한
+		LoginUserVO loginUserVO = (LoginUserVO)session.getAttribute(Constants.LoginUserVO);
+		placeVO.setUser_auth_cd(loginUserVO.getUser_auth_cd());
+		
+		// 기본 orderBy 절을 정의함
 		placeVO.setOrderColumn(!placeVO.getOrderColumn().equals("") ? placeVO.getOrderColumn() : "PLC_ID");
 		placeVO.setOrderType(!placeVO.getOrderType().equals("") ? placeVO.getOrderType() : "DESC");
 	    
