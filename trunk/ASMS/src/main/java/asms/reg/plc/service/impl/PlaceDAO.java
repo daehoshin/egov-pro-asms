@@ -115,4 +115,8 @@ public class PlaceDAO extends EgovAbstractDAO{
 		return update("PlaceDelAction", vo);
 	}
 
+	int PlaceSelectDelAction(PlaceVO vo) throws Exception {
+		return update("PlaceSelectDelAction", vo);
+	}
+
 }

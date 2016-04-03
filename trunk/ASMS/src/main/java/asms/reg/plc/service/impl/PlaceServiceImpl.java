@@ -129,6 +129,22 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 
 	@Override
+	public int PlaceSelectDelAction(PlaceVO vo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			result = placeDAO.PlaceSelectDelAction(vo);
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
 	public int placeRegFinishAction(PlaceVO vo) throws Exception {
 		
 		int result = 0;

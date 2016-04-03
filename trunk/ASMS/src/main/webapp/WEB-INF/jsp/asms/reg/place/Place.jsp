@@ -107,6 +107,48 @@ function jsPlaceViewForm(plc_id)
 	});	
 }
 
+function jsPlaceSelectDel(){
+	
+	var lf = $("form[name=placeListForm]");
+	var checkedCnt = lf.find("[name=plc_id]:checked").length;
+	var placeStatusCnt = 0;
+	
+	// 선택된 것 중 삭제 된 장소 확인
+	lf.find("[name=plc_id]:checked").each(function(i){
+		if($(this).attr("checkVal")=="03"){
+			placeStatusCnt++;
+		}
+	});
+	
+	if(checkedCnt==0){
+		alert("삭제 할 장소를 선택하십시오.");
+		return;
+	} else {
+		if(placeStatusCnt > 0){
+			alert("이미 삭제 된 장소가 포함되어 있습니다.\n체크를 해제하시고 다시 진행 해 주십시오.");
+			return;
+		} else {
+			
+			var listForm = lf.serialize();
+			
+			if (confirm("기록물건을 삭제하시겠습니까?")) {
+				$.ajax({
+					type : "post",
+					url  : "/rgst/place/placeSelectDelRsnForm.do?executeUrl=/rgst/place/placeSelectDelAction.do",
+					data : listForm,
+					dataType : "html",
+					success:function(ajaxResult){
+						
+						$('#myModal').html(ajaxResult);
+						$('#myModal').modal('show');
+						
+					}
+				});
+			}	
+		}
+	}
+}
+
 </script>
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -131,7 +173,7 @@ function jsPlaceViewForm(plc_id)
 	   				<c:choose>
         				<c:when test="${loginUserVO.user_auth_cd eq 1 }">
         					<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
-			        		<a href="javascript:;" onclick="" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
+			        		<a href="javascript:;" onclick="jsPlaceSelectDel()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
         				</c:when>
         			</c:choose>
 		        </div>
