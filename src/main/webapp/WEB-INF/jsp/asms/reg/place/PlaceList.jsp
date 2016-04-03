@@ -26,6 +26,15 @@ function jsPlaceListSort(orderColumnValue){
 	jsPlaceListSearch(1);
 }
 
+$(function(){
+	$(".parentCheckBox").bind("click",function(){
+		if($(".parentCheckBox").prop("checked")){
+			$(".childCheckBox").prop("checked",true);
+		} else {
+			$(".childCheckBox").prop("checked",false);
+		}
+	});
+});
 </script>
 
 <form id="placeListForm" name="placeListForm" method="post">
@@ -53,7 +62,7 @@ function jsPlaceListSort(orderColumnValue){
 		           <table class="table table-striped table-bordered table-hover" >
 		            <thead>
 			            <tr>
-			                <th class="widthP5 textCenter"><input type="checkbox"  checked class="i-checks parentCheckBox"></th>
+			                <th class="widthP5 textCenter"><input type="checkbox" class="parentCheckBox"></th>
 			                <th class="widthP15 textCenter"><a href="javascript:jsPlaceListSort('PLC_MNG_NO');">관리번호</a>
 			                ${placeVO.orderColumn eq "PLC_MNG_NO" ? placeVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
@@ -81,7 +90,7 @@ function jsPlaceListSort(orderColumnValue){
 		            		<c:otherwise>
 		            			<c:forEach var="result" items="${RegPlaceList}" varStatus="status">
 						            <tr>
-						                <td class="textCenter"><input type="checkbox" class="i-checks childCheckBox" name="plc_id" value="${result.plc_id }" checkVal="${result.reg_status }"></td>
+						                <td class="textCenter"><input type="checkbox" class="childCheckBox" name="plc_id" value="${result.plc_id }" checkVal="${result.reg_status }"></td>
 						                <td class="textCenter">${result.plc_mng_no }</td>
 						                <td class="textLeft blueText"><a href="javascript:;" onclick="jsPlaceViewForm('${result.plc_id}')">${result.plc_nm }</a></td>
 						                <td class="textLeft">${result.full_addr }</td>
