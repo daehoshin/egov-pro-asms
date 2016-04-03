@@ -23,7 +23,11 @@ $(document).ready(function(){
 });
 
 // 등록완료
-function jsPlaceRegFinishAction(plc_id){
+function jsPlaceRegFinishAction(plc_id,reg_status){
+	if(reg_status!='01'){
+		alert("등록중인 장소만 등록완료 할 수 있습니다.");
+		return;
+	}
 	if (confirm("기록물건을 등록완료 처리하시겠습니까?")) {
 		$.ajax({
 			type : "post",
@@ -43,7 +47,11 @@ function jsPlaceRegFinishAction(plc_id){
 }
 
 // 삭제
-function jsPlaceDel(plc_id) {
+function jsPlaceDel(plc_id,reg_status) {
+	if(reg_status=='03'){
+		alert("이미 삭제 처리 된 장소입니다.");
+		return;
+	}
 	if (confirm("기록물건을 삭제하시겠습니까?")) {
 		$.ajax({
 			type : "post",
@@ -93,7 +101,7 @@ function jsPlaceDelComplete() {
                 <c:if test="${placeVO.reg_status eq 03}">
 	                <div class="hr-line-dashed"></div>
 		        	<div class="form-group"><label class="col-lg-2 control-label">삭제사유</label>
-	                	<div class="col-lg-10"><p class="form-control-static"><textarea class="form-control" readonly="readonly" rows="5" name="del_rsn">${placeVO.addr_detail }</textarea></p></div>
+	                	<div class="col-lg-10"><p class="form-control-static"><textarea class="form-control" readonly="readonly" rows="5" name="del_rsn">${placeVO.del_rsn }</textarea></p></div>
 	                </div>
 	            </c:if> 
 	        </div>
@@ -101,9 +109,9 @@ function jsPlaceDelComplete() {
         <div class="modal-footer">
         	<div class="pull-left">
         		<c:choose>
-					<c:when test="${placeVO.reg_status eq 01 and loginUserVO.user_auth_cd eq 1 }">
-		        		<button type="button" class="btn btn-warning" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>
-		            	<button type="button" class="btn btn-danger" onclick="jsPlaceDel('${placeVO.plc_id }')">삭제</button>
+					<c:when test="${loginUserVO.user_auth_cd eq 1 }">
+        				<button type="button" class="btn btn-warning" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }','${placeVO.reg_status }')">등록완료</button>
+        				<button type="button" class="btn btn-danger" onclick="jsPlaceDel('${placeVO.plc_id }','${placeVO.reg_status }')">삭제</button>
             		</c:when>
             		<c:otherwise>
 		            	<button type="button" class="btn btn-warning" disabled="disabled" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>

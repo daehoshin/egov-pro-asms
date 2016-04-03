@@ -66,5 +66,45 @@ public class PlaceDelController {
 		
 		return "jsonView";
 	}
+
+	@RequestMapping("/rgst/place/placeSelectDelRsnForm.do")
+	public String PlaceSelectDelRsnForm(@ModelAttribute("PlaceVO")PlaceVO placeVO, @RequestParam("executeUrl")String executeUrl, ModelMap map) throws Exception {
+		
+		String modalTitleNm = Constants.Place_MngNo_CodeNm;
+		
+		map.addAttribute("placeVO", placeVO);
+		map.addAttribute("executeUrl", executeUrl);
+		map.addAttribute("modalTitleNm", modalTitleNm);
+		
+		return "/reg/place/PlaceSelectDelRsn";
+	}
+	
+	@RequestMapping("/rgst/place/placeSelectDelAction.do")
+	public String PlaceSelectDelAction(@ModelAttribute("PlaceVO") PlaceVO placeVO, HttpSession session, ModelMap map) throws Exception{
+		
+		String resultMsg = "";
+		
+		String[] plc_id_array = placeVO.getPlc_id().split(",");
+		placeVO.setPlc_id_array(plc_id_array);
+		LoginUserVO loginUserVO = (LoginUserVO)session.getAttribute(Constants.LoginUserVO);
+		String currentDate = DateUtils.CurrentDate();
+		
+		placeVO.setReg_status(Constants.RegStatus_Del);
+		placeVO.setReg_id(loginUserVO.getMp_id());
+		placeVO.setReg_nm(loginUserVO.getMp_nm());
+		placeVO.setReg_dt(currentDate);
+		
+		int result = placeService.PlaceSelectDelAction(placeVO);
+		
+		if(result==1){
+			resultMsg = "success";
+		} else {
+			resultMsg = "fail";
+		}
+		
+		map.addAttribute("resultMsg", resultMsg);
+		
+		return "jsonView";
+	}
 		
 }

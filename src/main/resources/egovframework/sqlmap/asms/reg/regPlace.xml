@@ -188,5 +188,15 @@
 		  , DEL_RSN    = #del_rsn#
 		WHERE PLC_ID = #plc_id#
 	</update>
+
+	<update id="PlaceSelectDelAction" parameterClass="placeVO">
+		UPDATE /* reg.PlaceDelAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID IN
+		<iterate property="plc_id_array" open="(" close=")" conjunction=",">
+	     	#plc_id_array[]#
+	    </iterate>	
+	</update>
 	
 </sqlMap>
