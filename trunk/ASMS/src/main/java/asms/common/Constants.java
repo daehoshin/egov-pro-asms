@@ -17,4 +17,7 @@ public class Constants {
 	public static final String Equipment_MngNo_CodeNm = "장비";
 	public static final String Place_MngNo_CodeNm = "장소";
 	public static final String ManPower_MngNo_CodeNm = "인력";
+	public static final String Administrator_Code = "1";
+	public static final String Manager_Code = "2";
+	public static final String General_User_Code = "3";
 }

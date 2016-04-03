@@ -46,7 +46,7 @@ public class PlaceDelController {
 		
 		String resultMsg = "";
 		
-		LoginUserVO loginUserVO = (LoginUserVO)session.getAttribute("loginUserVO");
+		LoginUserVO loginUserVO = (LoginUserVO)session.getAttribute(Constants.LoginUserVO);
 		String currentDate = DateUtils.CurrentDate();
 		
 		placeVO.setReg_status(Constants.RegStatus_Del);

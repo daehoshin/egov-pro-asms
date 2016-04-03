@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#regFinishBtn").bind("click",function(){
@@ -89,16 +90,37 @@ function jsPlaceDelComplete() {
 	        	<div class="form-group"><label class="col-lg-2 control-label">상세주소</label>
                 	<div class="col-lg-10"><p class="form-control-static">${placeVO.addr_detail }</p></div>
                 </div>
+                <c:if test="${placeVO.reg_status eq 03}">
+	                <div class="hr-line-dashed"></div>
+		        	<div class="form-group"><label class="col-lg-2 control-label">삭제사유</label>
+	                	<div class="col-lg-10"><p class="form-control-static"><textarea class="form-control" readonly="readonly" rows="5" name="del_rsn">${placeVO.addr_detail }</textarea></p></div>
+	                </div>
+	            </c:if> 
 	        </div>
         </form>
         <div class="modal-footer">
         	<div class="pull-left">
-        		<button type="button" class="btn btn-warning" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>
-            	<button type="button" class="btn btn-danger" onclick="jsPlaceDel('${placeVO.plc_id }')">삭제</button>
+        		<c:choose>
+					<c:when test="${placeVO.reg_status eq 01 and loginUserVO.user_auth_cd eq 1 }">
+		        		<button type="button" class="btn btn-warning" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>
+		            	<button type="button" class="btn btn-danger" onclick="jsPlaceDel('${placeVO.plc_id }')">삭제</button>
+            		</c:when>
+            		<c:otherwise>
+		            	<button type="button" class="btn btn-warning" disabled="disabled" onclick="jsPlaceRegFinishAction('${placeVO.plc_id }')">등록완료</button>
+		            	<button type="button" class="btn btn-danger" disabled="disabled" onclick="jsPlaceDel('${placeVO.plc_id }')">삭제</button>
+            		</c:otherwise>
+            	</c:choose>
         	</div>
         	<div class="pull-right">
-        		<button type="button" class="btn btn-primary" onclick="jsPlaceModForm('${placeVO.plc_id }')">수정</button>
-            	<button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
+        		<c:choose>
+        			<c:when test="${loginUserVO.user_auth_cd eq 1 }">
+		        		<button type="button" class="btn btn-primary" onclick="jsPlaceModForm('${placeVO.plc_id }')">수정</button>
+		            </c:when>
+		            <c:otherwise>
+		            	<button type="button" class="btn btn-primary" disabled="disabled" onclick="jsPlaceModForm('${placeVO.plc_id }')">수정</button>
+		            </c:otherwise>
+		        </c:choose>
+		        <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
         	</div>
         </div>
     </div>
