@@ -22,7 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Login</title>
+    <title>[ASMS]자산관리시스템</title>
 	
 	<script src="/bootstrap-theme/js/jquery-2.1.1.js"></script>
 	<script src="/bootstrap-theme/js/bootstrap.min.js"></script>
@@ -84,7 +84,7 @@
                 <h1 class="logo-name">IN+</h1>
 
             </div>
-            <h3>Welcome to ASMS</h3>
+            <h3>[ASMS]자산관리시스템</h3>
             <p>본 시스템은 자산관리 시스템으로써 귀사의 소중한 자산을 관리 해 드립니다.
             </p>
             <form name="loginForm" method="post" action="<c:url value="/j_spring_security_check"/>">
@@ -97,7 +97,7 @@
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
                 <a class="btn btn-sm btn-white btn-block" href="register.html">Forgot password?</a>
             </form>
-            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+            <p class="m-t"> <small>Asms we app framework base on Bootstrap 3 &copy; 2016</small> </p>
         </div>
     </div>
 
