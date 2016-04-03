@@ -3,6 +3,30 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="asms" uri="/WEB-INF/tlds/asms.tld" %>
+<%@ include file= '/WEB-INF/jsp/asms/common/orderByImage.jsp'%>
+<script type="text/javascript">
+
+//정렬
+function jsSort(orderColumnValue){
+	
+	var frm = $("form[name='placeSendForm']");
+	var orderColumn = frm.find("input[name='orderColumn']");
+	var orderType = frm.find("input[name='orderType']");
+	
+	if(orderColumn.val() == orderColumnValue || orderColumn.val() == "") {
+		if(orderType.val() == "DESC" || orderType.val() == "") {
+			orderType.val("ASC");
+	    }else{
+	    	orderType.val("DESC");
+	    } 
+	}else{
+		orderType.val("DESC");
+	}
+	orderColumn.val(orderColumnValue);
+	jsPlaceListSearch(1);
+}
+
+</script>
 
 <form id="placeListForm" name="placeListForm" method="post">
 <input type="hidden" name="listCnt" value="${paginationInfo.totalRecordCount }">
@@ -30,11 +54,21 @@
 		            <thead>
 			            <tr>
 			                <th class="widthP5 textCenter"><input type="checkbox"  checked class="i-checks parentCheckBox"></th>
-			                <th class="widthP15 textCenter">관리번호</th>
-			                <th class="widthP25 textCenter">장소명</th>
-			                <th class="widthP35 textCenter">주소</th>
-			                <th class="widthP10 textCenter">등록자</th>
-			                <th class="widthP10 textCenter">등록상태</th>
+			                <th class="widthP15 textCenter"><a href="javascript:jsSort('PLC_MNG_NO');">관리번호</a>
+			                ${placeVO.orderColumn eq "PLC_MNG_NO" ? placeVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                </th>
+			                <th class="widthP25 textCenter"><a href="javascript:jsSort('PLC_NM');">장소명</a>
+			                ${placeVO.orderColumn eq "PLC_NM" ? placeVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                </th>
+			                <th class="widthP35 textCenter"><a href="javascript:jsSort('FULL_ADDR');">주소</a>
+			                ${placeVO.orderColumn eq "FULL_ADDR" ? placeVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                </th>
+			                <th class="widthP10 textCenter"><a href="javascript:jsSort('REG_NM');">등록자</a>
+			                ${placeVO.orderColumn eq "REG_NM" ? placeVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                </th>
+			                <th class="widthP10 textCenter"><a href="javascript:jsSort('REG_STATUS');">등록상태</a>
+			                ${placeVO.orderColumn eq "REG_STATUS" ? placeVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                </th>
 			            </tr>
 		            </thead>
 		            <tbody>

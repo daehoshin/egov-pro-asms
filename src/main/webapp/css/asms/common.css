@@ -393,3 +393,16 @@
 .textRigth {
 	text-align: right;
 }
+.sortImg {
+	display:inline-block; 
+	width:0; 
+	height:0; 
+	border-style:solid; 
+	border-width:5px;
+}
+.sortImg.asc {
+	border-color:red transparent transparent transparent;
+}
+.sortImg.desc {
+	border-color:transparent transparent red transparent;
+}
