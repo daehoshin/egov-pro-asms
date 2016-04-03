@@ -22,6 +22,14 @@ $(document).ready(function(){
 
 	});
 	
+	$(".parentCheckBox").bind("click",function(){
+		if($(".parentCheckBox").prop("checked")){
+			$(".childCheckBox").prop("checked",true);
+		} else {
+			$(".childCheckBox").prop("checked",false);
+		}
+	});
+	
 });
 
 // 메뉴 불러오기
