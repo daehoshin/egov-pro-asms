@@ -128,7 +128,6 @@ function jsPlaceSelectDel(){
 			alert("이미 삭제 된 장소가 포함되어 있습니다.\n체크를 해제하시고 다시 진행 해 주십시오.");
 			return;
 		} else {
-			
 			var listForm = lf.serialize();
 			
 			if (confirm("기록물건을 삭제하시겠습니까?")) {
