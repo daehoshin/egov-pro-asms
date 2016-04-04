@@ -26,15 +26,6 @@ function jsPlaceListSort(orderColumnValue){
 	jsPlaceListSearch(1);
 }
 
-$(function(){
-	$(".parentCheckBox").bind("click",function(){
-		if($(".parentCheckBox").prop("checked")){
-			$(".childCheckBox").prop("checked",true);
-		} else {
-			$(".childCheckBox").prop("checked",false);
-		}
-	});
-});
 </script>
 
 <form id="placeListForm" name="placeListForm" method="post">

@@ -22,14 +22,6 @@ $(document).ready(function(){
 
 	});
 	
-	$(".parentCheckBox").bind("click",function(){
-		if($(".parentCheckBox").prop("checked")){
-			$(".childCheckBox").prop("checked",true);
-		} else {
-			$(".childCheckBox").prop("checked",false);
-		}
-	});
-	
 });
 
 // 메뉴 불러오기
@@ -69,5 +61,20 @@ function jsInitialize(){
     	radioClass: 'iradio_square-green',
 	});
 	
+	$(".parentCheckBox").bind("click",function(){
+		if($(".parentCheckBox").prop("checked")){
+			$(".childCheckBox").prop("checked",true);
+		} else {
+			$(".childCheckBox").prop("checked",false);
+		}
+	});
+
+	$(".mdParentCheckBox").bind("click",function(){
+		if($(".mdParentCheckBox").prop("checked")){
+			$(".mdChildCheckBox").prop("checked",true);
+		} else {
+			$(".mdChildCheckBox").prop("checked",false);
+		}
+	});
 }
 

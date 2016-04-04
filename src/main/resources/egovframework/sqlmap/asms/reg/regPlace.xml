@@ -25,13 +25,13 @@
 		ON   A.PLC_ID = B.PLC_ID
 		<dynamic prepend="WHERE">
 			<isNotEmpty prepend="AND" property="plc_mng_no">
-		 		A.PLC_MNG_NO LIKE '%'||#plc_mng_no#||'%'
+		 		A.PLC_MNG_NO LIKE '%$plc_mng_no$%'
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="plc_nm">
-		 		B.PLC_NM LIKE '%'||#plc_nm#||'%'
+		 		B.PLC_NM LIKE '%$plc_nm$%'
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="full_addr">
-		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%'||#full_addr#||'%'
+		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%$full_addr$%'
 		 	</isNotEmpty>
 		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="1">
 		 		<isNotEmpty property="reg_status">
@@ -62,13 +62,13 @@
 		ON   A.PLC_ID = B.PLC_ID
 		<dynamic prepend="WHERE">
 			<isNotEmpty prepend="AND" property="plc_mng_no">
-		 		A.PLC_MNG_NO LIKE '%'||#plc_mng_no#||'%'
+		 		A.PLC_MNG_NO LIKE '%$plc_mng_no$%'
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="plc_nm">
-		 		B.PLC_NM LIKE '%'||#plc_nm#||'%'
+		 		B.PLC_NM LIKE '%$plc_nm$%'
 		 	</isNotEmpty>
 		 	<isNotEmpty prepend="AND" property="full_addr">
-		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%'||#full_addr#||'%'
+		 		CONCAT(B.ADDR,B.ADDR_DETAIL) LIKE '%$full_addr$%'
 		 	</isNotEmpty>
 		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="1">
 		 		<isNotEmpty property="reg_status">

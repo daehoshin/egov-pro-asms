@@ -83,7 +83,7 @@ public class commonRadioTag extends RequestContextAwareTag {
 	private void makeRadioTag(StringBuffer html, CommonCodeVO comCdVO)
 			throws JspException {
 
-		html.append("<div class='col-xs-2'><div class='i-checks'><label><input type='radio' name='" + this.getName() + this.getAddNameValue() + "' value='"
+		html.append("<div class='col-xs-3'><div class='i-checks'><label><input type='radio' name='" + this.getName() + this.getAddNameValue() + "' value='"
 				+ comCdVO.getCode() + "'");
 
 		if (getDefaultCode().equals(comCdVO.getCode())) {
