@@ -28,15 +28,9 @@ public class PlaceDAO extends EgovAbstractDAO{
 	int placeMainAdd(PlaceVO vo) throws Exception {
 		
 		int result = 0;
-		
-		try {
+
+		result = update("placeMainAdd", vo);  
 			
-			result = update("placeMainAdd", vo);  
-			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
 		return result;
 	}
 	
@@ -44,14 +38,8 @@ public class PlaceDAO extends EgovAbstractDAO{
 
 		int result = 0;
 		
-		try {
+		result = update("placeDetailAdd", vo);  
 			
-			result = update("placeDetailAdd", vo);  
-			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
 		return result;
 		
 	}
@@ -63,14 +51,8 @@ public class PlaceDAO extends EgovAbstractDAO{
 	int placeMainMod(PlaceVO vo) throws Exception {
 		
 		int result = 0;
-		
-		try {
 			
-			result = update("placeMainMod", vo);  
-			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
+		result = update("placeMainMod", vo);  
 		
 		return result;
 	}
@@ -79,13 +61,7 @@ public class PlaceDAO extends EgovAbstractDAO{
 
 		int result = 0;
 		
-		try {
-			
-			result = update("placeDetailMod", vo);  
-			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
+		result = update("placeDetailMod", vo);  
 		
 		return result;
 		
@@ -94,15 +70,9 @@ public class PlaceDAO extends EgovAbstractDAO{
 	int placeRegFinishAction(PlaceVO vo) throws Exception {
 		
 		int result = 0;
-		
-		try {
 			
-			result = update("placeRegFinishAction", vo);  
+		result = update("placeRegFinishAction", vo);  
 			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
 		return result;
 		
 	}

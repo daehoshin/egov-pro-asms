@@ -53,30 +53,24 @@ public class PlaceServiceImpl implements PlaceService{
 		assetSequenceVO.setSeq_dt(currentDate);
 		vo.setReg_dt(currentDate);
 		vo.setSys_dt(currentDate);
+			
+		int pk = assetSequenceDAO.AssetSequenceInsertForSearch(assetSequenceVO);
+		StringBuffer sb = new StringBuffer();
+		sb.append(Constants.Place_MngNo_Code);
+		sb.append("-");
+		sb.append(StringUtils.leftPad(Integer.toString(pk), 7, "0"));
 		
-		try {
-			
-			int pk = assetSequenceDAO.AssetSequenceInsertForSearch(assetSequenceVO);
-			StringBuffer sb = new StringBuffer();
-			sb.append(Constants.Place_MngNo_Code);
-			sb.append("-");
-			sb.append(StringUtils.leftPad(Integer.toString(pk), 7, "0"));
-			
-			vo.setPlc_id(Integer.toString(pk));
-			vo.setPlc_mng_no(sb.toString());
-			vo.setReg_status(Constants.RegStatus_Temporarily);
-			
-			mainResult = placeDAO.placeMainAdd(vo);
-			detailResult = placeDAO.placeDetailAdd(vo);
-			
-			if(mainResult==1&&detailResult==1){
-				result = 1;
-			}
-			
-		} catch(Exception e){
-			e.printStackTrace();
+		vo.setPlc_id(Integer.toString(pk));
+		vo.setPlc_mng_no(sb.toString());
+		vo.setReg_status(Constants.RegStatus_Temporarily);
+		
+		mainResult = placeDAO.placeMainAdd(vo);
+		detailResult = placeDAO.placeDetailAdd(vo);
+		
+		if(mainResult==1&&detailResult==1){
+			result = 1;
 		}
-		
+			
 		return result;
 	}
 	
@@ -96,19 +90,14 @@ public class PlaceServiceImpl implements PlaceService{
 		
 		vo.setSys_dt(currentDate);
 		
-		try {
 			
-			mainResult = placeDAO.placeMainMod(vo);
-			detailResult = placeDAO.placeDetailMod(vo);
-			
-			if(mainResult==1&&detailResult==1){
-				result = 1;
-			}
-			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
+		mainResult = placeDAO.placeMainMod(vo);
+		detailResult = placeDAO.placeDetailMod(vo);
 		
+		if(mainResult==1&&detailResult==1){
+			result = 1;
+		}
+			
 		return result;
 	}
 
@@ -117,14 +106,8 @@ public class PlaceServiceImpl implements PlaceService{
 		
 		int result = 0;
 		
-		try {
+		result = placeDAO.PlaceDelAction(vo);
 			
-			result = placeDAO.PlaceDelAction(vo);
-			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
 		return result;
 	}
 
@@ -133,14 +116,8 @@ public class PlaceServiceImpl implements PlaceService{
 		
 		int result = 0;
 		
-		try {
+		result = placeDAO.PlaceSelectDelAction(vo);
 			
-			result = placeDAO.PlaceSelectDelAction(vo);
-			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
 		return result;
 	}
 
@@ -153,15 +130,9 @@ public class PlaceServiceImpl implements PlaceService{
 		
 		vo.setSys_dt(currentDate);
 		vo.setReg_status(Constants.RegStatus_Finish);
-		
-		try {
 			
-			result = placeDAO.placeRegFinishAction(vo);
+		result = placeDAO.placeRegFinishAction(vo);
 			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
 		return result;
 	}
 	
