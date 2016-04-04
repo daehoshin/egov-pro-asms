@@ -189,6 +189,7 @@ function jsPlaceSelectDel(){
     			<select name="pageUnit" class="form-control" onchange="jsPlaceListSearch()">
 					<option>20</option>
 					<option>40</option>
+					<option>60</option>
 					<option>80</option>
 					<option>100</option>
 				</select>
