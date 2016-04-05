@@ -17,6 +17,12 @@ import asms.common.login.service.LoginUserVO;
 import asms.sys.department.service.DeptService;
 import asms.sys.department.service.DeptVO;
 
+/**
+ * @PackageName asms.sys.department.web
+ * @FileName SysDepartmentListController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 4. 5.
+ */
 @Controller
 public class SysDepartmentListController {
 	

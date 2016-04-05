@@ -9,4 +9,5 @@
 	<typeAlias  alias="assetSequenceVO" type="asms.common.asset.service.AssetSequenceVO"/>
 	<typeAlias  alias="commonCodeVO" type="asms.common.code.service.CommonCodeVO"/>
 	<typeAlias  alias="deptVO" type="asms.sys.department.service.DeptVO"/>
+	<typeAlias  alias="deptMdVO" type="asms.common.dept.service.DeptMdVO"/>
 </sqlMap>

@@ -4,9 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
+import asms.common.Constants;
+import asms.common.asset.service.AssetSequenceVO;
 import asms.common.asset.service.impl.AssetSequenceDAO;
+import asms.common.util.DateUtils;
+import asms.reg.plc.service.PlaceVO;
 import asms.sys.department.service.DeptService;
 import asms.sys.department.service.DeptVO;
 
@@ -40,4 +45,14 @@ public class DeptServiceImpl implements DeptService{
 		return deptDAO.deptInfoSearch(vo);
 	}
 
+	@Override
+	public int deptAddAction(DeptVO vo) throws Exception {
+		
+		int result = 0;
+
+		result = deptDAO.deptAdd(vo);
+		
+		return result;
+	}
+	
 }

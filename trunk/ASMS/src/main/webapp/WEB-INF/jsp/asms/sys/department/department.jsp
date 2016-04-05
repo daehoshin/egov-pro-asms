@@ -194,6 +194,17 @@ function jsCloseView(){
 				                    <div class="col-sm-3"><asms:cdSelect name="use_flag" codeType="DEP01" use="true" optionHead="- 전체 -"/></div>
 								</div>
 							</div>
+							<div class="ibox-content">
+				                <div class="form-group">
+				                	<label class="col-sm-1 control-label" for="detp_find">부서찾기</label>
+				                    <div class="col-sm-3">
+				                    	<div class="input-group m-b">
+				                    		<input type="text" class="form-control" id="dept_find_nm" name="dept_find_nm" readonly="readonly"> <span class="input-group-addon" onclick="jsDetpMdSearch('deptSendForm','detp_find_id','dept_find_nm')"><span class="fa fa-sun-o"></span></span>
+				                    		<input type="hidden" name="detp_find_id" id="detp_find_id">
+				                    	</div>
+				                    </div>
+								</div>
+							</div>
 				   		</div>
 				   	</div>
 				</div>
