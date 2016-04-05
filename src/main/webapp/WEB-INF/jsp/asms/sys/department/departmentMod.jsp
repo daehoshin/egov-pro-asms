@@ -1,10 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="asms" uri="/WEB-INF/tlds/asms.tld" %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#saveBtn").bind("click",function(){
+		$("#deptModForm").attr("action","<c:url value='/sys/department/deptModAction.do'/>").submit();
+	});
+
+	$('#deptModForm').validate({
+	    rules: {
+	    	dept_nm			: { required: true },
+	    	start_dt		: { required: true },
+	    	endt_dt			: { required: true },
+	    	use_flag		: { requiredByUseFlag: true }
+	    },
+	    messages: {
+	    	dept_nm			: { required: "부서명을 입력하세요." },
+	    	start_dt		: { required: "시작일자를 선택하세요." },
+	    	end_dt			: { required: "종료일자를 선택하세요." },
+	    	use_flag		: { requiredByUseFlag: "사용여부를 선택하세요." }
+	    },
+	    submitHandler: function () {
+	    	jsDeptModAction();
+	    }
+	});
+	
+});
+
+//부서 수정
+function jsDeptModAction()
+{
+		
+	var modForm = $("form[name=deptModForm]").serialize();
+
+	$.ajax({
+		type : "post",
+		url  : "/sys/department/deptModAction.do",
+		data : modForm,
+		dataType : "json",
+		success:function(ajaxResult){
+			
+			jsDeptListSearch(1);
+			
+		}, error: function(xhr,status,error){
+			 
+		}
+	});
+}
+
+</script>
+
 <form id="deptModForm" name="deptModForm" class="form-horizontal" method="post">
-<input type="hidden" name="pageIndex" value="1">
-<input type="hidden" name="orderColumn" value="">
-<input type="hidden" name="orderType" value="">
     <div class="row">
     	<div class="ibox float-e-margins">
     		<div class="ibox-title">

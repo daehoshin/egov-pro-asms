@@ -14,4 +14,5 @@ public interface DeptService {
 	List deptListSearch(DeptVO vo) throws Exception;
 	int deptListTotCntSearch(DeptVO vo) throws Exception;
 	DeptVO deptInfoSearch(DeptVO vo) throws Exception;
+	int deptAddAction(DeptVO vo) throws Exception;
 }

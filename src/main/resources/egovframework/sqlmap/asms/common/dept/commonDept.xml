@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="commonDept">
+	
+	<select id="deptMdListSearch" parameterClass="deptMdVO" resultClass="deptMdVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT /* common.deptMdListSearch */ 
+			  DEPT_ID
+			, DEPT_UPPER_ID
+			, DEPT_NM
+			, DEPT_CD
+			, DEPT_LEVEL
+			, DEPT_SNO
+			, START_DT
+			, ENDT_DT
+			, USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'DEP01' AND C.CODE_CD = USE_FLAG) AS USE_FLAG_CM
+			, REG_ID
+			, REG_NM
+			, REG_DT
+			, SYS_ID
+			, SYS_NM
+			, SYS_DT
+		FROM TB_DEPARTMENT
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="dept_nm">
+		 		DEPT_NM LIKE '%$dept_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_nm">
+		 		REG_NM LIKE '%$reg_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+
+	<select id="deptMdListTotCntSearch" parameterClass="deptMdVO" resultClass="Integer">
+		SELECT /* common.deptMdListTotCntSearch */ 
+		COUNT(*) totCnt
+		FROM TB_DEPARTMENT
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="dept_nm">
+		 		DEPT_NM LIKE '%$dept_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_nm">
+		 		REG_NM LIKE '%$reg_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+	</select>
+	
+</sqlMap>

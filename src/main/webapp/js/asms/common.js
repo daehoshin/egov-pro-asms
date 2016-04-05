@@ -76,5 +76,24 @@ function jsInitialize(){
 			$(".mdChildCheckBox").prop("checked",false);
 		}
 	});
+	
+}
+
+// 부서조회 모달
+function jsDetpMdSearch(targetForm,targetId,targetNm){
+	$.ajax({
+		type : "post",
+		url  : "/common/dept/deptMdSearch.do",
+		data : {targetForm:targetForm, targetId:targetId, targetNm:targetNm},
+		dataType : "html",
+		success:function(ajaxResult){
+
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
+		  
+		}, error: function(xhr,status,error){
+			 
+		}
+	});	
 }
 

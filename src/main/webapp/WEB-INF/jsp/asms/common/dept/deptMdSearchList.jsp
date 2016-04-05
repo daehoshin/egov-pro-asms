@@ -7,9 +7,9 @@
 <script type="text/javascript">
 
 //정렬
-function jsDeptListSort(orderColumnValue){
+function jsDeptMdListSort(orderColumnValue){
 	
-	var frm = $("form[name='deptSendForm']");
+	var frm = $("form[name='deptMdSendForm']");
 	var orderColumn = frm.find("input[name='orderColumn']");
 	var orderType = frm.find("input[name='orderType']");
 	
@@ -23,20 +23,26 @@ function jsDeptListSort(orderColumnValue){
 		orderType.val("DESC");
 	}
 	orderColumn.val(orderColumnValue);
-	jsDeptListSearch(1);
+	jsDeptMdListSearch(1);
 }
 
+//선택된 값 타겟에 넣어줌
+function jsTargetInsert(dept_id, dept_nm, targetForm, targetId, targetNm){
+	$("#"+targetForm).find("#"+targetId).val(dept_id);
+	$("#"+targetForm).find("#"+targetNm).val(dept_nm); 
+	jsDeptMdClose();
+}
 </script>
 
-<form id="deptListForm" name="deptListForm" method="post">
+<form id="deptMdListForm" name="deptMdListForm" method="post">
 <input type="hidden" name="listCnt" value="${paginationInfo.totalRecordCount }">
-<input type="hidden" name="orderColumn" value="<c:out value="${deptVO.orderColumn}"/>">
-<input type="hidden" name="orderType" value="<c:out value="${deptVO.orderType}"/>">
+<input type="hidden" name="orderColumn" value="<c:out value="${deptMdVO.orderColumn}"/>">
+<input type="hidden" name="orderType" value="<c:out value="${deptMdVO.orderType}"/>">
 <div class="row">
 	 <div class="col-lg-12">
 		<!-- 페이지 Start -->
 		<div class="btn-group">
-			<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="jsDeptListSearch" />
+			<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="jsDeptMdListSearch" />
 			<form:hidden path="pageIndex" />
 		</div>
 		<!-- 페이지 End -->
@@ -53,31 +59,29 @@ function jsDeptListSort(orderColumnValue){
 		           <table class="table table-striped table-bordered table-hover" >
 		            <thead>
 			            <tr>
-			                <th class="widthP5 textCenter"><input type="checkbox" class="parentCheckBox"></th>
 			                <th class="widthP30 textCenter"><a href="javascript:jsPlaceListSort('DEPT_CD');">부서코드</a>
-			                ${deptVO.orderColumn eq "DEPT_CD" ? deptVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                ${deptMdVO.orderColumn eq "DEPT_CD" ? deptMdVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
 			                <th class="widthP35 textCenter"><a href="javascript:jsPlaceListSort('DEPT_NM');">부서명</a>
-			                ${deptVO.orderColumn eq "DEPT_NM" ? deptVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                ${deptMdVO.orderColumn eq "DEPT_NM" ? deptMdVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
 			                <th class="widthP30 textCenter"><a href="javascript:jsPlaceListSort('USE_FLAG');">사용여부</a>
-			                ${deptVO.orderColumn eq "USE_FLAG" ? deptVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                ${deptMdVO.orderColumn eq "USE_FLAG" ? deptMdVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
 			            </tr>
 		            </thead>
 		            <tbody>
 		            	<c:choose>
-		            		<c:when test="${empty SysDeptList }">
+		            		<c:when test="${empty deptMdList }">
 						            <tr>
 						            	<td colspan="4" class="text-center">조회된 목록이 없습니다.</td>
 						            </tr>	            		
 		            		</c:when>
 		            		<c:otherwise>
-		            			<c:forEach var="result" items="${SysDeptList}" varStatus="status">
+		            			<c:forEach var="result" items="${deptMdList}" varStatus="status">
 						            <tr>
-						                <td class="textCenter"><input type="checkbox" class="childCheckBox" name="dept_id" value="${result.dept_id }"></td>
 						                <td class="textCenter">${result.dept_cd }</td>
-						                <td class="textLeft blueText"><a href="javascript:;" onclick="jsDeptViewForm('${result.dept_id}')">${result.dept_nm }</a></td>
+						                <td class="textLeft blueText"><a href="javascript:;" ondblclick="jsTargetInsert('${result.dept_id}','${result.dept_nm}','${deptMdVO.targetForm }','${deptMdVO.targetId }','${deptMdVO.targetNm }')">${result.dept_nm }</a></td>
 						                <td class="textLeft">${result.use_flag_cm }</td>
 						            </tr>
 					            </c:forEach>

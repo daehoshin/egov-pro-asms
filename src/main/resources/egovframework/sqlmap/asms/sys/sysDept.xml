@@ -59,32 +59,42 @@
 		 </dynamic>
 	</select>
 	
-	<!-- <insert id="placeMainAdd" parameterClass="deptVO">
-		INSERT /* reg.placeMainAdd */
-		INTO TB_PLCMAIN (
-						  PLC_ID
-						, PLC_MNG_NO
-						, REG_STATUS
-						, REG_ID
-						, REG_NM
-						, REG_DT
-						, SYS_ID
-						, SYS_NM
-						, SYS_DT
+	<insert id="deptAdd" parameterClass="deptVO">
+		<!-- INSERT /* sys.deptAdd */
+		INTO TB_DEPARTMENT (
+						    DEPT_UPPER_ID
+						  , DEPT_NM
+						  , DEPT_CD
+						  , DEPT_LEVEL
+						  , DEPT_SNO
+						  , START_DT
+						  , ENDT_DT
+						  , USE_FLAG
+						  , REG_ID
+						  , REG_NM
+						  , REG_DT
+						  , SYS_ID
+						  , SYS_NM
+						  , SYS_DT
 						)
 				VALUES (
-						  #plc_id#
-						, #plc_mng_no#
-						, #reg_status#
-						, #reg_id#
-						, #reg_nm#
-						, #reg_dt#
-						, #sys_id#
-						, #sys_nm#
-						, #sys_dt#
-				)
+						    #dept_upper_id#
+						  , #dept_nm#
+						  , #dept_cd#
+						  , #dept_level#
+						  , #dept_sno#
+						  , #start_dt#
+						  , #endt_dt#
+						  , #use_flag#
+						  , #reg_id#
+						  , #reg_nm#
+						  , #reg_dt#
+						  , #sys_id#
+						  , #sys_nm#
+						  , #sys_dt#
+				) -->
 	</insert>
-	
+	<!-- <
 	<insert id="placeDetailAdd" parameterClass="deptVO">
 		INSERT /* reg.placeDetailAdd */
 		INTO TB_PLCDETAIL (
