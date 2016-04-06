@@ -69,14 +69,6 @@ function jsDeptMdClose() {
 			<input type="hidden" name="targetForm" value="${targetForm }">
 			<input type="hidden" name="targetId" value="${targetId }">
 			<input type="hidden" name="targetNm" value="${targetNm }">
-			   	<div class="row">
-			   		<div class="col-md-12 marginB5">
-			   			<div class="pull-right">
-        					<a href="javascript:;" onclick="jsDeptMdSelect()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 선택</a>
-			        		<a href="javascript:;" onclick="jsDeptMdClose()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 닫기</a>
-				        </div>
-			   		</div>
-			    </div>
 			    <div class="row">
 			    	<div class="col-md-10">
 			    		<div class="pull-left">
@@ -124,6 +116,9 @@ function jsDeptMdClose() {
 		   	<div id="departmentMdList">
 		 	<!-- departmentMdList -->
 		   	</div>		
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" onclick="jsDeptMdClose()">닫기</button>
         </div>
     </div>
 </div>
