@@ -200,7 +200,7 @@ function jsPlaceSelectDel(){
 					<div class="ibox-title">
 						<div class="row">
 							<div class="col-md-8">
-								<span>장소 검색</span>	
+								<span>반출서 검색</span>	
 							</div>
 							<div class="col-md-4">
 								<div class="pull-right">
