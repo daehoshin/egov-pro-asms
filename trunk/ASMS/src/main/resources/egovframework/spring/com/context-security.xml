@@ -40,7 +40,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 	      FROM TB_MPMAIN A JOIN TB_MPDETAIL B
 	      ON A.MP_ID = B.MP_ID 
 	      WHERE UPPER(B.LOGIN_USER_ID) = UPPER(?)
-	      AND USE_FLAG ='0'" 
+	      AND USE_FLAG ='01'" 
 	   authorities-by-username-query="
 	      SELECT MP_ID, AUTHORITY FROM TB_MPMAIN WHERE MP_ID=?" 
 	 />
