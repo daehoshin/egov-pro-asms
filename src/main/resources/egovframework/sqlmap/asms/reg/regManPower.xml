@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="regManPower">
+	
+	<select id="manPowerListSearch" parameterClass="manPowerVO" resultClass="manPowerVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT /* reg.manPowerListSearch */ 
+				  A.MP_ID
+				, A.MP_MNG_NO
+				, A.USER_AUTH_CD
+				, A.MENU_GRP_ID
+				, A.USE_FLAG
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP01' AND C.CODE_CD = A.USE_FLAG) AS USE_FLAG_CM
+				, A.ENABLED
+				, A.AUTHORITY
+				, A.REG_ID
+				, A.REG_NM
+				, A.REG_DT
+				, A.SYS_ID
+				, A.SYS_NM
+				, A.SYS_DT
+				, B.MP_NM
+				, B.MP_CD
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP02' AND C.CODE_CD = B.MP_CD) AS MP_CD_CM
+				, B.LOGIN_USER_ID
+				, B.USER_PWD
+				, B.JOIN_DT
+				, B.RETIRE_DT
+				, B.DEPT_NM
+				, B.POSITION
+				, B.EMP_CD
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP03' AND C.CODE_CD = B.EMP_CD) AS EMP_CD_CM
+				, B.JOIN_CD
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP04' AND C.CODE_CD = B.JOIN_CD) AS JOIN_CD_CM
+				, B.BIRTH_DT
+				, B.ADDR
+				, B.ADDR_DETAIL
+				, CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
+				, B.EMAIL
+				, B.TEL_NO
+		FROM TB_MPMAIN A JOIN TB_MPDETAIL B
+		ON   A.MP_ID = B.MP_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="mp_mng_no">
+		 		A.MP_MNG_NO LIKE '%$mp_mng_no$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="dept_nm">
+		 		B.DEPT_NM LIKE '%$dept_nm$%'
+		 	</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mp_nm">
+		 		B.MP_NM LIKE '%$mp_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="join_dt">
+		 		B.JOIN_DT LIKE '%$join_dt$%'
+		 	</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mp_cd">
+		 		B.MP_CD LIKE '%$mp_cd$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="join_cd">
+		 		B.JOIN_CD LIKE '%$join_cd$%'
+		 	</isNotEmpty>
+			<isNotEmpty prepend="AND" property="emp_cd">
+		 		B.EMP_CD LIKE '%$emp_cd$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="use_flag">
+		 		A.USE_FLAG LIKE '%$use_flag$%'
+		 	</isNotEmpty>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+
+	<select id="manPowerListTotCntSearch" parameterClass="manPowerVO" resultClass="Integer">
+		SELECT /* reg.manPowerListTotCntSearch */ 
+		COUNT(*) totCnt
+		FROM TB_MPMAIN A JOIN TB_MPDETAIL B
+		ON   A.MP_ID = B.MP_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="mp_mng_no">
+		 		A.MP_MNG_NO LIKE '%$mp_mng_no$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="dept_nm">
+		 		B.DEPT_NM LIKE '%$dept_nm$%'
+		 	</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mp_nm">
+		 		B.MP_NM LIKE '%$mp_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="join_dt">
+		 		B.JOIN_DT LIKE '%$join_dt$%'
+		 	</isNotEmpty>
+			<isNotEmpty prepend="AND" property="mp_cd">
+		 		B.MP_CD LIKE '%$mp_cd$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="join_cd">
+		 		B.JOIN_CD LIKE '%$join_cd$%'
+		 	</isNotEmpty>
+			<isNotEmpty prepend="AND" property="emp_cd">
+		 		B.EMP_CD LIKE '%$emp_cd$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="use_flag">
+		 		A.USE_FLAG LIKE '%$use_flag$%'
+		 	</isNotEmpty>
+		 </dynamic>
+	</select>
+	
+	<select id="manPowerInfoSearch" parameterClass="manPowerVO" resultClass="manPowerVO">
+		SELECT /* reg.manPowerInfoSearch */ 
+				  A.MP_ID
+				, A.MP_MNG_NO
+				, A.USER_AUTH_CD
+				, A.MENU_GRP_ID
+				, A.USE_FLAG
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP01' AND C.CODE_CD = A.USE_FLAG) AS USE_FLAG_CM
+				, A.ENABLED
+				, A.AUTHORITY
+				, A.REG_ID
+				, A.REG_NM
+				, A.REG_DT
+				, A.SYS_ID
+				, A.SYS_NM
+				, A.SYS_DT
+				, B.MP_NM
+				, B.MP_CD
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP02' AND C.CODE_CD = B.MP_CD) AS MP_CD_CM
+				, B.LOGIN_USER_ID
+				, B.USER_PWD
+				, B.JOIN_DT
+				, B.RETIRE_DT
+				, B.DEPT_NM
+				, B.POSITION
+				, B.EMP_CD
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP03' AND C.CODE_CD = B.EMP_CD) AS EMP_CD_CM
+				, B.JOIN_CD
+				, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP04' AND C.CODE_CD = B.JOIN_CD) AS JOIN_CD_CM
+				, B.BIRTH_DT
+				, B.ADDR
+				, B.ADDR_DETAIL
+				, CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
+				, B.EMAIL
+				, B.TEL_NO
+		FROM TB_MPMAIN A JOIN TB_MPDETAIL B
+		ON   A.MP_ID = B.MP_ID
+		WHERE A.MP_ID = #mp_id#
+	</select>
+	
+	<update id="manPowerUseStartStopAction" parameterClass="manPowerVO">
+		UPDATE /* reg.manPowerUseStopAction */ TB_MPMAIN
+		SET USE_FLAG = #use_flag#
+		  , SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE MP_ID = #mp_id#  
+	</update>
+	
+	<update id="manPowerSelectUseStartAction" parameterClass="manPowerVO">
+		UPDATE /* reg.manPowerSelectUseStartAction */ TB_MPMAIN
+		SET USE_FLAG = #use_flag#
+		  , SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE MP_ID IN
+		<iterate property="mp_id_array" open="(" close=")" conjunction=",">
+	     	#mp_id_array[]#
+	    </iterate>	
+	</update>
+	
+	<update id="manPowerSelectUseStopAction" parameterClass="manPowerVO">
+		UPDATE /* reg.manPowerSelectUseStopAction */ TB_MPMAIN
+		SET USE_FLAG = #use_flag#
+		  , SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE MP_ID IN
+		<iterate property="mp_id_array" open="(" close=")" conjunction=",">
+	     	#mp_id_array[]#
+	    </iterate>	
+	</update>
+	
+</sqlMap>
