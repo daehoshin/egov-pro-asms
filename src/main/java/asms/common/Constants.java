@@ -20,4 +20,6 @@ public class Constants {
 	public static final String Administrator_Code = "1";
 	public static final String Manager_Code = "2";
 	public static final String General_User_Code = "3";
+	public static final String UserStatus_true = "01";
+	public static final String UserStatus_false = "02";
 }

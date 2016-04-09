@@ -11,7 +11,7 @@ import asms.common.paging.PagingVO;
 public class PlaceVO extends PagingVO{
 	
 	private String plc_id;			// 장소ID
-	private String[] plc_id_array;		// 장소ID 배열
+	private String[] plc_id_array;	// 장소ID 배열
 	private String plc_mng_no;		// 장소관리NO
 	private String reg_status;		// 등록구분
 	private String reg_status_cm;	// 등록구분코드값
