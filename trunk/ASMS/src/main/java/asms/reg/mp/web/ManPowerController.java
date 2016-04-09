@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Since 2016. 3. 25.
  */
 @Controller
-public class RegManPowerController {
+public class ManPowerController {
 	@RequestMapping("/reg/manpower/manpower.do")
 	public String RegManPower() throws Exception{
-		return "/reg/manpower/regManPower";
+		return "/reg/manpower/ManPower";
 	}
 }

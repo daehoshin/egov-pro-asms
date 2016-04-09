@@ -130,7 +130,7 @@ function jsPlaceSelectDel(){
 		} else {
 			var listForm = lf.serialize();
 			
-			if (confirm("기록물건을 삭제하시겠습니까?")) {
+			if (confirm("해당 장소를 삭제하시겠습니까?")) {
 				$.ajax({
 					type : "post",
 					url  : "/rgst/place/placeSelectDelRsnForm.do?executeUrl=/rgst/place/placeSelectDelAction.do",

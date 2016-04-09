@@ -28,7 +28,7 @@ function jsPlaceRegFinishAction(plc_id,reg_status){
 		alert("등록중인 장소만 등록완료 할 수 있습니다.");
 		return;
 	}
-	if (confirm("기록물건을 등록완료 처리하시겠습니까?")) {
+	if (confirm("해당 장소를 등록완료 처리하시겠습니까?")) {
 		$.ajax({
 			type : "post",
 			url  : "/rgst/place/placeRegFinishAction.do",
@@ -52,7 +52,7 @@ function jsPlaceDel(plc_id,reg_status) {
 		alert("이미 삭제 처리 된 장소입니다.");
 		return;
 	}
-	if (confirm("기록물건을 삭제하시겠습니까?")) {
+	if (confirm("해당 장소를 삭제하시겠습니까?")) {
 		$.ajax({
 			type : "post",
 			url  : "/rgst/place/placeDelRsnForm.do",
