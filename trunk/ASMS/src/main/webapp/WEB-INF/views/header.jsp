@@ -76,6 +76,13 @@
 	<script src="/js/asms/jquery.validate.js"></script>
 	<script src="/js/asms/jquery.tmpl.min.js"></script>
 	 
+	<!-- Date picker --> 
+    <link href="/bootstrap-theme/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <script src="/bootstrap-theme/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+
+   
+   
 </head>
 
 <body>

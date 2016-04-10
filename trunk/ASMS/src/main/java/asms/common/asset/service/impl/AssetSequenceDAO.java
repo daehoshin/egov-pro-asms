@@ -19,4 +19,7 @@ public class AssetSequenceDAO extends EgovAbstractDAO {
 		return (Integer) getSqlMapClientTemplate().insert("AssetSequenceInsertForSearch", assetSequenceVO);
     }
 	
+	public int exportSequenceInsertForSearch(AssetSequenceVO assetSequenceVO) throws Exception {
+		return (Integer) getSqlMapClientTemplate().insert("ExportSequenceInsertForSearch", assetSequenceVO);
+    }
 }
