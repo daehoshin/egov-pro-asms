@@ -79,7 +79,7 @@ function jsExportListSort(orderColumnValue){
 		            	<c:choose>
 		            		<c:when test="${empty exportList }">
 						            <tr>
-						            	<td colspan="6" class="text-center">조회된 목록이 없습니다.</td>
+						            	<td colspan="8" class="text-center">조회된 목록이 없습니다.</td>
 						            </tr>	            		
 		            		</c:when>
 		            		<c:otherwise>
