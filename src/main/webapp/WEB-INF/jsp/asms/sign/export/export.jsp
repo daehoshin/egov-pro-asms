@@ -5,20 +5,36 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	$("form[name=placeSendForm]").find('input, select').keypress(function(e) {
+	 $('#app_dt').datepicker({
+         keyboardNavigation: false,
+         forceParse: false,
+         autoclose: true,
+         format: "yy/mm/dd",
+         todayHighlight: true
+     });
+	 
+	$('#confirm_dt').datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        autoclose: true,
+        format: "yy/mm/dd",
+        todayHighlight: true
+    });
+	
+	$("form[name=exportSendForm]").find('input, select').keypress(function(e) {
 	    if (e.keyCode == 13){
-	   		jsPlaceListSearch(1);
+	    	jsExportListSearch(1);
 	    } 
 	});
 	
-	jsPlaceListSearch(1);
+	jsExportListSearch(1);
 	
 });
 
 // 장소 검색
-function jsPlaceListSearch(pageNo)
+function jsExportListSearch(pageNo)
 {
-	var sf = $("form[name=placeSendForm]");
+	var sf = $("form[name=exportSendForm]");
 	
 	if (pageNo >= 1){
 		sf.find("input[name='pageIndex']").val(pageNo);
@@ -28,16 +44,16 @@ function jsPlaceListSearch(pageNo)
 
 	$.ajax({
 		type : "post",
-		url  : "/rgst/place/placeListSearch.do",
+		url  : "/sign/export/exportListSearch.do",
 		data : sendForm,
 		dataType : "html",
 		success:function(ajaxResult){
 			
 			// 조회된 리스트 넣어줌
-			$('#regPlaceList').html(ajaxResult);
+			$('#exporteList').html(ajaxResult);
 			
 			// 전체 건수 넣어줌
-			var lf = $("form[name=placeListForm]");			
+			var lf = $("form[name=exportListForm]");			
 			sf.find("span[id=totalCnt]").html(lf.find("[name=listCnt]").val());
 			sf.find("input[name='orderColumn']").val(lf.find("input[name='orderColumn']").val());
 			sf.find("input[name='orderType']").val(lf.find("input[name='orderType']").val());
@@ -52,11 +68,11 @@ function jsPlaceListSearch(pageNo)
 }
 
 // 장소 등록화면
-function jsPlaceAddForm()
+function jsExportRegForm()
 {
 	$.ajax({
 		type : "post",
-		url  : "/rgst/place/placeAddForm.do",
+		url  : "/sign/export/exportRegForm.do",
 		dataType : "html",
 		success:function(ajaxResult){
 			
@@ -69,12 +85,12 @@ function jsPlaceAddForm()
 	});
 }
 
-// 장소 수정화면
-function jsPlaceModForm(plc_id)
+//반출서 수정화면
+function jsExportModForm(plc_id)
 {
-	$.ajax({
+	/* $.ajax({
 		type : "post",
-		url  : "/rgst/place/placeModForm.do",
+		url  : "/rgst/export/placeModForm.do",
 		data : {plc_id : plc_id},
 		dataType : "html",
 		success:function(ajaxResult){
@@ -85,13 +101,15 @@ function jsPlaceModForm(plc_id)
 		}, error: function(xhr,status,error){
 			 
 		}
-	});
-}
+	});*/
+	alert("jsExportModForm");
+ }
 
-// 장소 상세
-function jsPlaceViewForm(plc_id)
+// 반출신청서 상세
+function jsExportViewForm(plc_id)
 {
-	$.ajax({
+	alert("jsExportViewForm");
+	/*$.ajax({
 		type : "post",
 		url  : "/rgst/place/placeViewForm.do",
 		data : {plc_id : plc_id},
@@ -104,37 +122,38 @@ function jsPlaceViewForm(plc_id)
 		}, error: function(xhr,status,error){
 			 
 		}
-	});	
+	});*/	
 }
 
-function jsPlaceSelectDel(){
+function jsExportSelectDel(){
 	
-	var lf = $("form[name=placeListForm]");
-	var checkedCnt = lf.find("[name=plc_id]:checked").length;
-	var placeStatusCnt = 0;
+	var lf = $("form[name=exportListForm]");
+	var checkedCnt = lf.find("[name=app_id]:checked").length;
+	var exportStatusCnt = 0;
 	
 	// 선택된 것 중 삭제 된 장소 확인
-	lf.find("[name=plc_id]:checked").each(function(i){
-		if($(this).attr("checkVal")=="03"){
-			placeStatusCnt++;
+	lf.find("[name=app_id]:checked").each(function(i){
+		if($(this).attr("checkVal")=="02"){ //신청 처리가 된 반출 건
+			exportStatusCnt++;
 		}
 	});
 	
 	if(checkedCnt==0){
-		alert("삭제 할 장소를 선택하십시오.");
+		alert("삭제 할 반출서를 선택하십시오.");
 		return;
 	} else {
-		if(placeStatusCnt > 0){
-			alert("이미 삭제 된 장소가 포함되어 있습니다.\n체크를 해제하시고 다시 진행 해 주십시오.");
+		if(exportStatusCnt > 0){
+			alert("이미 신청 처리가 된 반출서가 포함되어있습니다.\n체크를 해제하시고 다시 진행 해 주십시오.");
 			return;
 		} else {
 			
 			var listForm = lf.serialize();
 			
-			if (confirm("기록물건을 삭제하시겠습니까?")) {
-				$.ajax({
+			if (confirm("선택 하신 반출서를 삭제하시겠습니까?")) {
+				alert("반출서 삭제!");
+				/* $.ajax({
 					type : "post",
-					url  : "/rgst/place/placeSelectDelRsnForm.do?executeUrl=/rgst/place/placeSelectDelAction.do",
+					url  : "/sign/export/placeSelectDelRsnForm.do?executeUrl=/rgst/place/placeSelectDelAction.do",
 					data : listForm,
 					dataType : "html",
 					success:function(ajaxResult){
@@ -143,7 +162,7 @@ function jsPlaceSelectDel(){
 						$('#myModal').modal('show');
 						
 					}
-				});
+				}); */
 			}	
 		}
 	}
@@ -153,7 +172,7 @@ function jsPlaceSelectDel(){
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2><i class="fa fa-building-o"></i> 장비반출</h2>
+        <h2><i class="fa fa-building-o"></i> 장비반출 목록</h2>
         <ol class="breadcrumb">
             <li>결재</li>
             <li class="active">
@@ -163,7 +182,7 @@ function jsPlaceSelectDel(){
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
-   	<form id="placeSendForm" name="placeSendForm" class="form-horizontal" method="post">
+   	<form id="exportSendForm" name="exportSendForm" class="form-horizontal" method="post">
    	<input type="hidden" name="pageIndex" value="1">
 	<input type="hidden" name="orderColumn" value="">
 	<input type="hidden" name="orderType" value="">
@@ -172,8 +191,8 @@ function jsPlaceSelectDel(){
 	   			<div class="pull-right">
 	   				<c:choose>
         				<c:when test="${loginUserVO.user_auth_cd eq 1 }">
-        					<a href="javascript:;" onclick="jsPlaceAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 반출서 작성</a>
-			        		<a href="javascript:;" onclick="jsPlaceSelectDel()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 일괄삭제</a>
+        					<a href="javascript:;" onclick="jsExportRegForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 반출서 작성</a>
+			        		<a href="javascript:;" onclick="jsExportSelectDel()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 일괄삭제</a>
         				</c:when>
         			</c:choose>
 		        </div>
@@ -186,7 +205,7 @@ function jsPlaceSelectDel(){
 	    		</div>
 	    	</div>
 	    	<div class="col-md-2">
-    			<select name="pageUnit" class="form-control" onchange="jsPlaceListSearch()">
+    			<select name="pageUnit" class="form-control" onchange="jsExportListSearch()">
 					<option>20</option>
 					<option>40</option>
 					<option>80</option>
@@ -204,42 +223,47 @@ function jsPlaceSelectDel(){
 							</div>
 							<div class="col-md-4">
 								<div class="pull-right">
-				                    <a href="javascript:;" onclick="jsSrchReset('placeSendForm','jsPlaceListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
-				                    <a href="javascript:;" onclick="jsPlaceListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
+				                    <a href="javascript:;" onclick="jsSrchReset('exportSendForm','jsExportListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
+				                    <a href="javascript:;" onclick="jsExportListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
 				               	</div>
 							</div>
 						</div>
 					</div>
 					<div class="ibox-content">
 		                <div class="form-group">
-		                	<label class="col-sm-1 control-label" for="plc_mng_no">관리번호</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_mng_no" id="plc_mng_no"></div>
-		                	<label class="col-sm-1 control-label" for="plc_nm">장소명</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="plc_nm" id="plc_nm"></div>
-		                	<label class="col-sm-1 control-label" for="full_addr">주소</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="full_addr" id="full_addr"></div>
-		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
-		                	<div class="col-sm-2">
-			                	<c:choose>
-			                		<c:when test="${loginUserVO.user_auth_cd eq 1 and loginUserVO.join_cd eq 02}">
-			                			<asms:cdSelect name="reg_status" codeType="PLC01" use="true" optionHead="- 전체 -"/>
-			                		</c:when>
-			                		<c:otherwise>
-			                			<asms:cdSelect name="reg_status" codeType="PLC01" excludingCode="03" use="true" optionHead="- 전체 -"/>
-			                		</c:otherwise>
-			                	</c:choose>
-		                	</div>
-		                	<label class="col-sm-1 control-label" for="reg_stauts">등록상태</label>
-		                	<div class="col-sm-2">
-		                		<asms:cdCheckbox name="test" codeType="EQU03"  use="true" defaultCode="01"/>
-							</div>
+		                	<label class="col-sm-1 control-label" for="app_no">관리번호</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="app_no" id="app_no"></div>
+		                	<label class="col-sm-1 control-label" for="app_nm">신청서명</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="app_nm" id="app_nm"></div>
+		                	<label class="col-sm-1 control-label" for="app_hm_id">신청자</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="app_hm_id" id="app_hm_id"></div>
+		                    <label class="col-sm-1 control-label" for="confirmor_id">확인자</label>
+		                    <div class="col-sm-2"><input type="text" class="form-control" name="confirmor_id" id="confirmor_id"></div>
+		                    <label class="col-sm-1 control-label" for="datepicker">신청일자</label>
+		                    <div class="col-sm-2">
+		                    	<div class="input-daterange input-group" id=app_dt>
+                                    <input type="text" class="input-sm form-control" name="app_dt_st"/>
+                                    <span class="input-group-addon">~</span>
+                                    <input type="text" class="input-sm form-control" name="app_dt_ed"/>
+                                </div>
+		                    </div>
+		                    <label class="col-sm-1 control-label" for="confirm_dt">처리일자</label>
+		                    <div class="col-sm-2">
+		                    	<div class="input-daterange input-group" id="confirm_dt">
+                                    <input type="text" class="input-sm form-control" name="confirm_dt_st"/>
+                                    <span class="input-group-addon">~</span>
+                                    <input type="text" class="input-sm form-control" name="confirm_dt_ed"/>
+                                </div>
+		                    </div>
+ 		                    <label class="col-sm-1 control-label" for="app_cd">신청서상태</label>
+		                	<div class="col-sm-2"><asms:cdSelect name="app_cd" codeType="EXP01" use="true" optionHead="- 전체 -"/></div>
 		                </div>
 					</div>
 				</div>
 	   		</div>
 	   	</div>
    	</form>
-   	<div id="regPlaceList">
- 	<!-- regPlaceList -->
+   	<div id="exporteList">
+ 	<!-- exportList -->
    	</div>
 </div>

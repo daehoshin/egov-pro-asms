@@ -12,4 +12,13 @@
 	   </selectKey>
 	</insert>
 	
+	<insert id="ExportSequenceInsertForSearch" parameterClass="assetSequenceVO">
+		INSERT /* common.AssetSequenceInsertForSearch */
+	    INTO SEQ_ASEXPORTAPP(SEQ_DT)
+	    VALUES(#seq_dt#) 
+	   <selectKey keyProperty="seq_id" resultClass="Integer">
+	        SELECT LAST_INSERT_ID()
+	   </selectKey>
+	</insert>
+	
 </sqlMap>

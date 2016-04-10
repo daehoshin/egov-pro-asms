@@ -3,16 +3,18 @@ package asms.sign.export.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import asms.sign.export.service.ExportVO;
+
 /**
  * @PackageName asms.sign.export.web
- * @FileName SignExportController.java
+ * @FileName ExportController.java
  * @Author Jinho Jung
  * @Since 2016. 4. 03.
  */
 @Controller
-public class SignExportController {
+public class ExportController {
 	@RequestMapping("/sign/export/export.do")
-	public String RegManPower() throws Exception{
+	public String export() throws Exception{
 		return "/sign/export/export";
 	}
 }

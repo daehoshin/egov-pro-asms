@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="export">
+	<!-- 반출서 등록 -->
+	<insert id="exportAdd" parameterClass="exportVO">
+		INSERT
+		INTO TB_ASEXPORTAPP (
+						 APP_ID
+						,APP_NO
+						,APP_NM
+						,APP_HM_ID
+						,CONFIRMOR_ID
+						,APP_CD
+						,APP_DT
+						,CONFIRM_DT
+						,REG_ID
+						,REG_NM
+						,REG_DT
+						,SYS_ID
+						,SYS_NM
+						,SYS_DT
+						)
+				VALUES (
+						  #app_id#
+						, #app_no#
+						, #app_nm#
+						, #app_hm_id#
+						, #confirmor_id#
+						, #app_cd#
+						, #app_dt#
+						, #confirm_dt#
+						, #reg_id#
+						, #reg_nm#
+						, #reg_dt#
+						, #sys_id#
+						, #sys_nm#
+						, #sys_dt#
+				)
+	</insert>
+	
+	<!-- 반출서 리스트 조회 -->
+	<select id="exportListSearch" parameterClass="exportSearchVO" resultClass="exportVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT 
+		     A.APP_ID
+			,A.APP_NO
+			,A.APP_NM
+			,A.APP_HM_ID
+			,A.CONFIRMOR_ID
+			,A.APP_CD
+			,(SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EXP01' AND C.CODE_CD = A.APP_CD) AS APP_CD_NM
+			,DATE_FORMAT(STR_TO_DATE(A.APP_DT,'%Y%m%d%H%i%s'),'%Y/%m/%d') APP_DT
+			,DATE_FORMAT(STR_TO_DATE(A.CONFIRM_DT,'%Y%m%d%H%i%s'),'%Y/%m/%d') CONFIRM_DT
+			,A.REG_ID
+			,A.REG_NM
+			,DATE_FORMAT(STR_TO_DATE(A.REG_DT,'%Y%m%d%H%i%s'),'%Y/%m/%d') REG_DT
+			,A.SYS_ID
+			,A.SYS_NM
+			,A.SYS_DT
+		FROM TB_ASEXPORTAPP  A
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="app_no">
+		 		A.APP_NO LIKE '%$app_no$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="app_nm">
+		 		A.APP_NM LIKE '%$app_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="app_hm_id">
+		 		A.APP_HM_ID = #app_hm_id#
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="confirmor_id">
+		 		A.CONFIRMOR_ID = #confirmor_id#
+		 	</isNotEmpty>
+		 	<isNotEmpty property="app_dt_st">
+		 		<isNotEmpty prepend="AND" property="app_dt_ed">
+		 		STR_TO_DATE(A.APP_DT,'%Y%m%d%H%i%s') BETWEEN STR_TO_DATE(#app_dt_st#,'%Y/%m/%d') AND STR_TO_DATE(#app_dt_ed#,'%Y/%m/%d')
+		 		</isNotEmpty>
+		 	</isNotEmpty>
+		 	<isNotEmpty property="confirm_dt_st">
+		 		<isNotEmpty prepend="AND" property="confirm_dt_ed">
+		 		STR_TO_DATE(A.CONFIRM_DT,'%Y%m%d%H%i%s') BETWEEN STR_TO_DATE(#confirm_dt_st#,'%Y/%m/%d') AND STR_TO_DATE(#confirm_dt_ed#,'%Y/%m/%d')
+		 		</isNotEmpty>
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="app_cd">
+		 		A.APP_CD = #app_cd#
+		 	</isNotEmpty>
+		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="2">
+		 		A.REG_ID = #reg_id#
+		 	</isEqual>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+	
+	<!-- 반출서 리스트 토탈 카운트 -->
+	<select id="exportListTotCntSearch" parameterClass="exportSearchVO" resultClass="Integer">
+		SELECT 
+		    COUNT(*)
+		FROM TB_ASEXPORTAPP  A
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="app_no">
+		 		A.APP_NO LIKE '%$app_no$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="app_nm">
+		 		A.APP_NM LIKE '%$app_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="app_hm_id">
+		 		A.APP_HM_ID = #app_hm_id#
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="confirmor_id">
+		 		A.CONFIRMOR_ID = #confirmor_id#
+		 	</isNotEmpty>
+		 	<isNotEmpty property="app_dt_st">
+		 		<isNotEmpty prepend="AND" property="app_dt_ed">
+		 		STR_TO_DATE(A.APP_DT,'%Y%m%d%H%i%s') BETWEEN STR_TO_DATE(#app_dt_st#,'%Y/%m/%d') AND STR_TO_DATE(#app_dt_ed#,'%Y/%m/%d')
+		 		</isNotEmpty>
+		 	</isNotEmpty>
+		 	<isNotEmpty property="confirm_dt_st">
+		 		<isNotEmpty prepend="AND" property="confirm_dt_ed">
+		 		STR_TO_DATE(A.CONFIRM_DT,'%Y%m%d%H%i%s') BETWEEN STR_TO_DATE(#confirm_dt_st#,'%Y/%m/%d') AND STR_TO_DATE(#confirm_dt_ed#,'%Y/%m/%d')
+		 		</isNotEmpty>
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="app_cd">
+		 		A.APP_CD = #app_cd#
+		 	</isNotEmpty>
+		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="2">
+		 		A.REG_ID = #reg_id#
+		 	</isEqual>
+		 </dynamic>
+	</select>
+	
+</sqlMap>
