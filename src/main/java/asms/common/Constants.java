@@ -22,4 +22,5 @@ public class Constants {
 	public static final String General_User_Code = "3";
 	public static final String UserStatus_true = "01";
 	public static final String UserStatus_false = "02";
+	public static final String Export_MngNo_Code = "EX";
 }
