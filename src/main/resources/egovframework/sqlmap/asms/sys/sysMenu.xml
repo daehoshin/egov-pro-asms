@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sysMenu">
+	
+	<select id="menuListSearch" parameterClass="sysDeptVO" resultClass="sysDeptVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT /* sys.menuListSearch */ 
+			  MENU_GRP_ID
+			, MENU_GRP_NM
+			, USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MEN01' AND C.CODE_CD = USE_FLAG) AS USE_FLAG_CM
+		FROM TB_MENUGRP
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="menu_grp_id">
+		 		MENU_GRP_ID LIKE '%$menu_grp_id$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="menu_grp_nm">
+		 		MENU_GRP_NM LIKE '%$menu_grp_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+
+	<select id="menuListTotCntSearch" parameterClass="sysDeptVO" resultClass="Integer">
+		SELECT /* sys.menuListTotCntSearch */ 
+		COUNT(*) totCnt
+		FROM TB_MENUGRP
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="menu_grp_id">
+		 		MENU_GRP_ID LIKE '%$menu_grp_id$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="menu_grp_nm">
+		 		MENU_GRP_NM LIKE '%$menu_grp_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+	</select>
+	
+	<insert id="menuAdd" parameterClass="sysDeptVO">
+		INSERT /* sys.menuAdd */
+		INTO TB_MENUGRP (
+						    MENU_GRP_ID
+						  , MENU_GRP_NM
+						  , USE_FLAG
+						)
+				VALUES (
+						    (select LPAD(ifnull(MAX(A.MENU_GRP_ID),0)+1,10,'0') from TB_MENUGRP A)
+						  , #menu_grp_nm#
+						  , #use_flag#
+				) 
+	</insert>
+	<!-- 
+	<insert id="placeDetailAdd" parameterClass="deptVO">
+		INSERT /* reg.placeDetailAdd */
+		INTO TB_PLCDETAIL (
+						  PLC_ID
+						, PLC_NM
+						, ADDR
+						, ADDR_DETAIL
+						)
+				VALUES (
+						  #plc_id#
+						, #plc_nm#
+						, #addr#
+						, #addr_detail#
+				)
+	</insert>
+	-->
+	<!-- 
+	<select id="deptInfoSearch" parameterClass="deptVO" resultClass="deptVO">
+		SELECT /* sys.deptInfoSearch */
+			  DEPT_ID
+			, DEPT_UPPER_ID
+			, DEPT_NM
+			, DEPT_CD
+			, DEPT_LEVEL
+			, DEPT_SNO
+			, START_DT
+			, ENDT_DT
+			, USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'DEP01' AND C.CODE_CD = USE_FLAG) AS USE_FLAG_CM
+			, REG_ID
+			, REG_NM
+			, REG_DT
+			, SYS_ID
+			, SYS_NM
+			, SYS_DT 
+		FROM TB_DEPARTMENT
+		WHERE DEPT_ID = #dept_id#
+	</select>
+	
+	<update id="placeMainMod" parameterClass="deptVO">
+		UPDATE /* reg.placeMainMod */ TB_PLCMAIN
+		SET SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #plc_id#
+	</update>
+
+	<update id="placeDetailMod" parameterClass="deptVO">
+		UPDATE /* reg.placeDetailMod */ TB_PLCDETAIL
+		SET PLC_NM = #plc_nm#
+		  , ADDR = #addr#
+		  , ADDR_DETAIL = #addr_detail#
+		WHERE PLC_ID = #plc_id#
+	</update>
+	
+	<update id="placeRegFinishAction" parameterClass="deptVO">
+		UPDATE /* reg.placeRegFinishAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #plc_id#  
+	</update>
+	
+	<select id="placeBaseInfoSearch" parameterClass="deptVO" resultClass="deptVO">
+		SELECT /* reg.placeBaseInfoSearch */ 
+		     PLC_ID
+		   , PLC_NM
+		FROM TB_PLCDETAIL
+		WHERE PLC_ID = #plc_id#
+	</select>
+	
+	<update id="PlaceDelAction" parameterClass="deptVO">
+		UPDATE /* reg.PlaceDelAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID = #plc_id#
+	</update>
+
+	<update id="PlaceSelectDelAction" parameterClass="deptVO">
+		UPDATE /* reg.PlaceDelAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID IN
+		<iterate property="plc_id_array" open="(" close=")" conjunction=",">
+	     	#plc_id_array[]#
+	    </iterate>	
+	</update> -->
+	
+</sqlMap>
