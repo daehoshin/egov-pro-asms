@@ -11,6 +11,12 @@ import asms.sys.department.service.impl.DeptDAO;
 import asms.sys.menu.service.MenuService;
 import asms.sys.menu.service.MenuVO;
 
+/**
+ * @PackageName asms.sys.menu.service.impl
+ * @FileName MenuServiceImpl.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 4. 13.
+ */
 @Service("MenuService")
 public class MenuServiceImpl implements MenuService{
 	@Resource(name="MenuDAO")
@@ -34,6 +40,11 @@ public class MenuServiceImpl implements MenuService{
 		result = menuDAO.menuAdd(vo);
 		
 		return result;
+	}
+	
+	@Override
+	public MenuVO menuInfoSearch(MenuVO vo) throws Exception {
+		return menuDAO.menuInfoSearch(vo);
 	}
 	
 }

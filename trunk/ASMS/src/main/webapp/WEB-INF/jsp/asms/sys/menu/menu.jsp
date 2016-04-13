@@ -90,6 +90,8 @@ function jsMenuAddForm()
 	});
 }
 
+ */
+
 //메뉴 수정화면
 function jsDeptModForm(menu_id)
 {
@@ -100,9 +102,8 @@ function jsDeptModForm(menu_id)
 		dataType : "html",
 		success:function(ajaxResult){
 			
-			$('#mainSection').addClass('col-md-8');
-			$('#subSection').addClass('col-md-4');
-			$('#subSection').html(ajaxResult);
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
 		  
 			jsInitialize();
 			
@@ -111,20 +112,19 @@ function jsDeptModForm(menu_id)
 		}
 	});
 }
-
-// 메뉴 상세
-function jsDeptViewForm(menu_id){
+ 
+//메뉴 상세
+function jsMenuViewForm(menu_grp_id){
 
 	$.ajax({
 		type : "post",
 		url  : "/sys/menu/menuViewForm.do",
-		data : {menu_id : menu_id},
+		data : {menu_grp_id : menu_grp_id},
 		dataType : "html",
 		success:function(ajaxResult){
 
-			$('#mainSection').addClass('col-md-8');
-			$('#subSection').addClass('col-md-4');
-			$('#subSection').html(ajaxResult);
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
 		  
 		}, error: function(xhr,status,error){
 			 
@@ -134,10 +134,9 @@ function jsDeptViewForm(menu_id){
 }
 
 function jsCloseView(){
-	$('#mainSection').removeClass('col-md-8');
-	$('#subSection').removeClass('col-md-4');
+	$('#myModal').modal('hide');
 }
- */
+
 </script>
 
 <div class="row wrapper border-bottom white-bg page-heading">

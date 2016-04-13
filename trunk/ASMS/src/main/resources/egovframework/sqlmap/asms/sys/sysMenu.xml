@@ -60,46 +60,17 @@
 						  , #use_flag#
 				) 
 	</insert>
-	<!-- 
-	<insert id="placeDetailAdd" parameterClass="deptVO">
-		INSERT /* reg.placeDetailAdd */
-		INTO TB_PLCDETAIL (
-						  PLC_ID
-						, PLC_NM
-						, ADDR
-						, ADDR_DETAIL
-						)
-				VALUES (
-						  #plc_id#
-						, #plc_nm#
-						, #addr#
-						, #addr_detail#
-				)
-	</insert>
-	-->
-	<!-- 
-	<select id="deptInfoSearch" parameterClass="deptVO" resultClass="deptVO">
-		SELECT /* sys.deptInfoSearch */
-			  DEPT_ID
-			, DEPT_UPPER_ID
-			, DEPT_NM
-			, DEPT_CD
-			, DEPT_LEVEL
-			, DEPT_SNO
-			, START_DT
-			, ENDT_DT
-			, USE_FLAG
-			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'DEP01' AND C.CODE_CD = USE_FLAG) AS USE_FLAG_CM
-			, REG_ID
-			, REG_NM
-			, REG_DT
-			, SYS_ID
-			, SYS_NM
-			, SYS_DT 
-		FROM TB_DEPARTMENT
-		WHERE DEPT_ID = #dept_id#
-	</select>
 	
+	<select id="menuInfoSearch" parameterClass="sysDeptVO" resultClass="sysDeptVO">
+		SELECT /* sys.deptInfoSearch */
+			  MENU_GRP_ID
+			, MENU_GRP_NM
+			, USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MEN01' AND C.CODE_CD = USE_FLAG) AS USE_FLAG_CM
+		FROM TB_MENUGRP
+		WHERE MENU_GRP_ID = #menu_grp_id#
+	</select>
+	<!-- 
 	<update id="placeMainMod" parameterClass="deptVO">
 		UPDATE /* reg.placeMainMod */ TB_PLCMAIN
 		SET SYS_ID = #sys_id#

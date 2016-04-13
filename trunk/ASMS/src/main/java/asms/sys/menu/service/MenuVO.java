@@ -2,6 +2,12 @@ package asms.sys.menu.service;
 
 import asms.common.paging.PagingVO;
 
+/**
+ * @PackageName asms.sys.menu.service
+ * @FileName MenuVO.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 4. 13.
+ */
 public class MenuVO extends PagingVO{
 	
 	private String menu_id;			// 메뉴 ID
