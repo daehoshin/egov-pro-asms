@@ -5,20 +5,20 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	$("form[name=deptSendForm]").find('input, select').keypress(function(e) {
+	$("form[name=menuSendForm]").find('input, select').keypress(function(e) {
 	    if (e.keyCode == 13){
-	   		jsDeptListSearch(1);
+	   		jsMenuListSearch(1);
 	    } 
 	});
 	
-	jsDeptListSearch(1);
+	jsMenuListSearch(1);
 	
 });
 
-//부서 검색
-function jsDeptListSearch(pageNo)
+//메뉴 검색
+function jsMenuListSearch(pageNo)
 {
-	var sf = $("form[name=deptSendForm]");
+	var sf = $("form[name=menuSendForm]");
 	
 	if (pageNo >= 1){
 		sf.find("input[name='pageIndex']").val(pageNo);
@@ -28,16 +28,16 @@ function jsDeptListSearch(pageNo)
 
 	$.ajax({
 		type : "post",
-		url  : "/sys/department/departmentListSearch.do",
+		url  : "/sys/menu/menuListSearch.do",
 		data : sendForm,
 		dataType : "html",
 		success:function(ajaxResult){
 			
 			// 조회된 리스트 넣어줌
-			$('#departmentList').html(ajaxResult);
+			$('#menuList').html(ajaxResult);
 			
 			// 전체 건수 넣어줌
-			var lf = $("form[name=deptListForm]");			
+			var lf = $("form[name=menuListForm]");			
 			sf.find("span[id=totalCnt]").html(lf.find("[name=listCnt]").val());
 			sf.find("input[name='orderColumn']").val(lf.find("input[name='orderColumn']").val());
 			sf.find("input[name='orderType']").val(lf.find("input[name='orderType']").val());
@@ -51,12 +51,30 @@ function jsDeptListSearch(pageNo)
 	});
 }
 
-//부서 등록화면
-function jsDeptAddForm()
+//메뉴 등록
+function jsMenuAddForm(){
+	$.ajax({
+		type : "post",
+		url  : "/sys/menu/menuAddForm.do",
+		dataType : "html",
+		success:function(ajaxResult){
+			
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
+		  
+		}, error: function(xhr,status,error){
+			 
+		}
+	});
+}
+
+/* 
+//메뉴 추가화면
+function jsMenuAddForm()
 {
 	$.ajax({
 		type : "post",
-		url  : "/sys/department/departmentAddForm.do",
+		url  : "/sys/menu/menuAddForm.do",
 		dataType : "html",
 		success:function(ajaxResult){
 			
@@ -72,13 +90,13 @@ function jsDeptAddForm()
 	});
 }
 
-//부서 수정화면
-function jsDeptModForm(dept_id)
+//메뉴 수정화면
+function jsDeptModForm(menu_id)
 {
 	$.ajax({
 		type : "post",
-		url  : "/sys/department/departmentModForm.do",
-		data : {dept_id : dept_id},
+		url  : "/sys/menu/menuModForm.do",
+		data : {menu_id : menu_id},
 		dataType : "html",
 		success:function(ajaxResult){
 			
@@ -94,13 +112,13 @@ function jsDeptModForm(dept_id)
 	});
 }
 
-// 부서 상세
-function jsDeptViewForm(dept_id){
+// 메뉴 상세
+function jsDeptViewForm(menu_id){
 
 	$.ajax({
 		type : "post",
-		url  : "/sys/department/departmentViewForm.do",
-		data : {dept_id : dept_id},
+		url  : "/sys/menu/menuViewForm.do",
+		data : {menu_id : menu_id},
 		dataType : "html",
 		success:function(ajaxResult){
 
@@ -119,16 +137,16 @@ function jsCloseView(){
 	$('#mainSection').removeClass('col-md-8');
 	$('#subSection').removeClass('col-md-4');
 }
-
+ */
 </script>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2><i class="fa fa-sun-o"></i> 부서 관리</h2>
+        <h2><i class="fa fa-sliders"></i> 메뉴 관리</h2>
         <ol class="breadcrumb">
             <li>시스템</li>
             <li class="active">
-                <strong>부서 관리</strong>
+                <strong>메뉴 관리</strong>
             </li>
         </ol>
     </div>
@@ -136,7 +154,7 @@ function jsCloseView(){
 <div class="wrapper wrapper-content animated fadeInRight">
    	<div class="row">
    		<div id="mainSection">
-		   	<form id="deptSendForm" name="deptSendForm" class="form-horizontal" method="post">
+		   	<form id="menuSendForm" name="menuSendForm" class="form-horizontal" method="post">
 		   	<input type="hidden" name="pageIndex" value="1">
 			<input type="hidden" name="orderColumn" value="">
 			<input type="hidden" name="orderType" value="">
@@ -145,8 +163,8 @@ function jsCloseView(){
 			   			<div class="pull-right">
 			   				<c:choose>
 		        				<c:when test="${loginUserVO.user_auth_cd eq 1 }">
-		        					<a href="javascript:;" onclick="jsDeptAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
-					        		<a href="javascript:;" onclick="jsDeptSelectDel()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
+		        					<a href="javascript:;" onclick="jsMenuAddForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 등록</a>
+					        		<a href="javascript:;" onclick="jsMenuSelectDel()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 삭제</a>
 		        				</c:when>
 		        			</c:choose>
 				        </div>
@@ -174,47 +192,26 @@ function jsCloseView(){
 							<div class="ibox-title">
 								<div class="row">
 									<div class="col-md-8">
-										<span>부서 검색</span>	
+										<span>메뉴 검색</span>	
 									</div>
 									<div class="col-md-4">
 										<div class="pull-right">
-						                    <a href="javascript:;" onclick="jsSrchReset('deptSendForm','jsDeptListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
-						                    <a href="javascript:;" onclick="jsDeptListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
+						                    <a href="javascript:;" onclick="jsSrchReset('menuSendForm','jsMenuListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
+						                    <a href="javascript:;" onclick="jsMenuListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
 						               	</div>
 									</div>
-								</div>
-							</div>
-							<div class="ibox-content">
-				                <div class="form-group">
-				                	<label class="col-sm-1 control-label" for="dept_nm">부서명</label>
-				                    <div class="col-sm-3"><input type="text" class="form-control" name="dept_nm" id="dept_nm"></div>
-				                	<label class="col-sm-1 control-label" for="reg_nm">등록자</label>
-				                    <div class="col-sm-3"><input type="text" class="form-control" name="reg_nm" id="reg_nm"></div>
-				                	<label class="col-sm-1 control-label" for="use_flag">사용여부</label>
-				                    <div class="col-sm-3"><asms:cdSelect name="use_flag" codeType="DEP01" use="true" optionHead="- 전체 -"/></div>
-								</div>
-							</div>
-							<div class="ibox-content">
-				                <div class="form-group">
-				                	<label class="col-sm-1 control-label" for="detp_find">부서찾기</label>
-				                    <div class="col-sm-3">
-				                    	<div class="input-group m-b">
-				                    		<input type="text" class="form-control" id="dept_find_nm" name="dept_find_nm" readonly="readonly"> <span class="input-group-addon" onclick="jsDetpMdSearch('deptSendForm','detp_find_id','dept_find_nm')"><span class="fa fa-sun-o"></span></span>
-				                    		<input type="hidden" name="detp_find_id" id="detp_find_id">
-				                    	</div>
-				                    </div>
 								</div>
 							</div>
 				   		</div>
 				   	</div>
 				</div>
 		   	</form>
-		   	<div id="departmentList">
-		 	<!-- departmentList -->
+		   	<div id="menuList">
+		 	<!-- menuList -->
 		   	</div>   			
    		</div>
    		<div id="subSection">
-   		<!-- departmentAdd -->
+   		<!-- menuAdd -->
    		</div>
    	</div>
 </div>
