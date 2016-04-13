@@ -17,7 +17,7 @@ $(document).ready(function(){
 			return false;
 		} else {
 			alert("else절"+useFlag);
-			return;
+			return true;
 		}
      });
 	
