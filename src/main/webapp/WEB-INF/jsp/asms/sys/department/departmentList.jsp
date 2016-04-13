@@ -54,13 +54,13 @@ function jsDeptListSort(orderColumnValue){
 		            <thead>
 			            <tr>
 			                <th class="widthP5 textCenter"><input type="checkbox" class="parentCheckBox"></th>
-			                <th class="widthP30 textCenter"><a href="javascript:jsPlaceListSort('DEPT_CD');">부서코드</a>
+			                <th class="widthP30 textCenter"><a href="javascript:jsDeptListSort('DEPT_CD');">부서코드</a>
 			                ${deptVO.orderColumn eq "DEPT_CD" ? deptVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
-			                <th class="widthP35 textCenter"><a href="javascript:jsPlaceListSort('DEPT_NM');">부서명</a>
+			                <th class="widthP35 textCenter"><a href="javascript:jsDeptListSort('DEPT_NM');">부서명</a>
 			                ${deptVO.orderColumn eq "DEPT_NM" ? deptVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
-			                <th class="widthP30 textCenter"><a href="javascript:jsPlaceListSort('USE_FLAG');">사용여부</a>
+			                <th class="widthP30 textCenter"><a href="javascript:jsDeptListSort('USE_FLAG');">사용여부</a>
 			                ${deptVO.orderColumn eq "USE_FLAG" ? deptVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
 			            </tr>

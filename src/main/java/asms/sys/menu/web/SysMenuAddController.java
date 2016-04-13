@@ -15,6 +15,12 @@ import asms.sys.department.service.DeptService;
 import asms.sys.menu.service.MenuService;
 import asms.sys.menu.service.MenuVO;
 
+/**
+ * @PackageName asms.sys.menu.web
+ * @FileName SysMenuAddController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 4. 13.
+ */
 @Controller
 public class SysMenuAddController {
 	

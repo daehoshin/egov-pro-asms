@@ -46,7 +46,7 @@ function jsMenuListSort(orderColumnValue){
 	 <div class="col-lg-12">
 	     <div class="ibox float-e-margins">
 	         <div class="ibox-title">
-	             <h5>장소 목록</h5>
+	             <h5>메뉴그룹 목록</h5>
 	         </div>
 	         <div class="ibox-content">
 	             <div class="table-responsive">
@@ -54,11 +54,11 @@ function jsMenuListSort(orderColumnValue){
 		            <thead>
 			            <tr>
 			                <th class="widthP5 textCenter"><input type="checkbox" class="parentCheckBox"></th>
-			                <th class="widthP30 textCenter"><a href="javascript:jsMenuListSort('MENU_GRP_ID');">메뉴코드</a>
-			                ${menuVO.orderColumn eq "DEPT_CD" ? menuVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                <th class="widthP30 textCenter"><a href="javascript:jsMenuListSort('MENU_GRP_ID');">메뉴그룹코드</a>
+			                ${menuVO.orderColumn eq "MENU_GRP_ID" ? menuVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
-			                <th class="widthP35 textCenter"><a href="javascript:jsMenuListSort('MENU_GRP_NM');">메뉴명</a>
-			                ${menuVO.orderColumn eq "DEPT_NM" ? menuVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
+			                <th class="widthP35 textCenter"><a href="javascript:jsMenuListSort('MENU_GRP_NM');">메뉴그룹명</a>
+			                ${menuVO.orderColumn eq "MENU_GRP_NM" ? menuVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
 			                <th class="widthP30 textCenter"><a href="javascript:jsMenuListSort('USE_FLAG');">사용여부</a>
 			                ${menuVO.orderColumn eq "USE_FLAG" ? menuVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
@@ -69,16 +69,16 @@ function jsMenuListSort(orderColumnValue){
 		            	<c:choose>
 		            		<c:when test="${empty SysMenuList }">
 						            <tr>
-						            	<td colspan="4" class="text-center">조회된 목록이 없습니다.</td>
+						            	<td colspan="3" class="text-center">조회된 목록이 없습니다.</td>
 						            </tr>	            		
 		            		</c:when>
 		            		<c:otherwise>
 		            			<c:forEach var="result" items="${SysMenuList}" varStatus="status">
 						            <tr>
-						                <td class="textCenter"><input type="checkbox" class="childCheckBox" name="menu_id" value="${result.menu_id }"></td>
-						                <td class="textCenter">${result.menu_cd }</td>
-						                <td class="textLeft blueText"><a href="javascript:;" onclick="jsMenuViewForm('${result.menu_id}')">${result.menu_nm }</a></td>
-						                <td class="textLeft">${result.use_flag_cm }</td>
+						                <td class="textCenter"><input type="checkbox" class="childCheckBox" name="menu_id" value="${result.menu_grp_id }"></td>
+						                <td class="textCenter">${result.menu_grp_id }</td>
+						                <td class="textCenter blueText"><a href="javascript:;" onclick="jsMenuViewForm('${result.menu_grp_id}')">${result.menu_grp_nm }</a></td>
+						                <td class="textCenter">${result.use_flag_cm }</td>
 						            </tr>
 					            </c:forEach>
 		            		</c:otherwise>
