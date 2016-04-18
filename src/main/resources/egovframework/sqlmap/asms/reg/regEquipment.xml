@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="regEquipment">
+	
+	<select id="equipmentListSearch" parameterClass="equipmentVO" resultClass="equipmentVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT /* reg.equipmentlistsearch */ 
+			  A.EQM_ID
+			, A.EQM_MNG_NO
+			, A.PLC_ID
+			, A.CATE_ID
+			, A.DEPT_ID
+			, A.CONFIRMOR_M_ID
+			, A.CONFIRMOR_S_ID
+			, A.REG_STATUS
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU01' AND C.CODE_CD = A.REG_STATUS) AS REG_STATUS_CM
+			, A.DEL_RSN
+			, A.REG_ID
+			, A.REG_NM
+			, A.REG_DT
+			, A.SYS_ID
+			, A.SYS_NM
+			, A.SYS_DT
+			, B.ST_ID
+			, B.EQM_NM
+			, B.USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU02' AND C.CODE_CD = B.USE_FLAG) AS USE_FLAG_CM
+			, B.EQM_STATE_CD
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU03' AND C.CODE_CD = B.EQM_STATE_CD) AS EQM_STATE_CD_CM
+			, B.EQM_SN
+			, B.BUY_DT
+			, B.GUARANTEE_CD
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU04' AND C.CODE_CD = B.GUARANTEE_CD) AS GUARANTEE_CD_CM
+			, B.GUARANTEE_DT
+			, B.EQM_SIZE
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU05' AND C.CODE_CD = B.EQM_SIZE) AS EQM_SIZE_CM
+			, B.EQM_WEIGHT
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU06' AND C.CODE_CD = B.EQM_WEIGHT) AS EQM_WEIGHT_CM
+			, B.QUALITY
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU07' AND C.CODE_CD = B.QUALITY) AS QUALITY_CM
+			, B.HND_TYPE
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EQU08' AND C.CODE_CD = B.HND_TYPE) AS HND_TYPE_CM
+		FROM TB_EQUIPMENTMAIN A JOIN TB_EQUIPMENTDETAIL B
+		ON   A.EQM_ID = B.EQM_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="eqm_mng_no">
+		 		A.EQM_MNG_NO LIKE '%$eqm_mng_no$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="eqm_nm">
+		 		B.EQM_NM LIKE '%$eqm_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="eqm_state_cd">
+		 		B.EQM_STATE_CD = #eqm_state_cd#
+		 	</isNotEmpty>
+		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isEqual>
+		 	<isNotEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isEmpty property="reg_status">
+		 			A.reg_status IN ('01','02')
+		 		</isEmpty>
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isNotEqual>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+
+	<select id="equipmentListTotCntSearch" parameterClass="equipmentVO" resultClass="Integer">
+		SELECT /* equipmentListTotCntSearch */ 
+		COUNT(*) totCnt
+		FROM TB_EQUIPMENTMAIN A JOIN TB_EQUIPMENTDETAIL B
+		ON   A.EQM_ID = B.EQM_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="eqm_mng_no">
+		 		A.EQM_MNG_NO LIKE '%$eqm_mng_no$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="eqm_nm">
+		 		B.EQM_NM LIKE '%$eqm_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="eqm_state_cd">
+		 		B.EQM_STATE_CD = #eqm_state_cd#
+		 	</isNotEmpty>
+		 	<isEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isEqual>
+		 	<isNotEqual prepend="AND" property="user_auth_cd" compareValue="1">
+		 		<isEmpty property="reg_status">
+		 			A.reg_status IN ('01','02')
+		 		</isEmpty>
+		 		<isNotEmpty property="reg_status">
+		 			A.reg_status = #reg_status#
+		 		</isNotEmpty>
+		 	</isNotEqual>
+		 </dynamic>
+	</select>
+	
+	<!-- <insert id="equipmentMainAdd" parameterClass="equipmentVO">
+		INSERT /* reg.equipmentMainAdd */
+		INTO TB_EQUIPMENTMAIN (
+						  PLC_ID
+						, PLC_MNG_NO
+						, REG_STATUS
+						, REG_ID
+						, REG_NM
+						, REG_DT
+						, SYS_ID
+						, SYS_NM
+						, SYS_DT
+						)
+				VALUES (
+						  #eqm_id#
+						, #eqm_mng_no#
+						, #reg_status#
+						, #reg_id#
+						, #reg_nm#
+						, #reg_dt#
+						, #sys_id#
+						, #sys_nm#
+						, #sys_dt#
+				)
+	</insert>
+	
+	<insert id="equipmentDetailAdd" parameterClass="equipmentVO">
+		INSERT /* reg.equipmentDetailAdd */
+		INTO TB_EQUIPMENTDETAIL (
+						  PLC_ID
+						, PLC_NM
+						, ADDR
+						, ADDR_DETAIL
+						)
+				VALUES (
+						  #eqm_id#
+						, #eqm_nm#
+						, #addr#
+						, #addr_detail#
+				)
+	</insert>
+	
+	<select id="equipmentInfoSearch" parameterClass="equipmentVO" resultClass="equipmentVO">
+		SELECT /* reg.equipmentInfoSearch */
+			A.PLC_ID
+		   , A.PLC_MNG_NO
+		   , A.REG_STATUS
+		   , A.REG_ID
+		   , A.REG_NM
+		   , A.REG_DT
+		   , A.SYS_ID
+		   , A.SYS_NM
+		   , A.SYS_DT
+		   , B.PLC_NM
+		   , B.ADDR
+		   , B.ADDR_DETAIL
+		   , CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
+		   , A.DEL_RSN
+		FROM TB_EQUIPMENTMAIN A JOIN TB_EQUIPMENTDETAIL B
+		ON   A.PLC_ID = B.PLC_ID
+		WHERE A.PLC_ID = #eqm_id#
+	</select>
+	
+	<update id="equipmentMainMod" parameterClass="equipmentVO">
+		UPDATE /* reg.equipmentMainMod */ TB_EQUIPMENTMAIN
+		SET SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #eqm_id#
+	</update>
+
+	<update id="equipmentDetailMod" parameterClass="equipmentVO">
+		UPDATE /* reg.equipmentDetailMod */ TB_EQUIPMENTDETAIL
+		SET PLC_NM = #eqm_nm#
+		  , ADDR = #addr#
+		  , ADDR_DETAIL = #addr_detail#
+		WHERE PLC_ID = #eqm_id#
+	</update>
+	
+	<update id="equipmentRegFinishAction" parameterClass="equipmentVO">
+		UPDATE /* reg.equipmentRegFinishAction */ TB_EQUIPMENTMAIN
+		SET REG_STATUS = #reg_status#
+		  , SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #eqm_id#  
+	</update>
+	
+	<select id="equipmentBaseInfoSearch" parameterClass="equipmentVO" resultClass="equipmentVO">
+		SELECT /* reg.equipmentBaseInfoSearch */ 
+		     PLC_ID
+		   , PLC_NM
+		FROM TB_EQUIPMENTDETAIL
+		WHERE PLC_ID = #eqm_id#
+	</select>
+	
+	<update id="EquipmentDelAction" parameterClass="equipmentVO">
+		UPDATE /* reg.EquipmentDelAction */ TB_EQUIPMENTMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID = #eqm_id#
+	</update>
+
+	<update id="EquipmentSelectDelAction" parameterClass="equipmentVO">
+		UPDATE /* reg.EquipmentDelAction */ TB_EQUIPMENTMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID IN
+		<iterate property="eqm_id_array" open="(" close=")" conjunction=",">
+	     	#eqm_id_array[]#
+	    </iterate>	
+	</update> -->
+	
+</sqlMap>
