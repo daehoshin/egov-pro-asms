@@ -6,6 +6,7 @@
 	<typeAlias  alias="loginUserVO" type="asms.common.login.service.LoginUserVO"/>
 	<typeAlias  alias="menuVO" type="asms.common.main.service.MenuVO"/>
 	<typeAlias  alias="placeVO" type="asms.reg.plc.service.PlaceVO"/>
+	<typeAlias  alias="equipmentVO" type="asms.reg.eq.service.EquipmentVO"/>
 	<typeAlias  alias="manPowerVO" type="asms.reg.mp.service.ManPowerVO"/>
 	<typeAlias  alias="assetSequenceVO" type="asms.common.asset.service.AssetSequenceVO"/>
 	<typeAlias  alias="commonCodeVO" type="asms.common.code.service.CommonCodeVO"/>
