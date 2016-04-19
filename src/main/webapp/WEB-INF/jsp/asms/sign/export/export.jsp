@@ -31,7 +31,7 @@ $(document).ready(function(){
 	
 });
 
-// 장소 검색
+// 반출서 검색
 function jsExportListSearch(pageNo)
 {
 	var sf = $("form[name=exportSendForm]");
@@ -48,7 +48,6 @@ function jsExportListSearch(pageNo)
 		data : sendForm,
 		dataType : "html",
 		success:function(ajaxResult){
-			
 			// 조회된 리스트 넣어줌
 			$('#exporteList').html(ajaxResult);
 			
@@ -67,7 +66,7 @@ function jsExportListSearch(pageNo)
 	});
 }
 
-// 장소 등록화면
+//반출서 등록화면
 function jsExportRegForm()
 {
 	$.ajax({
@@ -106,13 +105,12 @@ function jsExportModForm(plc_id)
  }
 
 // 반출신청서 상세
-function jsExportViewForm(plc_id)
+function jsExportDetailForm(app_id)
 {
-	alert("jsExportViewForm");
-	/*$.ajax({
-		type : "post",
-		url  : "/rgst/place/placeViewForm.do",
-		data : {plc_id : plc_id},
+	$.ajax({
+		type : "POST",
+		url  : "/sign/export/exportDetail.do",
+		data : {'app_id' : app_id},
 		dataType : "html",
 		success:function(ajaxResult){
 
@@ -122,7 +120,7 @@ function jsExportViewForm(plc_id)
 		}, error: function(xhr,status,error){
 			 
 		}
-	});*/	
+	});	
 }
 
 function jsExportSelectDel(){
@@ -131,7 +129,6 @@ function jsExportSelectDel(){
 	var checkedCnt = lf.find("[name=app_id]:checked").length;
 	var exportStatusCnt = 0;
 	
-	// 선택된 것 중 삭제 된 장소 확인
 	lf.find("[name=app_id]:checked").each(function(i){
 		if($(this).attr("checkVal")=="02"){ //신청 처리가 된 반출 건
 			exportStatusCnt++;
@@ -240,7 +237,7 @@ function jsExportSelectDel(){
 		                    <label class="col-sm-1 control-label" for="confirmor_id">확인자</label>
 		                    <div class="col-sm-2"><input type="text" class="form-control" name="confirmor_id" id="confirmor_id"></div>
 		                    <label class="col-sm-1 control-label" for="datepicker">신청일자</label>
-		                    <div class="col-sm-2">
+		                    <div class="col-sm-3">
 		                    	<div class="input-daterange input-group" id=app_dt>
                                     <input type="text" class="input-sm form-control" name="app_dt_st"/>
                                     <span class="input-group-addon">~</span>
@@ -248,7 +245,7 @@ function jsExportSelectDel(){
                                 </div>
 		                    </div>
 		                    <label class="col-sm-1 control-label" for="confirm_dt">처리일자</label>
-		                    <div class="col-sm-2">
+		                    <div class="col-sm-3">
 		                    	<div class="input-daterange input-group" id="confirm_dt">
                                     <input type="text" class="input-sm form-control" name="confirm_dt_st"/>
                                     <span class="input-group-addon">~</span>

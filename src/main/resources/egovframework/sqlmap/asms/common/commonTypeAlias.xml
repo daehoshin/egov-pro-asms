@@ -14,5 +14,7 @@
 	<typeAlias  alias="deptMdVO" type="asms.common.dept.service.DeptMdVO"/>
 	<typeAlias  alias="exportVO" type="asms.sign.export.service.ExportVO"/>
 	<typeAlias  alias="exportSearchVO" type="asms.sign.export.service.ExportSearchVO"/>
+
+	<typeAlias  alias="exportEquipmentVO" type="asms.sign.export.service.ExportEquipmentVO"/>
 	<typeAlias  alias="sysDeptVO" type="asms.sys.menu.service.MenuVO"/>
 </sqlMap>

@@ -18,6 +18,7 @@
 				<value>classpath:/egovframework/sqlmap/asms/reg/*.xml </value>
 				<value>classpath:/egovframework/sqlmap/asms/sys/*.xml </value>
 				<value>classpath:/egovframework/sqlmap/asms/sign/*.xml </value>
+				<value>classpath:/egovframework/sqlmap/asms/test/*.xml </value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
