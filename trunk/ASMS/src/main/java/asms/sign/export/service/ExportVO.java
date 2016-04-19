@@ -1,9 +1,6 @@
 package asms.sign.export.service;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import org.apache.commons.lang.StringUtils;
+import java.util.List;
 
 import asms.common.paging.PagingVO;
 
@@ -20,6 +17,7 @@ public class ExportVO extends PagingVO{
 	private String app_nm;       //신청서명
 	private String app_hm_id;    //신청인ID
 	private String confirmor_id; //확인자ID
+	private String confirmor_nm; //확인자명
 	private String app_cd;       //신청서상태
 	private String app_cd_nm;       //신청서상태명
 	private String app_dt;       //신청일자
@@ -30,7 +28,8 @@ public class ExportVO extends PagingVO{
 	private String sys_id;       //최종작업자ID
 	private String sys_nm;       //최종작업자명
 	private String sys_dt;       //최종작업일시
-	
+	private List<ExportEquipmentVO> equipment_list; //반출대상장비 리스트
+
 	public String getApp_id() {
 		return app_id;
 	}
@@ -60,6 +59,12 @@ public class ExportVO extends PagingVO{
 	}
 	public void setConfirmor_id(String confirmor_id) {
 		this.confirmor_id = confirmor_id;
+	}
+	public String getConfirmor_nm() {
+		return confirmor_nm;
+	}
+	public void setConfirmor_nm(String confirmor_nm) {
+		this.confirmor_nm = confirmor_nm;
 	}
 	public String getApp_cd() {
 		return app_cd;
@@ -121,5 +126,11 @@ public class ExportVO extends PagingVO{
 	public void setSys_dt(String sys_dt) {
 		this.sys_dt = sys_dt;
 	}
-
+	public List<ExportEquipmentVO> getEquipment_list() {
+		return equipment_list;
+	}
+	public void setEquipment_list(List<ExportEquipmentVO> equipment_list) {
+		this.equipment_list = equipment_list;
+	}
+	
 }

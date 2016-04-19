@@ -11,13 +11,14 @@ import asms.common.Constants;
 import asms.common.asset.service.AssetSequenceVO;
 import asms.common.asset.service.impl.AssetSequenceDAO;
 import asms.common.util.DateUtils;
+import asms.sign.export.service.ExportEquipmentVO;
 import asms.sign.export.service.ExportSearchVO;
 import asms.sign.export.service.ExportService;
 import asms.sign.export.service.ExportVO;
 
 /**
  * @PackageName asms.reg.plc.service.impl
- * @FileName PlaceServiceImpl.java
+ * @FileName TestServiceImpl.java
  * @Author DAE.HO.SHIN
  * @Since 2016. 3. 26.
  */
@@ -64,7 +65,25 @@ public class ExportServiceImpl implements ExportService{
 	public int exportListTotCntSearch(ExportSearchVO vo) throws Exception {
 		return exportDAO.exportListTotCntSearch(vo);
 	}
-	
-	
 
+	@Override
+	public ExportVO exportInfoSearch(ExportVO vo) throws Exception {
+		return exportDAO.exportInfoSearch(vo);
+	}
+
+	@Override
+	public List exportEquipmentListSearch(ExportEquipmentVO vo)
+			throws Exception {
+		
+		return exportDAO.exportEquipmentListSearch(vo);
+	}
+
+	@Override
+	public int exportEquipmentListTotCntSearch(ExportEquipmentVO vo)
+			throws Exception {
+		return exportDAO.exportEquipmentListTotCntSearch(vo);
+	}
+
+	
+	
 }

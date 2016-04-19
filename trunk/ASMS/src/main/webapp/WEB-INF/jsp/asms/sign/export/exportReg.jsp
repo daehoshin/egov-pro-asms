@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
+var isSync = false;
 $(document).ready(function(){
 
 	$("#addBtn").bind("click",function(){
@@ -23,23 +24,24 @@ $(document).ready(function(){
 
 function jsExportAddAction()
 {
+	if(isSync) return;
 		
 	var addForm = $("form[name=exportAddForm]").serialize();
-
+	isSync = true;
 	$.ajax({
 		type : "post",
 		url  : "/sign/export/exportAddAction.do",
 		data : addForm,
 		dataType : "json",
 		success:function(ajaxResult){
-			
-			jsExportListSearch(1);
 			$('#myModal').modal('hide');
+			jsExportListSearch(1);
 			
 		}, error: function(xhr,status,error){
-			 
+			isSync = false;
 		}
 	});
+
 }
 
 </script>
@@ -49,6 +51,7 @@ function jsExportAddAction()
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title">반출서 등록</h4>
         </div>
+        <div class="ibox-content">
         <form id="exportAddForm" name="exportAddForm" class="form-horizontal" method="post">
 	        <div class="modal-body">
 	        	<div class="row">
@@ -73,6 +76,7 @@ function jsExportAddAction()
 	        	</div>
 	        </div>
         </form>
+        </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-success" id="addBtn">등록</button>
             <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>

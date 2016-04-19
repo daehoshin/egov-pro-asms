@@ -13,4 +13,7 @@ public interface ExportService {
 	int exportAddAction(ExportVO vo) throws Exception;
 	List exportListSearch(ExportSearchVO vo) throws Exception;
 	int exportListTotCntSearch(ExportSearchVO vo) throws Exception;
+	ExportVO exportInfoSearch(ExportVO vo) throws Exception;
+	List exportEquipmentListSearch(ExportEquipmentVO vo) throws Exception;
+	int exportEquipmentListTotCntSearch(ExportEquipmentVO vo) throws Exception;
 }

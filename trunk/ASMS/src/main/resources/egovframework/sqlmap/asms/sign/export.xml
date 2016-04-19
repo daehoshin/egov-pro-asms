@@ -134,4 +134,46 @@
 		 </dynamic>
 	</select>
 	
+	<select id="exportInfoSearch" parameterClass="exportVO" resultClass="exportVO">
+		SELECT 
+		     APP_ID
+			,APP_NO
+			,APP_NM
+			,APP_HM_ID
+			,CONFIRMOR_ID
+			,(SELECT M.MP_NM FROM TB_MPDETAIL M WHERE M.MP_ID = CONFIRMOR_ID) CONFIRMOR_NM
+			,APP_CD
+			,(SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'EXP01' AND C.CODE_CD = APP_CD) AS APP_CD_NM
+			,DATE_FORMAT(STR_TO_DATE(APP_DT,'%Y%m%d%H%i%s'),'%Y/%m/%d') APP_DT
+			,DATE_FORMAT(STR_TO_DATE(CONFIRM_DT,'%Y%m%d%H%i%s'),'%Y/%m/%d') CONFIRM_DT
+			,REG_ID
+			,REG_NM
+			,DATE_FORMAT(STR_TO_DATE(REG_DT,'%Y%m%d%H%i%s'),'%Y/%m/%d') REG_DT
+			,SYS_ID
+			,SYS_NM
+			,SYS_DT
+		FROM TB_ASEXPORTAPP
+		WHERE APP_ID = #app_id#
+	</select>
+	
+	<select id="exportEquipmentListSearch" parameterClass="exportEquipmentVO" resultClass="exportEquipmentVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT 
+			 APP_ID
+			,EQM_ID
+			,EXPORT_CD
+			,EXPORT_RSN
+			,EXPORT_DT
+			,RETURN_DUE_DT
+		FROM TB_EXPORTTARGERTAS
+		WHERE APP_ID = #app_id#	
+	<include refid="pagingFooterSql"/>	
+	</select>
+	
+	<select id="exportEquipmentListTotCntSearch" parameterClass="exportEquipmentVO" resultClass="Integer">
+		SELECT 
+			COUNT(*)
+		FROM TB_EXPORTTARGERTAS
+		WHERE APP_ID = #app_id#	
+	</select>
 </sqlMap>

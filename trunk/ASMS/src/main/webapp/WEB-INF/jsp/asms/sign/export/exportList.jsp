@@ -87,7 +87,7 @@ function jsExportListSort(orderColumnValue){
 						            <tr>
 						                <td class="textCenter"><input type="checkbox" class="childCheckBox" name="app_id" value="${result.app_id}" checkVal="${result.app_cd }"></td>
 						                <td class="textCenter">${result.app_no }</td>
-						                <td class="textLeft blueText"><a href="javascript:;" onclick="jsExportViewForm('${result.app_no}')">${result.app_nm }</a></td>
+						                <td class="textLeft blueText"><a href="javascript:;" onclick="jsExportDetailForm('${result.app_id}')">${result.app_nm }</a></td>
 						                <td class="textCenter">${result.reg_dt }</td>
 						                <td class="textCenter">${result.app_dt }</td>
 						                <td class="textCenter">${result.confirm_dt }</td>
