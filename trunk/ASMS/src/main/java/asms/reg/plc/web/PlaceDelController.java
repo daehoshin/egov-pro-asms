@@ -15,6 +15,12 @@ import asms.common.util.DateUtils;
 import asms.reg.plc.service.PlaceService;
 import asms.reg.plc.service.PlaceVO;
 
+/**
+ * @PackageName asms.reg.plc.web
+ * @FileName PlaceDelController.java
+ * @Author DAE.HO.SHIN
+ * @Since 2016. 4. 18.
+ */
 @Controller
 public class PlaceDelController {
 	
