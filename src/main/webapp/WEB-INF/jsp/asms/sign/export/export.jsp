@@ -114,9 +114,10 @@ function jsExportDetailForm(app_id)
 		dataType : "html",
 		success:function(ajaxResult){
 
-			$('#myModal').html(ajaxResult);
-			$('#myModal').modal('show');
-		  
+			$('#mainSection').addClass('col-md-8');
+			$('#subSection').addClass('col-md-4');
+			$('#subSection').html(ajaxResult);
+			
 		}, error: function(xhr,status,error){
 			 
 		}
@@ -165,6 +166,10 @@ function jsExportSelectDel(){
 	}
 }
 
+function jsCloseView(){
+	$('#mainSection').removeClass('col-md-8');
+	$('#subSection').removeClass('col-md-4');
+}
 </script>
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -179,88 +184,94 @@ function jsExportSelectDel(){
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
-   	<form id="exportSendForm" name="exportSendForm" class="form-horizontal" method="post">
-   	<input type="hidden" name="pageIndex" value="1">
-	<input type="hidden" name="orderColumn" value="">
-	<input type="hidden" name="orderType" value="">
-	   	<div class="row">
-	   		<div class="col-md-12 marginB5">
-	   			<div class="pull-right">
-	   				<c:choose>
-        				<c:when test="${loginUserVO.user_auth_cd eq 1 }">
-        					<a href="javascript:;" onclick="jsExportRegForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 반출서 작성</a>
-			        		<a href="javascript:;" onclick="jsExportSelectDel()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 일괄삭제</a>
-        				</c:when>
-        			</c:choose>
-		        </div>
-	   		</div>
-	    </div>
-	    <div class="row">
-	    	<div class="col-md-10">
-	    		<div class="pull-left">
-	    			<i class="fa fa-list"></i> 전체 : <span id="totalCnt" class="blueText"></span>
-	    		</div>
-	    	</div>
-	    	<div class="col-md-2">
-    			<select name="pageUnit" class="form-control" onchange="jsExportListSearch()">
-					<option>20</option>
-					<option>40</option>
-					<option>80</option>
-					<option>100</option>
-				</select>
-	    	</div>
-	    </div>    
-	    <div class="row">
-	   		<div class="col-md-12">
-	   			<div class="ibox float-e-margins">
-					<div class="ibox-title">
-						<div class="row">
-							<div class="col-md-8">
-								<span>반출서 검색</span>	
+	<div class="row">
+		<div id="mainSection">
+		   	<form id="exportSendForm" name="exportSendForm" class="form-horizontal" method="post">
+		   	<input type="hidden" name="pageIndex" value="1">
+			<input type="hidden" name="orderColumn" value="">
+			<input type="hidden" name="orderType" value="">
+			   	<div class="row">
+			   		<div class="col-md-12 marginB5">
+			   			<div class="pull-right">
+			   				<c:choose>
+		        				<c:when test="${loginUserVO.user_auth_cd eq 1 }">
+		        					<a href="javascript:;" onclick="jsExportRegForm()" class="btn btn-outline btn-success"><i class="fa fa-pencil"></i> 반출서 작성</a>
+					        		<a href="javascript:;" onclick="jsExportSelectDel()" class="btn btn-outline btn-danger"><i class="fa fa-pencil"></i> 일괄삭제</a>
+		        				</c:when>
+		        			</c:choose>
+				        </div>
+			   		</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col-md-10">
+			    		<div class="pull-left">
+			    			<i class="fa fa-list"></i> 전체 : <span id="totalCnt" class="blueText"></span>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-2">
+		    			<select name="pageUnit" class="form-control" onchange="jsExportListSearch()">
+							<option>20</option>
+							<option>40</option>
+							<option>80</option>
+							<option>100</option>
+						</select>
+			    	</div>
+			    </div>    
+			    <div class="row">
+			   		<div class="col-md-12">
+			   			<div class="ibox float-e-margins">
+							<div class="ibox-title">
+								<div class="row">
+									<div class="col-md-8">
+										<span>반출서 검색</span>	
+									</div>
+									<div class="col-md-4">
+										<div class="pull-right">
+						                    <a href="javascript:;" onclick="jsSrchReset('exportSendForm','jsExportListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
+						                    <a href="javascript:;" onclick="jsExportListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
+						               	</div>
+									</div>
+								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="pull-right">
-				                    <a href="javascript:;" onclick="jsSrchReset('exportSendForm','jsExportListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
-				                    <a href="javascript:;" onclick="jsExportListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
-				               	</div>
+							<div class="ibox-content">
+				                <div class="form-group">
+				                	<label class="col-sm-1 control-label" for="app_no">관리번호</label>
+				                    <div class="col-sm-2"><input type="text" class="form-control" name="app_no" id="app_no"></div>
+				                	<label class="col-sm-1 control-label" for="app_nm">신청서명</label>
+				                    <div class="col-sm-2"><input type="text" class="form-control" name="app_nm" id="app_nm"></div>
+				                	<label class="col-sm-1 control-label" for="app_hm_id">신청자</label>
+				                    <div class="col-sm-2"><input type="text" class="form-control" name="app_hm_id" id="app_hm_id"></div>
+				                    <label class="col-sm-1 control-label" for="confirmor_id">확인자</label>
+				                    <div class="col-sm-2"><input type="text" class="form-control" name="confirmor_id" id="confirmor_id"></div>
+				                    <label class="col-sm-1 control-label" for="datepicker">신청일자</label>
+				                    <div class="col-sm-3">
+				                    	<div class="input-daterange input-group" id=app_dt>
+		                                    <input type="text" class="input-sm form-control" name="app_dt_st"/>
+		                                    <span class="input-group-addon">~</span>
+		                                    <input type="text" class="input-sm form-control" name="app_dt_ed"/>
+		                                </div>
+				                    </div>
+				                    <label class="col-sm-1 control-label" for="confirm_dt">처리일자</label>
+				                    <div class="col-sm-3">
+				                    	<div class="input-daterange input-group" id="confirm_dt">
+		                                    <input type="text" class="input-sm form-control" name="confirm_dt_st"/>
+		                                    <span class="input-group-addon">~</span>
+		                                    <input type="text" class="input-sm form-control" name="confirm_dt_ed"/>
+		                                </div>
+				                    </div>
+		 		                    <label class="col-sm-1 control-label" for="app_cd">신청서상태</label>
+				                	<div class="col-sm-2"><asms:cdSelect name="app_cd" codeType="EXP01" use="true" optionHead="- 전체 -"/></div>
+				                </div>
 							</div>
 						</div>
-					</div>
-					<div class="ibox-content">
-		                <div class="form-group">
-		                	<label class="col-sm-1 control-label" for="app_no">관리번호</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="app_no" id="app_no"></div>
-		                	<label class="col-sm-1 control-label" for="app_nm">신청서명</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="app_nm" id="app_nm"></div>
-		                	<label class="col-sm-1 control-label" for="app_hm_id">신청자</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="app_hm_id" id="app_hm_id"></div>
-		                    <label class="col-sm-1 control-label" for="confirmor_id">확인자</label>
-		                    <div class="col-sm-2"><input type="text" class="form-control" name="confirmor_id" id="confirmor_id"></div>
-		                    <label class="col-sm-1 control-label" for="datepicker">신청일자</label>
-		                    <div class="col-sm-3">
-		                    	<div class="input-daterange input-group" id=app_dt>
-                                    <input type="text" class="input-sm form-control" name="app_dt_st"/>
-                                    <span class="input-group-addon">~</span>
-                                    <input type="text" class="input-sm form-control" name="app_dt_ed"/>
-                                </div>
-		                    </div>
-		                    <label class="col-sm-1 control-label" for="confirm_dt">처리일자</label>
-		                    <div class="col-sm-3">
-		                    	<div class="input-daterange input-group" id="confirm_dt">
-                                    <input type="text" class="input-sm form-control" name="confirm_dt_st"/>
-                                    <span class="input-group-addon">~</span>
-                                    <input type="text" class="input-sm form-control" name="confirm_dt_ed"/>
-                                </div>
-		                    </div>
- 		                    <label class="col-sm-1 control-label" for="app_cd">신청서상태</label>
-		                	<div class="col-sm-2"><asms:cdSelect name="app_cd" codeType="EXP01" use="true" optionHead="- 전체 -"/></div>
-		                </div>
-					</div>
-				</div>
-	   		</div>
+			   		</div>
+			   	</div>
+		   	</form>
+		   	<div id="exporteList">
+		 	<!-- exportList -->
+		   	</div>
 	   	</div>
-   	</form>
-   	<div id="exporteList">
- 	<!-- exportList -->
-   	</div>
+	   	<div id="subSection">
+	   	</div>
+	</div>
 </div>
