@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("[class^=menuLvl1_]").bind("click",function(){
+		var classNm = $(this).attr("class").replace(" ","").replace("active","").replace("menuLvl1_","");
+		$(this).find("[class=menuLvl2_"+classNm+"]").css("display","block");
+	});
+});
+</script>
+
 		<!-- Left Start -->
 		<form name="menuLoadForm" method="post">
 			<input type="hidden" name="menu_id">
@@ -28,13 +37,13 @@
                         </div>
                     </li>
                     <c:forEach var="result1" items="${menuList1 }">
-	                    <li>
-	                        <a href="#"><i class="${result1.menu_icon }"></i> <span class="nav-label">${result1.menu_nm }</span> <span class="fa arrow"></span></a>
+	                    <li class="menuLvl1_${result1.menu_id }">
+	                        <a href="javascript:;"><i class="${result1.menu_icon }"></i> <span class="nav-label">${result1.menu_nm }</span> <span class="fa arrow"></span></a>
 	                        <c:if test="${result1.sub_cnt > 0 }">
 		                        <ul class="nav nav-second-level">
 		                            <c:forEach var="result2" items="${menuList2 }">
 			                            <c:if test="${result1.menu_id == result2.menu_upper_id }">
-			                            	<li><a href="javascript:;" onclick="jsMenuLoad('${result2.menu_id }','${result2.menu_div_cd }')"><i class="${result2.menu_icon }"></i>${result2.menu_nm }</a></li>
+			                            	<li class="menuLvl2_${result2.menu_upper_id }" style="display:none"; onclick="jsMenuLoad('${result2.menu_id }','${result2.menu_div_cd }')"><a href="#"><i class="${result2.menu_icon }"></i>${result2.menu_nm }</a></li>
 			                            </c:if>
 		                            </c:forEach>
 		                        </ul>
