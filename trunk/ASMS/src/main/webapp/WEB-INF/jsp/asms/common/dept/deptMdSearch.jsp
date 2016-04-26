@@ -55,7 +55,7 @@ function jsDeptMdClose() {
 	$('#myModal').modal('hide');
 }
 </script>
-<div class="modal-dialog" style="width: 850px">
+<div class="modal-dialog" style="width: 800px">
 	<div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -101,12 +101,14 @@ function jsDeptMdClose() {
 							</div>
 							<div class="ibox-content">
 				                <div class="form-group">
-				                	<label class="col-sm-1 control-label" for="dept_nm">부서명</label>
-				                    <div class="col-sm-3"><input type="text" class="form-control" name="dept_nm" id="dept_nm"></div>
-				                	<label class="col-sm-1 control-label" for="reg_nm">등록자</label>
-				                    <div class="col-sm-3"><input type="text" class="form-control" name="reg_nm" id="reg_nm"></div>
-				                	<label class="col-sm-1 control-label" for="use_flag">사용여부</label>
-				                    <div class="col-sm-3"><asms:cdSelect name="use_flag" codeType="DEP01" use="true" optionHead="- 전체 -"/></div>
+				                	<label class="col-sm-2 control-label" for="dept_nm">부서명</label>
+				                    <div class="col-sm-4"><input type="text" class="form-control" name="dept_nm" id="dept_nm"></div>
+				                	<label class="col-sm-2 control-label" for="reg_nm">등록자</label>
+				                    <div class="col-sm-4"><input type="text" class="form-control" name="reg_nm" id="reg_nm"></div>
+				                </div>    
+				                <div class="form-group">
+				                	<label class="col-sm-2 control-label" for="use_flag">사용여부</label>
+				                    <div class="col-sm-4"><asms:cdSelect name="use_flag" codeType="DEP01" use="true" optionHead="- 전체 -"/></div>
 								</div>
 							</div>
 				   		</div>
