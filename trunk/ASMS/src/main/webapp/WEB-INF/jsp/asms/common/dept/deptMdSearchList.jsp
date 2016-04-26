@@ -52,20 +52,20 @@ function jsTargetInsert(dept_id, dept_nm, targetForm, targetId, targetNm){
 	 <div class="col-lg-12">
 	     <div class="ibox float-e-margins">
 	         <div class="ibox-title">
-	             <h5>장소 목록</h5>
+	             <h5>부서 목록</h5>
 	         </div>
 	         <div class="ibox-content">
 	             <div class="table-responsive">
 		           <table class="table table-striped table-bordered table-hover" >
 		            <thead>
 			            <tr>
-			                <th class="widthP30 textCenter"><a href="javascript:jsPlaceListSort('DEPT_CD');">부서코드</a>
+			                <th class="widthP30 textCenter"><a href="javascript:jsDeptMdListSort('DEPT_CD');">부서코드</a>
 			                ${deptMdVO.orderColumn eq "DEPT_CD" ? deptMdVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
-			                <th class="widthP35 textCenter"><a href="javascript:jsPlaceListSort('DEPT_NM');">부서명</a>
+			                <th class="widthP35 textCenter"><a href="javascript:jsDeptMdListSort('DEPT_NM');">부서명</a>
 			                ${deptMdVO.orderColumn eq "DEPT_NM" ? deptMdVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
-			                <th class="widthP30 textCenter"><a href="javascript:jsPlaceListSort('USE_FLAG');">사용여부</a>
+			                <th class="widthP30 textCenter"><a href="javascript:jsDeptMdListSort('USE_FLAG');">사용여부</a>
 			                ${deptMdVO.orderColumn eq "USE_FLAG" ? deptMdVO.orderType eq "ASC" ? sAscSortImg : sDescSortImg : "" }
 			                </th>
 			            </tr>
