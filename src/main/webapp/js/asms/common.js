@@ -53,7 +53,6 @@ function jsSrchReset(target,executeJsNm)
 	  eval(executeJsNm);
 }
 
-
 function jsInitialize(){
 	// 체크박스 체크 표시
 	$('.i-checks').iCheck({
@@ -93,6 +92,42 @@ function jsDetpMdSearch(targetForm,targetId,targetNm){
 		  
 		}, error: function(xhr,status,error){
 			 
+		}
+	});	
+}
+
+// 인력조회 모달
+function jsMpMdSearch(targetForm,targetId,targetNm){
+	$.ajax({
+		type : "post",
+		url  : "/common/mp/mpMdSearch.do",
+		data : {targetForm:targetForm, targetId:targetId, targetNm:targetNm},
+		dataType : "html",
+		success:function(ajaxResult){
+			
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
+			
+		}, error: function(xhr,status,error){
+			
+		}
+	});	
+}
+
+// 제조사조회 모달
+function jsStoreMdSearch(targetForm,targetId,targetNm){
+	$.ajax({
+		type : "post",
+		url  : "/common/store/storeMdSearch.do",
+		data : {targetForm:targetForm, targetId:targetId, targetNm:targetNm},
+		dataType : "html",
+		success:function(ajaxResult){
+			
+			$('#myModal').html(ajaxResult);
+			$('#myModal').modal('show');
+			
+		}, error: function(xhr,status,error){
+			
 		}
 	});	
 }

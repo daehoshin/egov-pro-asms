@@ -196,11 +196,25 @@ function jsCloseView(){
 							</div>
 							<div class="ibox-content">
 				                <div class="form-group">
-				                	<label class="col-sm-1 control-label" for="detp_find">부서찾기</label>
+				                	<label class="col-sm-1 control-label" for="detp_find_nm">부서찾기</label>
 				                    <div class="col-sm-3">
 				                    	<div class="input-group m-b">
 				                    		<input type="text" class="form-control" id="dept_find_nm" name="dept_find_nm" readonly="readonly"> <span class="input-group-addon" onclick="jsDetpMdSearch('deptSendForm','detp_find_id','dept_find_nm')"><span class="fa fa-sun-o"></span></span>
 				                    		<input type="hidden" name="detp_find_id" id="detp_find_id">
+				                    	</div>
+				                    </div>
+				                	<label class="col-sm-1 control-label" for="mp_find_nm">인력찾기</label>
+				                    <div class="col-sm-3">
+				                    	<div class="input-group m-b">
+				                    		<input type="text" class="form-control" id="mp_find_nm" name="mp_find_nm" readonly="readonly"> <span class="input-group-addon" onclick="jsMpMdSearch('mpSendForm','mp_find_id','mp_find_nm')"><span class="fa fa-sun-o"></span></span>
+				                    		<input type="hidden" name="mp_find_id" id="mp_find_id">
+				                    	</div>
+				                    </div>
+				                	<label class="col-sm-1 control-label" for="store_find_nm">제조사찾기</label>
+				                    <div class="col-sm-3">
+				                    	<div class="input-group m-b">
+				                    		<input type="text" class="form-control" id="store_find_nm" name="store_find_nm" readonly="readonly"> <span class="input-group-addon" onclick="jsStoreMdSearch('storeSendForm','store_find_id','store_find_nm')"><span class="fa fa-sun-o"></span></span>
+				                    		<input type="hidden" name="store_find_id" id="store_find_id">
 				                    	</div>
 				                    </div>
 								</div>

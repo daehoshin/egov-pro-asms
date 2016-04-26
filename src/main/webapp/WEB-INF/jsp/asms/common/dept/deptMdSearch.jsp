@@ -93,8 +93,8 @@ function jsDeptMdClose() {
 									</div>
 									<div class="col-md-4">
 										<div class="pull-right">
-						                    <a href="javascript:;" onclick="jsMdSrchReset('deptSendForm','jsDeptMdListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
-						                    <a href="javascript:;" onclick="jsDeptMdListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
+						                    <a href="javascript:;" onclick="jsSrchReset('deptSendForm','jsDeptMdListSearch(1)')" class="btn btn-outline btn-default"><i class="fa fa-refresh"></i> 검색 초기화</a>
+						                    <a href="javascript:;" onclick="jsDeptListSearch('1')" class="btn btn-outline btn-default"><i class="fa fa-search"></i> 검색</a>
 						               	</div>
 									</div>
 								</div>
