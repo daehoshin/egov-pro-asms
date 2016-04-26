@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="commonMp">
+	
+	<select id="mpMdListSearch" parameterClass="mpMdVO" resultClass="mpMdVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT /* common.mpMdListSearch */ 
+			  A.MP_ID
+			, A.MP_MNG_NO
+			, A.USER_AUTH_CD
+			, A.MENU_GRP_ID
+			, A.USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP01' AND C.CODE_CD = A.USE_FLAG) AS USE_FLAG_CM
+			, A.ENABLED
+			, A.AUTHORITY
+			, A.REG_ID
+			, A.REG_NM
+			, A.REG_DT
+			, A.SYS_ID
+			, A.SYS_NM
+			, A.SYS_DT
+			, B.MP_NM
+			, B.MP_CD
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP02' AND C.CODE_CD = B.MP_CD) AS MP_CD_CM
+			, B.LOGIN_USER_ID
+			, B.USER_PWD
+			, B.JOIN_DT
+			, B.RETIRE_DT
+			, B.DEPT_NM
+			, B.POSITION
+			, B.EMP_CD
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP03' AND C.CODE_CD = B.EMP_CD) AS EMP_CD_CM
+			, B.JOIN_CD
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'MP04' AND C.CODE_CD = B.JOIN_CD) AS JOIN_CD_CM
+			, B.BIRTH_DT
+			, B.ADDR
+			, B.ADDR_DETAIL
+			, CONCAT(B.ADDR,' ',B.ADDR_DETAIL) AS FULL_ADDR
+			, B.EMAIL
+			, B.TEL_NO
+		FROM TB_MPMAIN A JOIN TB_MPDETAIL B
+		ON   A.MP_ID = B.MP_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="mp_nm">
+		 		MP_NM LIKE '%$mp_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_nm">
+		 		REG_NM LIKE '%$reg_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+
+	<select id="mpMdListTotCntSearch" parameterClass="mpMdVO" resultClass="Integer">
+		SELECT /* common.mpMdListTotCntSearch */ 
+		COUNT(*) totCnt
+		FROM TB_MPMAIN A JOIN TB_MPDETAIL B
+		ON   A.MP_ID = B.MP_ID
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="mp_nm">
+		 		MP_NM LIKE '%$mp_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_nm">
+		 		REG_NM LIKE '%$reg_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+	</select>
+	
+</sqlMap>
