@@ -13,6 +13,8 @@
 	<typeAlias  alias="deptVO" type="asms.sys.department.service.DeptVO"/>
 	<typeAlias  alias="metaVO" type="asms.sys.meta.service.MetaVO"/>
 	<typeAlias  alias="cateVO" type="asms.sys.cate.service.CateVO"/>
+	<typeAlias  alias="codeVO" type="asms.sys.code.service.CodeVO"/>
+	<typeAlias  alias="historyVO" type="asms.sys.history.service.HistoryVO"/>
 	<typeAlias  alias="deptMdVO" type="asms.common.dept.service.DeptMdVO"/>
 	<typeAlias  alias="mpMdVO" type="asms.common.mp.service.MpMdVO"/>
 	<typeAlias  alias="storeMdVO" type="asms.common.store.service.StoreMdVO"/>	

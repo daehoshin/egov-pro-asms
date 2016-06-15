@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sysCode">
+	
+	<select id="codeListSearch" parameterClass="codeVO" resultClass="codeVO">
+	<include refid="pagingHeaderSql"/>	
+		SELECT /* sys.codeListSearch */ 
+			  CODE_ID
+			, CODE_UPPER_ID
+			, CODE_NM
+			, CODE_CD
+			, CODE_LEVEL
+			, CODE_SNO
+			, START_DT
+			, ENDT_DT
+			, USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'DEP01' AND C.CODE_CD = USE_FLAG) AS USE_FLAG_CM
+			, REG_ID
+			, REG_NM
+			, REG_DT
+			, SYS_ID
+			, SYS_NM
+			, SYS_DT
+		FROM TB_DEPARTMENT
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="code_nm">
+		 		CODE_NM LIKE '%$code_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_nm">
+		 		REG_NM LIKE '%$reg_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+		 <dynamic prepend="ORDER BY">
+			<isNotEmpty property="orderColumn">
+				$orderColumn$ $orderType$
+			</isNotEmpty>
+		</dynamic>
+	<include refid="pagingFooterSql"/>	
+	</select>
+
+	<select id="codeListTotCntSearch" parameterClass="codeVO" resultClass="Integer">
+		SELECT /* sys.codeListTotCntSearch */ 
+		COUNT(*) totCnt
+		FROM TB_DEPARTMENT
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="code_nm">
+		 		CODE_NM LIKE '%$code_nm$%'
+		 	</isNotEmpty>
+		 	<isNotEmpty prepend="AND" property="reg_nm">
+		 		REG_NM LIKE '%$reg_nm$%'
+		 	</isNotEmpty>
+	 		<isNotEmpty property="use_flag">
+	 			USE_FLAG = #use_flag#
+	 		</isNotEmpty>
+		 </dynamic>
+	</select>
+	
+	<insert id="codeAdd" parameterClass="codeVO">
+		<!-- INSERT /* sys.codeAdd */
+		INTO TB_DEPARTMENT (
+						    CODE_UPPER_ID
+						  , CODE_NM
+						  , CODE_CD
+						  , CODE_LEVEL
+						  , CODE_SNO
+						  , START_DT
+						  , ENDT_DT
+						  , USE_FLAG
+						  , REG_ID
+						  , REG_NM
+						  , REG_DT
+						  , SYS_ID
+						  , SYS_NM
+						  , SYS_DT
+						)
+				VALUES (
+						    #code_upper_id#
+						  , #code_nm#
+						  , #code_cd#
+						  , #code_level#
+						  , #code_sno#
+						  , #start_dt#
+						  , #endt_dt#
+						  , #use_flag#
+						  , #reg_id#
+						  , #reg_nm#
+						  , #reg_dt#
+						  , #sys_id#
+						  , #sys_nm#
+						  , #sys_dt#
+				) -->
+	</insert>
+	<!-- <
+	<insert id="placeDetailAdd" parameterClass="codeVO">
+		INSERT /* reg.placeDetailAdd */
+		INTO TB_PLCDETAIL (
+						  PLC_ID
+						, PLC_NM
+						, ADDR
+						, ADDR_DETAIL
+						)
+				VALUES (
+						  #plc_id#
+						, #plc_nm#
+						, #addr#
+						, #addr_detail#
+				)
+	</insert>
+	-->
+	<select id="codeInfoSearch" parameterClass="codeVO" resultClass="codeVO">
+		SELECT /* sys.codeInfoSearch */
+			  CODE_ID
+			, CODE_UPPER_ID
+			, CODE_NM
+			, CODE_CD
+			, CODE_LEVEL
+			, CODE_SNO
+			, START_DT
+			, ENDT_DT
+			, USE_FLAG
+			, (SELECT C.CODE_NM FROM TB_CODE C WHERE C.CODE_TYPE_CD = 'DEP01' AND C.CODE_CD = USE_FLAG) AS USE_FLAG_CM
+			, REG_ID
+			, REG_NM
+			, REG_DT
+			, SYS_ID
+			, SYS_NM
+			, SYS_DT 
+		FROM TB_DEPARTMENT
+		WHERE CODE_ID = #code_id#
+	</select>
+	<!-- 
+	<update id="placeMainMod" parameterClass="codeVO">
+		UPDATE /* reg.placeMainMod */ TB_PLCMAIN
+		SET SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #plc_id#
+	</update>
+
+	<update id="placeDetailMod" parameterClass="codeVO">
+		UPDATE /* reg.placeDetailMod */ TB_PLCDETAIL
+		SET PLC_NM = #plc_nm#
+		  , ADDR = #addr#
+		  , ADDR_DETAIL = #addr_detail#
+		WHERE PLC_ID = #plc_id#
+	</update>
+	
+	<update id="placeRegFinishAction" parameterClass="codeVO">
+		UPDATE /* reg.placeRegFinishAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , SYS_ID = #sys_id#
+		  , SYS_NM = #sys_nm#
+		  , SYS_DT = #sys_dt#
+		WHERE PLC_ID = #plc_id#  
+	</update>
+	
+	<select id="placeBaseInfoSearch" parameterClass="codeVO" resultClass="codeVO">
+		SELECT /* reg.placeBaseInfoSearch */ 
+		     PLC_ID
+		   , PLC_NM
+		FROM TB_PLCDETAIL
+		WHERE PLC_ID = #plc_id#
+	</select>
+	
+	<update id="PlaceDelAction" parameterClass="codeVO">
+		UPDATE /* reg.PlaceDelAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID = #plc_id#
+	</update>
+
+	<update id="PlaceSelectDelAction" parameterClass="codeVO">
+		UPDATE /* reg.PlaceDelAction */ TB_PLCMAIN
+		SET REG_STATUS = #reg_status#
+		  , DEL_RSN    = #del_rsn#
+		WHERE PLC_ID IN
+		<iterate property="plc_id_array" open="(" close=")" conjunction=",">
+	     	#plc_id_array[]#
+	    </iterate>	
+	</update> -->
+	
+</sqlMap>
