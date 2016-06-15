@@ -11,6 +11,8 @@
 	<typeAlias  alias="assetSequenceVO" type="asms.common.asset.service.AssetSequenceVO"/>
 	<typeAlias  alias="commonCodeVO" type="asms.common.code.service.CommonCodeVO"/>
 	<typeAlias  alias="deptVO" type="asms.sys.department.service.DeptVO"/>
+	<typeAlias  alias="metaVO" type="asms.sys.meta.service.MetaVO"/>
+	<typeAlias  alias="cateVO" type="asms.sys.cate.service.CateVO"/>
 	<typeAlias  alias="deptMdVO" type="asms.common.dept.service.DeptMdVO"/>
 	<typeAlias  alias="mpMdVO" type="asms.common.mp.service.MpMdVO"/>
 	<typeAlias  alias="storeMdVO" type="asms.common.store.service.StoreMdVO"/>	
